@@ -7,11 +7,13 @@ export async function createArmMesh() {
 
 	const loader = new THREE.TextureLoader();
 	const textureObject = await loader.loadAsync('../../../assets/textures/metal1.jpg');
+	const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
 
 	//Konteiner for hele armen:
 	const arm = new THREE.Group();
 
 	let material = new THREE.MeshPhongMaterial({ map: textureObject });
+	let materialAluminium = new THREE.MeshPhongMaterial({map: textureAluminium});
 	let gFoot = new THREE.CylinderGeometry(20, 30, 10, 20, 5, false);
 	let meshFoot = new THREE.Mesh(gFoot, material);
 	meshFoot.name = 'foot';
@@ -22,7 +24,7 @@ export async function createArmMesh() {
 
 	//LowerArm:
 	let gLowerArm = new THREE.CylinderGeometry(4, 4, 100, 8, 1, false);
-	let meshLowerArm = new THREE.Mesh(gLowerArm, material);
+	let meshLowerArm = new THREE.Mesh(gLowerArm, materialAluminium);
 	meshLowerArm.name = 'LowerArm';
 	meshLowerArm.position.x = 0;
 	meshLowerArm.position.y = 60;	//Flytter opp 50 (halvparten av sylinderens høyde) + 10 (høyde på foten)
@@ -37,13 +39,13 @@ export async function createArmMesh() {
 	armAndJoint1.name = 'armAndJoint1';
 	//* joint1:
 	let gJoint1 = new THREE.SphereGeometry(10, 8, 6);					//radius, widthSegments, heightSegments,
-	let meshJoint1 = new THREE.Mesh(gJoint1, material);
+	let meshJoint1 = new THREE.Mesh(gJoint1, materialAluminium);
 	meshJoint1.castShadow = true;
 	meshJoint1.name = 'joint1';
 	armAndJoint1.add(meshJoint1);
 	//* arm1:
 	let gMidArm = new THREE.CylinderGeometry(4, 4, 100, 8, 1, false);
-	let meshMidArm = new THREE.Mesh(gMidArm, material);
+	let meshMidArm = new THREE.Mesh(gMidArm, materialAluminium);
 	meshMidArm.castShadow = true;
 	meshMidArm.name = 'MidArm';
 	meshMidArm.position.x = 0;
@@ -62,13 +64,13 @@ export async function createArmMesh() {
 	armAndJoint2.name = 'armAndJoint2';
 	//* joint2:
 	let gJoint2 = new THREE.SphereGeometry(10, 8, 6);					//radius, widthSegments, heightSegments,
-	let meshJoint2 = new THREE.Mesh(gJoint2, material);
+	let meshJoint2 = new THREE.Mesh(gJoint2, materialAluminium);
 	meshJoint2.name = 'joint2';
 	meshJoint2.castShadow = true;
 	armAndJoint2.add(meshJoint2);
 	//* arm2:
 	let gUpperArm = new THREE.CylinderGeometry(4, 4, 100, 8, 1, false);
-	let meshUpperArm = new THREE.Mesh(gUpperArm, material);
+	let meshUpperArm = new THREE.Mesh(gUpperArm, materialAluminium);
 	meshUpperArm.castShadow = true;
 	meshUpperArm.name = 'UpperArm';
 	meshUpperArm.position.x = 0;
