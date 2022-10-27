@@ -3,7 +3,7 @@ import '../style.css';
 import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 import {addCoordSystem} from "../../static/lib/wfa-coord.js";
-import {createArmMesh,} from "./BeltHelper.js";
+import {createBeltMesh,} from "./BeltHelper.js";
 
 //Globale variabler:
 let g_scene, g_renderer, g_camera, g_clock, g_controls, g_currentlyPressedKeys = [];
@@ -77,12 +77,12 @@ async function addSceneObjects() {
 	g_scene.add(meshPlane);
 
 	//
-	let arm = await createArmMesh();
-	arm.name = "arm";
-	arm.baseRot = 0.0;
-	arm.joint1Rot = 0.0;
-	arm.joint2Rot = 0.0;
-	g_scene.add(arm);
+	let belt = await createBeltMesh();
+	belt.name = "belt";
+	belt.baseRot = 0.0;
+	belt.joint1Rot = 0.0;
+	belt.joint2Rot = 0.0;
+	g_scene.add(belt);
 }
 
 function addLights() {
@@ -116,16 +116,16 @@ function animate(currentTime) {
 	g_controls.update();
 
 	//Roterer heile skjiten:
-	let arm = g_scene.getObjectByName("arm");
-	arm.rotation.y = arm.baseRot;
-	//let armAndJoint1 = arm.getObjectByName('arm', true);  //true = recursive...
-	arm.rotation.x = arm.joint1Rot;
+	let belt = g_scene.getObjectByName("belt");
+	belt.rotation.y = belt.baseRot;
+	//let beltAndJoint1 = belt.getObjectByName('belt', true);  //true = recursive...
+	belt.rotation.x = belt.joint1Rot;
 
-	//let armAndJoint2 = arm.getObjectByName('arm', true);  //true = recursive...
-	//arm.rotation.x = arm.joint2Rot;
+	//let beltAndJoint2 = belt.getObjectByName('belt', true);  //true = recursive...
+	//belt.rotation.x = belt.joint2Rot;
 
 	//Sjekker input:
-	handleKeys(delta, arm);
+	handleKeys(delta, belt);
 
 	//Tegner scenen med gitt kamera:
 	renderScene();
@@ -146,36 +146,36 @@ function onWindowResize() {
 }
 
 //Sjekker tastaturet:
-function handleKeys(delta, arm) {
+function handleKeys(delta, belt) {
 	let rotationSpeed = (Math.PI); // Bestemmer rotasjonshastighet.
 
 	//Roter foten:s
 	if (g_currentlyPressedKeys['KeyA']) { //A
-		arm.baseRot = arm.baseRot + (rotationSpeed * delta);
-		arm.baseRot %= (Math.PI * 2); // "Rull rundt" dersom arm.baseRot >= 360 grader.
+		belt.baseRot = belt.baseRot + (rotationSpeed * delta);
+		belt.baseRot %= (Math.PI * 2); // "Rull rundt" dersom belt.baseRot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyD']) {	//D
-		arm.baseRot = arm.baseRot - (rotationSpeed * delta);
-		arm.baseRot %= (Math.PI * 2); // "Rull rundt" dersom arm.baseRot >= 360 grader.
+		belt.baseRot = belt.baseRot - (rotationSpeed * delta);
+		belt.baseRot %= (Math.PI * 2); // "Rull rundt" dersom belt.baseRot >= 360 grader.
 	}
 
 	//Roter joint1:
 	if (g_currentlyPressedKeys['KeyS']) {	//S
-		arm.joint1Rot = arm.joint1Rot + (rotationSpeed * delta);
-		arm.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint1Rot >= 360 grader.
+		belt.joint1Rot = belt.joint1Rot + (rotationSpeed * delta);
+		belt.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom belt.joint1Rot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyW']) {	//W
-		arm.joint1Rot = arm.joint1Rot - (rotationSpeed * delta);
-		arm.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint1Rot >= 360 grader.
+		belt.joint1Rot = belt.joint1Rot - (rotationSpeed * delta);
+		belt.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom belt.joint1Rot >= 360 grader.
 	}
 
 	//Roter joint2:
 	if (g_currentlyPressedKeys['KeyV']) { //V
-		arm.joint2Rot = arm.joint2Rot + (rotationSpeed * delta);
-		arm.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint2Rot >= 360 grader.
+		belt.joint2Rot = belt.joint2Rot + (rotationSpeed * delta);
+		belt.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom belt.joint2Rot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyB']) {	//B
-		arm.joint2Rot = arm.joint2Rot - (rotationSpeed * delta);
-		arm.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint2Rot >= 360 grader.
+		belt.joint2Rot = belt.joint2Rot - (rotationSpeed * delta);
+		belt.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom belt.joint2Rot >= 360 grader.
 	}
 }

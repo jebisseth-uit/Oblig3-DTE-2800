@@ -3,14 +3,14 @@
  */
 import * as THREE from "three";
 
-export async function createArmMesh() {
+export async function createBeltMesh() {
 
 	const loader = new THREE.TextureLoader();
 	const textureObject = await loader.loadAsync('../../../assets/textures/metal1.jpg');
 	const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
 
-	//Konteiner for hele armen:
-	const arm = new THREE.Group();
+	//Konteiner for hele belten:
+	const belt = new THREE.Group();
 
 	let material = new THREE.MeshPhongMaterial({ map: textureObject });
 	let materialAluminium = new THREE.MeshPhongMaterial({map: textureAluminium});
@@ -24,7 +24,7 @@ export async function createArmMesh() {
 	meshBeltPieceMain.position.x = 0;
 	meshBeltPieceMain.position.y = 50;
 	meshBeltPieceMain.position.z = 100;
-	arm.add(meshBeltPieceMain);
+	belt.add(meshBeltPieceMain);
 
 	//* BeltPieceTopMiddle
 	let BeltPieceTopMiddle = new THREE.BoxGeometry(20, 10, 4, 1, 1,1);
@@ -116,5 +116,5 @@ export async function createArmMesh() {
 	meshBeltPieceSideRight.position.z = 0;
 	meshBeltPieceMain.add(meshBeltPieceSideRight);
 
-	return arm;
+	return belt;
 }
