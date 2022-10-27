@@ -2,6 +2,7 @@
  * Funksjoner som lager meshobjekter til dronen.
  */
 import * as THREE from "three";
+import {createBeltPartMesh,} from "./BeltParts.js";
 
 export async function createBeltMesh() {
 
