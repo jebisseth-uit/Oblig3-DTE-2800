@@ -118,11 +118,11 @@ function animate(currentTime) {
 	//Roterer heile skjiten:
 	let arm = g_scene.getObjectByName("arm");
 	arm.rotation.y = arm.baseRot;
-	let armAndJoint1 = arm.getObjectByName('arm', true);  //true = recursive...
-	armAndJoint1.rotation.x = arm.joint1Rot;
+	//let armAndJoint1 = arm.getObjectByName('arm', true);  //true = recursive...
+	arm.rotation.x = arm.joint1Rot;
 
-	let armAndJoint2 = arm.getObjectByName('armAndJoint2', true);  //true = recursive...
-	armAndJoint2.rotation.x = arm.joint2Rot;
+	//let armAndJoint2 = arm.getObjectByName('arm', true);  //true = recursive...
+	//arm.rotation.x = arm.joint2Rot;
 
 	//Sjekker input:
 	handleKeys(delta, arm);
