@@ -4,10 +4,10 @@
 import * as THREE from "three";
 
 export async function createCraneArmMesh(
-	modules=8,
+	modules=4,
 	module_length_top = 100, module_length_bottom = 50,
 	module_width_top = 100, module_width_bottom = 50,
-	module_height = 20, barRadius = 2) {
+	module_height = 50, barRadius = 2) {
 
 	const zLength_top = module_width_top;
 	const zLength_bottom = module_width_bottom;
@@ -19,9 +19,13 @@ export async function createCraneArmMesh(
 	const x_increment = (xLength_top-xLength_bottom)/modules;
 	const z_increment = (zLength_top-zLength_bottom)/modules;
 
-	// Calculate angle of Y in Z and X for every segment
-	const x_oblique_angle = Math.atan((xLength_top-xLength_bottom)/(module_height*modules));
-	const z_oblique_angle = Math.atan((zLength_top-zLength_bottom)/(module_height*modules));
+	// Calculate angle of Y in XZ plane for every segment
+	const x_oblique_angle = Math.atan((xLength_top/2-xLength_bottom/2)/(module_height*modules));
+	const z_oblique_angle = Math.atan((zLength_top/2-zLength_bottom/2)/(module_height*modules));
+
+	// Calculate angle of diagonals in XZ plane for every segment
+	const z_diag_angle = Math.atan((xLength_bottom+x_increment)/z_increment);
+	const x_diag_angle = Math.atan((xLength_bottom+x_increment)/module_height);
 
 	let x_length = xLength_bottom;
 	let z_length = zLength_bottom;
@@ -100,16 +104,15 @@ export async function createCraneArmMesh(
 			meshElementBarY1.position.y = offsetY + module_height/2;
 			meshElementBarY1.rotation.set(x_oblique_angle,0,-z_oblique_angle)
 			craneCentral.add(meshElementBarY1);
-	/*
+
 			// Y2
 			let gElementBarY2 = gElementBarY1.clone();
 			let meshElementBarY2 = new THREE.Mesh(gElementBarY2, meterial);
-			meshElementBarY2.name = "Y1";
+			meshElementBarY2.name = "Y2";
 			meshElementBarY2.position.x = -x_length/2;
 			meshElementBarY2.position.z = -z_length/2;
-			meshElementBarY2.position.y = offsetY + y_length/2;
-			meshElementBarY2.rotation.x = x_oblique_angle;
-			meshElementBarY2.rotation.z = -z_oblique_angle;
+			meshElementBarY2.position.y = offsetY + module_height/2;
+			meshElementBarY2.rotation.set(-x_oblique_angle,0,z_oblique_angle)
 			craneCentral.add(meshElementBarY2);
 
 			// Y3
@@ -118,9 +121,8 @@ export async function createCraneArmMesh(
 			meshElementBarY3.name = "Y3";
 			meshElementBarY3.position.x = -x_length/2;
 			meshElementBarY3.position.z = z_length/2;
-			meshElementBarY3.position.y = offsetY + y_length/2;
-			meshElementBarY3.rotation.x = -x_oblique_angle;
-			meshElementBarY3.rotation.z = -z_oblique_angle;
+			meshElementBarY3.position.y = offsetY + module_height/2;
+			meshElementBarY3.rotation.set(x_oblique_angle,0,z_oblique_angle)
 			craneCentral.add(meshElementBarY3);
 
 			// Y4
@@ -128,23 +130,21 @@ export async function createCraneArmMesh(
 			let meshElementBarY4 = new THREE.Mesh(gElementBarY4, meterial);
 			meshElementBarY4.name = "Y4";
 			meshElementBarY4.position.x = x_length/2;
-			meshElementBarY4.position.z = z_length/2;
+			meshElementBarY4.position.z = -z_length/2;
 			meshElementBarY4.position.y = offsetY + y_length/2;
-			meshElementBarY3.rotation.x = -x_oblique_angle;
-			meshElementBarY3.rotation.z = z_oblique_angle;
+			meshElementBarY4.rotation.set(-x_oblique_angle,0,-z_oblique_angle)
 			craneCentral.add(meshElementBarY4);
 
-	 */
-	/*
+
 			// XY1
 			let gElementBarXY1 = new THREE.CylinderGeometry(radius, radius, diagXYLength, 10,5, false);
 			let meshElementBarXY1 = new THREE.Mesh(gElementBarXY1, meterial);
 			meshElementBarXY1.name = "XY1";
 			meshElementBarXY1.position.z = z_length/2;
 			meshElementBarXY1.position.y = offsetY + y_length/2;
-			meshElementBarXY1.rotation.z = -diagXYTheta;
+			meshElementBarXY1.rotation.set(x_diag_angle,0,-z_diag_angle)
 			craneCentral.add(meshElementBarXY1);
-
+/*
 			// XY2
 			let gElementBarXY2 = gElementBarXY1.clone();
 			let meshElementBarXY2 = new THREE.Mesh(gElementBarXY2, meterial);
