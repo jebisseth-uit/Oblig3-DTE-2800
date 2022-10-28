@@ -3,7 +3,7 @@ import '../style.css';
 import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 import {addCoordSystem} from "../../static/lib/wfa-coord.js";
-import {createArmMesh,} from "./oblig3Helper.js";
+import {createArmMesh, createBodyMesh, createBoxMesh, createFootMesh, createHandlesMesh, createStairsMesh,} from "./oblig3Helper.js";
 
 //Globale variabler:
 let g_scene, g_renderer, g_camera, g_clock, g_controls, g_currentlyPressedKeys = [];
@@ -32,10 +32,10 @@ export async function main() {
 	addLights();
 
 	// Kamera:
-	g_camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-	g_camera.position.x = 230;
-	g_camera.position.y = 400;
-	g_camera.position.z = 350;
+	g_camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
+	g_camera.position.x = -80;
+	g_camera.position.y = 30;
+	g_camera.position.z = 50;
 	g_camera.up = new THREE.Vector3(0, 1, 0);
 	let target = new THREE.Vector3(0.0, 0.0, 0.0);
 	g_camera.lookAt(target);
@@ -83,6 +83,46 @@ async function addSceneObjects() {
 	arm.joint1Rot = 0.0;
 	arm.joint2Rot = 0.0;
 	g_scene.add(arm);
+
+	//
+	let body = await createBodyMesh();
+	body.name = "body";
+	body.baseRot = 0.0;
+	body.joint1Rot = 0.0;
+	body.joint2Rot = 0.0;
+	g_scene.add(body);
+
+	//
+	let box = await createBoxMesh();
+	box.name = "box";
+	box.baseRot = 0.0;
+	box.joint1Rot = 0.0;
+	box.joint2Rot = 0.0;
+	g_scene.add(box);
+
+	//
+	let foot = await createFootMesh();
+	foot.name = "foot";
+	foot.baseRot = 0.0;
+	foot.joint1Rot = 0.0;
+	foot.joint2Rot = 0.0;
+	g_scene.add(foot);
+
+	//
+	let stairs = await createStairsMesh();
+	stairs.name = "stairs";
+	stairs.baseRot = 0.0;
+	stairs.joint1Rot = 0.0;
+	stairs.joint2Rot = 0.0;
+	g_scene.add(stairs);
+
+	//
+	let handles = await createHandlesMesh();
+	handles.name = "handles";
+	handles.baseRot = 0.0;
+	handles.joint1Rot = 0.0;
+	handles.joint2Rot = 0.0;
+	g_scene.add(handles);
 }
 
 function addLights() {
