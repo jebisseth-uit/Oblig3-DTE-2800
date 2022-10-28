@@ -3,21 +3,21 @@
  */
 import * as THREE from "three";
 
-export async function createCraneArmMesh(modules=1, lengthX = 80, lengthZ = 100, lengthY = 80, barRadius = 2) {
+export async function createCraneArmMesh(modules=1, offset_Y = 0, length_X = 80, length_Z = 100, length_Y = 80, barRadius = 2) {
 
-	const zLength = lengthZ;
-	const xLength = lengthX;
-	const yLength = lengthY;
+	const zLength = length_Z;
+	const xLength = length_X;
+	const yLength = length_Y;
 	const radius = barRadius;
 	const diagXYLength = Math.sqrt((xLength*xLength)+(yLength*yLength)); // Length of XY diagonal bar
 	const diagXYTheta = Math.atan(yLength/xLength); // Angle of XY diagonal bar
 	const diagZYLength = Math.sqrt((zLength*zLength)+(yLength*yLength)); // Length of ZY diagonal bar
 	const diagZYTheta = Math.atan(yLength/zLength); // Angle of ZY diagonal bar
 
-	let offsetY = 0;
+	let offsetY = offset_Y;
 
 	const loader = new THREE.TextureLoader();
-	const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
+	const textureAluminium = await loader.loadAsync('../../assets/textures/Seamless-Rust-Texture.jpg');
 
 	//Container for central crane part:
 	const craneCentral = new THREE.Group;
