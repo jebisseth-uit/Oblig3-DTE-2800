@@ -14,45 +14,22 @@ export async function createArmMesh() {
 
 	let material = new THREE.MeshPhongMaterial({ map: textureObject });
 	let materialAluminium = new THREE.MeshPhongMaterial({map: textureAluminium});
-	let sFoot = new THREE.BoxGeometry(20, 1, 5, 20, 5,);
-	let meshFoot = new THREE.Mesh(sFoot, material);
-	meshFoot.name = 'styrhusfoot1';
-	meshFoot.position.x = 16;
-	meshFoot.position.y = 0;
-	meshFoot.position.z = 10;
+	let gFoot = new THREE.CylinderGeometry(20, 30, 10, 20, 5, false);
+	let meshFoot = new THREE.Mesh(gFoot, material);
+	meshFoot.name = 'foot';
+	meshFoot.position.x = 0;
+	meshFoot.position.y = 5;
+	meshFoot.position.z = 0;
 	arm.add(meshFoot);
 
-	//styrhusbody1:
-	let styrhusbody1 = new THREE.BoxGeometry(19, 20, 20, 8, 1,);
-	let meshstyrhusbody1 = new THREE.Mesh(styrhusbody1, materialAluminium);
-	meshstyrhusbody1.name = 'styrhusbody1';
-	meshstyrhusbody1.position.x = 0;
-	meshstyrhusbody1.position.y = 8;	//Flytter opp 50 (halvparten av sylinderens høyde) + 10 (høyde på foten)
-	meshstyrhusbody1.position.z = -10;
-	meshFoot.add(meshstyrhusbody1);
-
-
-
-	let sFoot2 = new THREE.BoxGeometry(20, 1, 5, 20, 5,);
-	let meshFoot2 = new THREE.Mesh(sFoot2, material);
-	meshFoot2.name = 'styrhusfoot2';
-	meshFoot2.position.x = 16;
-	meshFoot2.position.y = 0;
-	meshFoot2.position.z = -10;
-	arm.add(meshFoot2);
-
-	const arm2 = new THREE.Group();
-
-	//styrhusbody1:
-	let styrhusbody2 = new THREE.BoxGeometry(19, 20, 20, 8, 1,);
-	let meshstyrhusbody2 = new THREE.Mesh(styrhusbody1, materialAluminium);
-	meshstyrhusbody2.name = 'styrhusbody2';
-	meshstyrhusbody2.position.x = 0;
-	meshstyrhusbody2.position.y = 118;	//Flytter opp 50 (halvparten av sylinderens høyde) + 10 (høyde på foten)
-	meshstyrhusbody2.position.z = 10;
-	arm2.add(meshstyrhusbody2);
-
-
+	//LowerArm:
+	let gLowerArm = new THREE.CylinderGeometry(4, 4, 100, 8, 1, false);
+	let meshLowerArm = new THREE.Mesh(gLowerArm, materialAluminium);
+	meshLowerArm.name = 'LowerArm';
+	meshLowerArm.position.x = 0;
+	meshLowerArm.position.y = 60;	//Flytter opp 50 (halvparten av sylinderens høyde) + 10 (høyde på foten)
+	meshLowerArm.position.z = 0;
+	meshFoot.add(meshLowerArm);
 
 	//** ArmAndJoint1:
 	let armAndJoint1 = new THREE.Group();
@@ -60,11 +37,6 @@ export async function createArmMesh() {
 	armAndJoint1.position.y = 50;
 	armAndJoint1.position.z = 0;
 	armAndJoint1.name = 'armAndJoint1';
-
-
-
-
-
 	//* joint1:
 	let gJoint1 = new THREE.SphereGeometry(10, 8, 6);					//radius, widthSegments, heightSegments,
 	let meshJoint1 = new THREE.Mesh(gJoint1, materialAluminium);
@@ -82,7 +54,7 @@ export async function createArmMesh() {
 	armAndJoint1.add(meshMidArm);
 
 	// Legg til parent:
-	meshstyrhusbody1.add(armAndJoint1);
+	meshLowerArm.add(armAndJoint1);
 
 	//** ArmAndJoint2:
 	let armAndJoint2 = new THREE.Group();
