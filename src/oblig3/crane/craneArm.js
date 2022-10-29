@@ -7,9 +7,9 @@ import math from "dat.gui/src/dat/color/math";
 
 export async function createCraneArmMesh(
 	modules=8,
-	module_length_top = 80, module_length_bottom = 80,
-	module_width_top = 80, module_width_bottom = 80,
-	module_height = 40, barRadius = 2
+	module_length_top = 40, module_length_bottom = 40,
+	module_width_top = 40, module_width_bottom = 40,
+	module_height = 60, barRadius = 2
 ){
 
 	const zLength_top = module_width_top;

@@ -5,6 +5,7 @@ import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 import {addCoordSystem} from "../../static/lib/wfa-coord.js";
 import {createArmMesh,} from "./oblig3Helper.js";
 import {createCraneArmMesh} from "./crane/craneArm.js";
+import {craneArmBuilder} from "./crane/craneArmBuilder";
 
 //Globale variabler:
 let g_scene, g_renderer, g_camera, g_clock, g_controls, g_currentlyPressedKeys = [];
@@ -85,7 +86,10 @@ async function addSceneObjects() {
 	arm.joint2Rot = 0.0;
 	//g_scene.add(arm);
 
-	let crane = await  createCraneArmMesh();
+	//let crane = await  createCraneArmMesh();
+	//g_scene.add(crane);
+
+	let crane = await craneArmBuilder()
 	g_scene.add(crane);
 
 }
