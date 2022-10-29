@@ -34,9 +34,9 @@ export async function main() {
 
 	// Kamera:
 	g_camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-	g_camera.position.x = 230;
-	g_camera.position.y = 400;
-	g_camera.position.z = 350;
+	g_camera.position.x = 50;
+	g_camera.position.y = 300;
+	g_camera.position.z = 300;
 	g_camera.up = new THREE.Vector3(0, 1, 0);
 	let target = new THREE.Vector3(0.0, 0.0, 0.0);
 	g_camera.lookAt(target);
