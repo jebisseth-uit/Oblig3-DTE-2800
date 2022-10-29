@@ -126,17 +126,33 @@ export async function createBeltMesh() {
 	meshBeltPieceSideRight.position.y = 0;
 	meshBeltPieceSideRight.position.z = 0;
 	meshBeltPieceMain.add(meshBeltPieceSideRight);
+	
+	//* BeltPieceRound1
+	const beltPieceRound1 = new THREE.CylinderGeometry(2,2,10, 200,1,false);
+	const meshBeltPieceRound1 = new THREE.Mesh(beltPieceRound1, materialAluminium);
+	meshBeltPieceRound1.castShadow = true;
+	meshBeltPieceRound1.name = 'BeltPieceRound1';
+	meshBeltPieceRound1.position.x = 25;
+	meshBeltPieceRound1.position.y = 15;
+	meshBeltPieceRound1.position.z = 0;
+	meshBeltPieceRound1.rotation.z = Math.PI/2;
+	meshBeltPieceMain.add(meshBeltPieceRound1);
 
-	/** clonedBeltPieceWhole1
-	const clonedbeltPieceWhole1 = new beltPieceWhole.clone();
-	clonedBeltPieceWhole1.position.x = 3;
-	clonedBeltPieceWhole1.position.y = 3;
-	clonedBeltPieceWhole1.position.z = 3;
-	clonedBeltPieceWhole1.name = 'clonedBeltPieceWhole1';
-	belt.add(clonedBeltPieceWhole1);
-*/
+	//* BeltPieceRound1
+	const beltPieceRound2 = new THREE.CylinderGeometry(2,2,10, 200,1,false);
+	const meshBeltPieceRound2 = new THREE.Mesh(beltPieceRound2, materialAluminium);
+	meshBeltPieceRound2.castShadow = true;
+	meshBeltPieceRound2.name = 'BeltPieceRound1';
+	meshBeltPieceRound2.position.x = -25;
+	meshBeltPieceRound2.position.y = 15;
+	meshBeltPieceRound2.position.z = 0;
+	meshBeltPieceRound2.rotation.z = Math.PI/2;
+	meshBeltPieceMain.add(meshBeltPieceRound2);
 
 
+	/**
+	 * Setter sammen beltet av alle bitene:
+	*/
 
 		//* BeltPieceMainCopy1
 	const meshBeltPieceMainCopy1 = meshBeltPieceMain.clone(true);
@@ -147,17 +163,27 @@ export async function createBeltMesh() {
 	meshBeltPieceMainCopy1.position.z = 100;
 	belt.add(meshBeltPieceMainCopy1);
 
-/**
-		//* BeltPieceWholeCopy1
-	const beltPieceWholeCopy1 = beltPieceWhole.clone(true);
-	const meshBeltPieceWholeCopy1 = new THREE.Group(beltPieceWholeCopy1, material);
-	meshBeltPieceWholeCopy1.castShadow = true;
-	meshBeltPieceWholeCopy1.name = 'BeltPieceWholeCopy1';
-	meshBeltPieceWholeCopy1.position.x = 100;
-	meshBeltPieceWholeCopy1.position.y = 180;
-	meshBeltPieceWholeCopy1.position.z = 100;
-	belt.add(meshBeltPieceWholeCopy1);
-*/
+	//* BeltPieceMainCopy2
+	const meshBeltPieceMainCopy2 = meshBeltPieceMain.clone(true);
+	meshBeltPieceMainCopy2.castShadow = true;
+	meshBeltPieceMainCopy2.name = 'BeltPieceMainCopy2';
+	meshBeltPieceMainCopy2.position.x = 0;
+	meshBeltPieceMainCopy2.position.y = 101;
+	meshBeltPieceMainCopy2.position.z = 100;
+	meshBeltPieceMainCopy2.rotation.x = -0.1;
+	belt.add(meshBeltPieceMainCopy2);
+
+	//* BeltPieceMainCopy3
+	const meshBeltPieceMainCopy3 = meshBeltPieceMain.clone(true);
+	meshBeltPieceMainCopy3.castShadow = true;
+	meshBeltPieceMainCopy3.name = 'BeltPieceMainCopy3';
+	meshBeltPieceMainCopy3.position.x = 0;
+	meshBeltPieceMainCopy3.position.y = 150;
+	meshBeltPieceMainCopy3.position.z = 100;
+	meshBeltPieceMainCopy3.rotation.x = -0.1;
+	belt.add(meshBeltPieceMainCopy3);
+
+
 
 	return belt;
 }
