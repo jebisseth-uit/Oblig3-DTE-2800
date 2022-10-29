@@ -16,7 +16,7 @@ export async function createBeltMesh() {
 	const material = new THREE.MeshPhongMaterial({ map: textureObject });
 	const materialAluminium = new THREE.MeshPhongMaterial({map: textureAluminium});
 
-
+/**
 	//* beltPieceWhole
 	const beltPieceWhole = new THREE.Group();
 	beltPieceWhole.position.x = 1;
@@ -24,21 +24,22 @@ export async function createBeltMesh() {
 	beltPieceWhole.position.z = 1;
 	beltPieceWhole.name = 'beltPieceWhole';
 	belt.add(beltPieceWhole);
+ */
 
 
 	//* BeltPieceMain
-	const BeltPieceMain = new THREE.BoxGeometry(100, 20, 4, 1, 1,1);
-	const meshBeltPieceMain = new THREE.Mesh(BeltPieceMain, material);
+	const beltPieceMain = new THREE.BoxGeometry(100, 20, 4, 1, 1,1);
+	const meshBeltPieceMain = new THREE.Mesh(beltPieceMain, material);
 	meshBeltPieceMain.castShadow = true;
 	meshBeltPieceMain.name = 'BeltPieceMain';
 	meshBeltPieceMain.position.x = 0;
 	meshBeltPieceMain.position.y = 50;
 	meshBeltPieceMain.position.z = 100;
-	beltPieceWhole.add(meshBeltPieceMain);
+	belt.add(meshBeltPieceMain);
 
 	//* BeltPieceTopMiddle
-	const BeltPieceTopMiddle = new THREE.BoxGeometry(20, 10, 4, 1, 1,1);
-	const meshBeltPieceTopMiddle = new THREE.Mesh(BeltPieceTopMiddle, materialAluminium);
+	const beltPieceTopMiddle = new THREE.BoxGeometry(20, 10, 4, 1, 1,1);
+	const meshBeltPieceTopMiddle = new THREE.Mesh(beltPieceTopMiddle, materialAluminium);
 	meshBeltPieceTopMiddle.castShadow = true;
 	meshBeltPieceTopMiddle.name = 'BeltPieceTopMiddle';
 	meshBeltPieceTopMiddle.position.x = 0;
@@ -47,8 +48,8 @@ export async function createBeltMesh() {
 	meshBeltPieceMain.add(meshBeltPieceTopMiddle);
 
 	//* BeltPieceTopSmallLeft
-	const BeltPieceTopSmallLeft = new THREE.BoxGeometry(10, 10, 4, 1, 1,1);
-	const meshBeltPieceTopSmallLeft = new THREE.Mesh(BeltPieceTopSmallLeft, materialAluminium);
+	const beltPieceTopSmallLeft = new THREE.BoxGeometry(10, 10, 4, 1, 1,1);
+	const meshBeltPieceTopSmallLeft = new THREE.Mesh(beltPieceTopSmallLeft, materialAluminium);
 	meshBeltPieceTopSmallLeft.castShadow = true;
 	meshBeltPieceTopSmallLeft.name = 'BeltPieceTopSmallLeft';
 	meshBeltPieceTopSmallLeft.position.x = -25;
@@ -57,8 +58,8 @@ export async function createBeltMesh() {
 	meshBeltPieceMain.add(meshBeltPieceTopSmallLeft);
 
 	//* BeltPieceTopSmallRight
-	const BeltPieceTopSmallRight = new THREE.BoxGeometry(10, 10, 4, 1, 1,1);
-	const meshBeltPieceTopSmallRight = new THREE.Mesh(BeltPieceTopSmallRight, materialAluminium);
+	const beltPieceTopSmallRight = new THREE.BoxGeometry(10, 10, 4, 1, 1,1);
+	const meshBeltPieceTopSmallRight = new THREE.Mesh(beltPieceTopSmallRight, materialAluminium);
 	meshBeltPieceTopSmallRight.castShadow = true;
 	meshBeltPieceTopSmallRight.name = 'BeltPieceTopSmallRight';
 	meshBeltPieceTopSmallRight.position.x = 25;
@@ -67,8 +68,8 @@ export async function createBeltMesh() {
 	meshBeltPieceMain.add(meshBeltPieceTopSmallRight);
 
 	//* BeltPieceBottomSmallLeft
-	const BeltPieceBottomSmallLeft = new THREE.BoxGeometry(10, 10, 4, 1, 1,1);
-	const meshBeltPieceBottomSmallLeft = new THREE.Mesh(BeltPieceBottomSmallLeft, materialAluminium);
+	const beltPieceBottomSmallLeft = new THREE.BoxGeometry(10, 10, 4, 1, 1,1);
+	const meshBeltPieceBottomSmallLeft = new THREE.Mesh(beltPieceBottomSmallLeft, materialAluminium);
 	meshBeltPieceBottomSmallLeft.castShadow = true;
 	meshBeltPieceBottomSmallLeft.name = 'BeltPieceBottomSmallLeft';
 	meshBeltPieceBottomSmallLeft.position.x = -15;
@@ -77,8 +78,8 @@ export async function createBeltMesh() {
 	meshBeltPieceMain.add(meshBeltPieceBottomSmallLeft);
 
 	//* BeltPieceBottomSmallRight
-	const BeltPieceBottomSmallRight = new THREE.BoxGeometry(10, 10, 4, 1, 1,1);
-	const meshBeltPieceBottomSmallRight = new THREE.Mesh(BeltPieceBottomSmallRight, materialAluminium);
+	const beltPieceBottomSmallRight = new THREE.BoxGeometry(10, 10, 4, 1, 1,1);
+	const meshBeltPieceBottomSmallRight = new THREE.Mesh(beltPieceBottomSmallRight, materialAluminium);
 	meshBeltPieceBottomSmallRight.castShadow = true;
 	meshBeltPieceBottomSmallRight.name = 'BeltPieceBottomSmallRight';
 	meshBeltPieceBottomSmallRight.position.x = 15;
@@ -87,8 +88,8 @@ export async function createBeltMesh() {
 	meshBeltPieceMain.add(meshBeltPieceBottomSmallRight);
 
 	//* BeltPieceBottomBigLeft
-	const BeltPieceBottomBigLeft = new THREE.BoxGeometry(20, 10, 4, 1, 1,1);
-	const meshBeltPieceBottomBigLeft = new THREE.Mesh(BeltPieceBottomBigLeft, materialAluminium);
+	const beltPieceBottomBigLeft = new THREE.BoxGeometry(20, 10, 4, 1, 1,1);
+	const meshBeltPieceBottomBigLeft = new THREE.Mesh(beltPieceBottomBigLeft, materialAluminium);
 	meshBeltPieceBottomBigLeft.castShadow = true;
 	meshBeltPieceBottomBigLeft.name = 'BeltPieceBottomBigLeft';
 	meshBeltPieceBottomBigLeft.position.x = -40;
@@ -97,8 +98,8 @@ export async function createBeltMesh() {
 	meshBeltPieceMain.add(meshBeltPieceBottomBigLeft);
 
 	//* BeltPieceBottomBigRight
-	const BeltPieceBottomBigRight = new THREE.BoxGeometry(20, 10, 4, 1, 1,1);
-	const meshBeltPieceBottomBigRight = new THREE.Mesh(BeltPieceBottomBigRight, materialAluminium);
+	const beltPieceBottomBigRight = new THREE.BoxGeometry(20, 10, 4, 1, 1,1);
+	const meshBeltPieceBottomBigRight = new THREE.Mesh(beltPieceBottomBigRight, materialAluminium);
 	meshBeltPieceBottomBigRight.castShadow = true;
 	meshBeltPieceBottomBigRight.name = 'BeltPieceBottomBigRight';
 	meshBeltPieceBottomBigRight.position.x = 40;
@@ -107,8 +108,8 @@ export async function createBeltMesh() {
 	meshBeltPieceMain.add(meshBeltPieceBottomBigRight);
 
 	//* BeltPieceSideLeft
-	const BeltPieceSideLeft = new THREE.BoxGeometry(30, 20, 2, 1, 1,1);
-	const meshBeltPieceSideLeft = new THREE.Mesh(BeltPieceSideLeft, material);
+	const beltPieceSideLeft = new THREE.BoxGeometry(30, 20, 2, 1, 1,1);
+	const meshBeltPieceSideLeft = new THREE.Mesh(beltPieceSideLeft, material);
 	meshBeltPieceSideLeft.castShadow = true;
 	meshBeltPieceSideLeft.name = 'BeltPieceSideLeft';
 	meshBeltPieceSideLeft.position.x = -50;
@@ -117,8 +118,8 @@ export async function createBeltMesh() {
 	meshBeltPieceMain.add(meshBeltPieceSideLeft);
 
 	//* BeltPieceSideRight
-	const BeltPieceSideRight = new THREE.BoxGeometry(30, 20, 2, 1, 1,1);
-	const meshBeltPieceSideRight = new THREE.Mesh(BeltPieceSideRight, material);
+	const beltPieceSideRight = new THREE.BoxGeometry(30, 20, 2, 1, 1,1);
+	const meshBeltPieceSideRight = new THREE.Mesh(beltPieceSideRight, material);
 	meshBeltPieceSideRight.castShadow = true;
 	meshBeltPieceSideRight.name = 'BeltPieceSideRight';
 	meshBeltPieceSideRight.position.x = 50;
@@ -137,6 +138,26 @@ export async function createBeltMesh() {
 
 
 
+		//* BeltPieceMainCopy1
+	const meshBeltPieceMainCopy1 = meshBeltPieceMain.clone(true);
+	meshBeltPieceMainCopy1.castShadow = true;
+	meshBeltPieceMainCopy1.name = 'BeltPieceMainCopy1';
+	meshBeltPieceMainCopy1.position.x = 0;
+	meshBeltPieceMainCopy1.position.y = 75;
+	meshBeltPieceMainCopy1.position.z = 100;
+	belt.add(meshBeltPieceMainCopy1);
+
+/**
+		//* BeltPieceWholeCopy1
+	const beltPieceWholeCopy1 = beltPieceWhole.clone(true);
+	const meshBeltPieceWholeCopy1 = new THREE.Group(beltPieceWholeCopy1, material);
+	meshBeltPieceWholeCopy1.castShadow = true;
+	meshBeltPieceWholeCopy1.name = 'BeltPieceWholeCopy1';
+	meshBeltPieceWholeCopy1.position.x = 100;
+	meshBeltPieceWholeCopy1.position.y = 180;
+	meshBeltPieceWholeCopy1.position.z = 100;
+	belt.add(meshBeltPieceWholeCopy1);
+*/
 
 	return belt;
 }
