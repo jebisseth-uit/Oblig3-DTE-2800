@@ -160,6 +160,50 @@ export async function createBeltMesh() {
 	meshBeltPieceRoundTopMiddle.rotation.z = Math.PI/2;
 	meshBeltPieceMain.add(meshBeltPieceRoundTopMiddle);
 
+	//* BeltPieceRoundBottomSmallLeft
+	const beltPieceRoundBottomSmallLeft = new THREE.CylinderGeometry(2,2,10, 200,1,false);
+	const meshBeltPieceRoundBottomSmallLeft = new THREE.Mesh(beltPieceRoundBottomSmallLeft, materialAluminium);
+	meshBeltPieceRoundBottomSmallLeft.castShadow = true;
+	meshBeltPieceRoundBottomSmallLeft.name = 'BeltPieceRoundBottomSmallLeft';
+	meshBeltPieceRoundBottomSmallLeft.position.x = -15;
+	meshBeltPieceRoundBottomSmallLeft.position.y = -15;
+	meshBeltPieceRoundBottomSmallLeft.position.z = 0;
+	meshBeltPieceRoundBottomSmallLeft.rotation.z = Math.PI/2;
+	meshBeltPieceMain.add(meshBeltPieceRoundBottomSmallLeft);
+
+	//* BeltPieceRoundBottomSmallRight
+	const beltPieceRoundBottomSmallRight = new THREE.CylinderGeometry(2,2,10, 200,1,false);
+	const meshBeltPieceRoundBottomSmallRight = new THREE.Mesh(beltPieceRoundBottomSmallRight, materialAluminium);
+	meshBeltPieceRoundBottomSmallRight.castShadow = true;
+	meshBeltPieceRoundBottomSmallRight.name = 'BeltPieceRoundBottomSmallRight';
+	meshBeltPieceRoundBottomSmallRight.position.x = 15;
+	meshBeltPieceRoundBottomSmallRight.position.y = -15;
+	meshBeltPieceRoundBottomSmallRight.position.z = 0;
+	meshBeltPieceRoundBottomSmallRight.rotation.z = Math.PI/2;
+	meshBeltPieceMain.add(meshBeltPieceRoundBottomSmallRight);
+
+	//* BeltPieceRoundBottomLargeRight
+	const beltPieceRoundBottomLargeRight = new THREE.CylinderGeometry(2,2,20, 200,1,false);
+	const meshBeltPieceRoundBottomLargeRight = new THREE.Mesh(beltPieceRoundBottomLargeRight, materialAluminium);
+	meshBeltPieceRoundBottomLargeRight.castShadow = true;
+	meshBeltPieceRoundBottomLargeRight.name = 'BeltPieceRoundBottomLargeRight';
+	meshBeltPieceRoundBottomLargeRight.position.x = 40;
+	meshBeltPieceRoundBottomLargeRight.position.y = -15;
+	meshBeltPieceRoundBottomLargeRight.position.z = 0;
+	meshBeltPieceRoundBottomLargeRight.rotation.z = Math.PI/2;
+	meshBeltPieceMain.add(meshBeltPieceRoundBottomLargeRight);
+
+	//* BeltPieceRoundBottomLargeLeft
+	const beltPieceRoundBottomLargeLeft = new THREE.CylinderGeometry(2,2,20, 200,1,false);
+	const meshBeltPieceRoundBottomLargeLeft = new THREE.Mesh(beltPieceRoundBottomLargeLeft, materialAluminium);
+	meshBeltPieceRoundBottomLargeLeft.castShadow = true;
+	meshBeltPieceRoundBottomLargeLeft.name = 'BeltPieceRoundBottomLargeLeft';
+	meshBeltPieceRoundBottomLargeLeft.position.x = -40;
+	meshBeltPieceRoundBottomLargeLeft.position.y = -15;
+	meshBeltPieceRoundBottomLargeLeft.position.z = 0;
+	meshBeltPieceRoundBottomLargeLeft.rotation.z = Math.PI/2;
+	meshBeltPieceMain.add(meshBeltPieceRoundBottomLargeLeft);
+
 
 	/**
 	 * Setter sammen beltet av alle bitene:
@@ -193,6 +237,7 @@ export async function createBeltMesh() {
 	meshBeltPieceMainCopy3.position.z = 100;
 	meshBeltPieceMainCopy3.rotation.x = -0.1;
 	belt.add(meshBeltPieceMainCopy3);
+	
 
 
 
