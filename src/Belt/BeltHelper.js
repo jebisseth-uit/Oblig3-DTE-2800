@@ -138,7 +138,7 @@ export async function createBeltMesh() {
 	meshBeltPieceRound1.rotation.z = Math.PI/2;
 	meshBeltPieceMain.add(meshBeltPieceRound1);
 
-	//* BeltPieceRound1
+	//* BeltPieceRound2
 	const beltPieceRound2 = new THREE.CylinderGeometry(2,2,10, 200,1,false);
 	const meshBeltPieceRound2 = new THREE.Mesh(beltPieceRound2, materialAluminium);
 	meshBeltPieceRound2.castShadow = true;
@@ -148,6 +148,17 @@ export async function createBeltMesh() {
 	meshBeltPieceRound2.position.z = 0;
 	meshBeltPieceRound2.rotation.z = Math.PI/2;
 	meshBeltPieceMain.add(meshBeltPieceRound2);
+
+	//* BeltPieceRoundTopMiddle
+	const beltPieceRoundTopMiddle = new THREE.CylinderGeometry(2,2,20, 200,1,false);
+	const meshBeltPieceRoundTopMiddle = new THREE.Mesh(beltPieceRoundTopMiddle, materialAluminium);
+	meshBeltPieceRoundTopMiddle.castShadow = true;
+	meshBeltPieceRoundTopMiddle.name = 'BeltPieceRoundTopMiddle';
+	meshBeltPieceRoundTopMiddle.position.x = 0;
+	meshBeltPieceRoundTopMiddle.position.y = 15;
+	meshBeltPieceRoundTopMiddle.position.z = 0;
+	meshBeltPieceRoundTopMiddle.rotation.z = Math.PI/2;
+	meshBeltPieceMain.add(meshBeltPieceRoundTopMiddle);
 
 
 	/**
