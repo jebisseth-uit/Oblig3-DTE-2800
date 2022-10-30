@@ -83,7 +83,7 @@ export async function createCraneArmMesh(
 	let offsetY = 0;
 
 	const loader = new THREE.TextureLoader();
-	const texture = await loader.loadAsync('../../assets/textures/Seamless-Rust-Texture.jpg');
+	const texture = await loader.loadAsync('../../assets/textures/metal1.jpg');
 
 	//Container for central crane part:
 	const craneCentral = new THREE.Group;

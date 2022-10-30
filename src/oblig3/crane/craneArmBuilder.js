@@ -3,6 +3,7 @@
  */
 import * as THREE from "three";
 import {createCraneArmMesh} from "./craneArm.js";
+import {createLogoPlate} from "./craneAssets.js";
 
 export async function craneArmBuilder(){
 	const craneArm = new THREE.Group;
@@ -40,17 +41,33 @@ export async function craneArmBuilder(){
 	let craneCentral = await createCraneArmMesh(craneCentralModules,craneStartTopX,craneStartTopX,craneStartTopZ,craneStartTopZ,craneCentralModuleHeight, barRadius);
 	let craneUpperJoint = await  createCraneArmMesh(craneUpperJointModules, craneStartTopX,craneStartTopX,craneStartTopZ,craneStartTopZ,craneUpperJointModuleHeight,barRadius);
 	let craneEnd = await createCraneArmMesh(craneEndModules,craneEndTopX,craneStartTopX,craneEndTopZ,craneStartTopZ,craneEndModuleHeight,barRadius);
+	let craneLogo = await createLogoPlate(60,30,1);
+	let craneLogo2 = craneLogo.clone();
+
 
 	craneArm.add(craneStart);
 	craneArm.add(craneLowerJoint);
 	craneLowerJoint.add(craneCentral);
 	craneCentral.add(craneUpperJoint);
 	craneUpperJoint.add(craneEnd);
+	craneUpperJoint.add(craneLogo);
+	craneUpperJoint.add(craneLogo2);
 
 	craneLowerJoint.position.y = craneStartModules*craneStartModuleHeight; //Move lower joint to end of start-module
 	craneCentral.position.y = craneLowerJointModules*craneLowerJointModuleHeight; //Move central-module to end of lower joint
 	craneUpperJoint.position.y = craneCentralModules*craneCentralModuleHeight; //Move upper joint to end of central-module
 	craneEnd.position.y = craneUpperJointModules*craneUpperJointModuleHeight; //Move end-module to end of upper joint
+
+	//Logo
+	craneLogo.rotation.set(0,0,Math.PI/2)
+	craneLogo.position.z = craneStartTopX/2+2*barRadius;
+	craneLogo.position.y = (craneUpperJointModules*craneUpperJointModuleHeight)/2
+
+	//Logo2
+	craneLogo2.rotation.set(0,0,Math.PI/2)
+	craneLogo2.position.z = -craneStartTopX/2-2*barRadius;
+	craneLogo2.position.y = (craneUpperJointModules*craneUpperJointModuleHeight)/2
+
 
 	return craneArm;
 }

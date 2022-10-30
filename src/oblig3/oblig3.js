@@ -34,7 +34,7 @@ export async function main() {
 	addLights();
 
 	// Kamera:
-	g_camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+	g_camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
 	g_camera.position.x = 50;
 	g_camera.position.y = 300;
 	g_camera.position.z = 300;
@@ -97,19 +97,22 @@ async function addSceneObjects() {
 function addLights() {
 	//Retningsorientert lys (som gir skygge):
 	let directionalLight1 = new THREE.DirectionalLight(0xffffff, 1.0); //farge, intensitet (1=default)
-	directionalLight1.position.set(0, 300, 0);
+	directionalLight1.position.set(0, 300, 300);
 	directionalLight1.castShadow = true;
 	directionalLight1.shadow.camera.near = 0;
-	directionalLight1.shadow.camera.far = 301;
-	directionalLight1.shadow.camera.left = -50;
-	directionalLight1.shadow.camera.right = 50;
-	directionalLight1.shadow.camera.top = 250;
-	directionalLight1.shadow.camera.bottom = -250;
+	directionalLight1.shadow.camera.far = 500;
+	directionalLight1.shadow.camera.left = -500;
+	directionalLight1.shadow.camera.right = 500;
+	directionalLight1.shadow.camera.top = 500;
+	directionalLight1.shadow.camera.bottom = 0;
 	directionalLight1.shadow.camera.visible = true;
+
+	let ambientLight1 = new THREE.AmbientLight(0xffffff,0.5)
+	g_scene.add(ambientLight1);
 
 	//Hjelpeklasse for å vise lysets utstrekning:
 	let lightCamHelper = new THREE.CameraHelper( directionalLight1.shadow.camera );
-	g_scene.add( lightCamHelper );
+	//g_scene.add( lightCamHelper );
 
 	g_scene.add(directionalLight1);
 }
