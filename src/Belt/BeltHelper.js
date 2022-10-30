@@ -252,10 +252,10 @@ export async function createBeltMesh() {
 	beltCurvedSection2.castShadow = true;
 	beltCurvedSection2.name = 'BeltCurvedSection2';
 	beltCurvedSection2.position.x = 0;
-	beltCurvedSection2.position.y = 28;
-	beltCurvedSection2.position.z = -545;
-	beltCurvedSection2.rotation.x = -Math.PI/1.6
-	beltCurvedSection2.rotation.z = -Math.PI/0.5;
+	beltCurvedSection2.position.y = 18;
+	beltCurvedSection2.position.z = -568;
+	beltCurvedSection2.rotation.x = -Math.PI/1.8
+	beltCurvedSection2.rotation.y = -Math.PI/0.5;
 	belt.add(beltCurvedSection2);
 
 	/**
@@ -318,7 +318,7 @@ export async function createBeltMesh() {
 	beltFlatSection2.name = 'BeltFlatSection2';
 	beltFlatSection2.position.x = 0;
 	beltFlatSection2.position.y = 0;
-	beltFlatSection2.position.z = -110;
+	beltFlatSection2.position.z = -112;
 	belt.add(beltFlatSection2);
 
 	const beltFlatSection3 = beltFlatSection.clone()
@@ -326,7 +326,7 @@ export async function createBeltMesh() {
 	beltFlatSection3.name = 'BeltFlatSection3';
 	beltFlatSection3.position.x = 0;
 	beltFlatSection3.position.y = 0;
-	beltFlatSection3.position.z = -220;
+	beltFlatSection3.position.z = -224;
 	belt.add(beltFlatSection3);
 
 	const beltFlatSection4 = beltFlatSection.clone()
@@ -334,7 +334,7 @@ export async function createBeltMesh() {
 	beltFlatSection4.name = 'BeltFlatSection4';
 	beltFlatSection4.position.x = 0;
 	beltFlatSection4.position.y = 0;
-	beltFlatSection4.position.z = -330;
+	beltFlatSection4.position.z = -336;
 	belt.add(beltFlatSection4);
 
 	/**
@@ -346,7 +346,7 @@ export async function createBeltMesh() {
 	beltFlatSection5.name = 'BeltFlatSection5';
 	beltFlatSection5.position.x = 0;
 	beltFlatSection5.position.y = -32;
-	beltFlatSection5.position.z = 80;
+	beltFlatSection5.position.z = 78;
 	beltFlatSection5.rotation.x = 0.2;
 	belt.add(beltFlatSection5);
 
@@ -354,10 +354,77 @@ export async function createBeltMesh() {
 	beltFlatSection6.castShadow = true;
 	beltFlatSection6.name = 'BeltFlatSection6';
 	beltFlatSection6.position.x = 0;
-	beltFlatSection6.position.y = 14;
-	beltFlatSection6.position.z = -416;
+	beltFlatSection6.position.y = 16;
+	beltFlatSection6.position.z = -424;
 	beltFlatSection6.rotation.x = -0.2;
 	belt.add(beltFlatSection6);
+
+	/**
+	 * Kopierer Det flate segmentet for å lage bunnen
+	 */
+
+	const beltFlatSection7 = beltFlatSection.clone()
+	beltFlatSection7.castShadow = true;
+	beltFlatSection7.name = 'BeltFlatSection7';
+	beltFlatSection7.position.x = 0;
+	beltFlatSection7.position.y = 166;
+	beltFlatSection7.position.z = -80;
+	beltFlatSection7.rotation.x = Math.PI/1;
+	belt.add(beltFlatSection7);
+
+	const beltFlatSection8 = beltFlatSection.clone()
+	beltFlatSection8.castShadow = true;
+	beltFlatSection8.name = 'BeltFlatSection8';
+	beltFlatSection8.position.x = 0;
+	beltFlatSection8.position.y = 166;
+	beltFlatSection8.position.z = -192;
+	beltFlatSection8.rotation.x = Math.PI/1;
+	belt.add(beltFlatSection8);
+
+	const beltFlatSection9 = beltFlatSection.clone()
+	beltFlatSection9.castShadow = true;
+	beltFlatSection9.name = 'BeltFlatSection9';
+	beltFlatSection9.position.x = 0;
+	beltFlatSection9.position.y = 166;
+	beltFlatSection9.position.z = -304;
+	beltFlatSection9.rotation.x = Math.PI/1;
+	belt.add(beltFlatSection9);
+
+	const beltFlatSection10 = beltFlatSection.clone()
+	beltFlatSection10.castShadow = true;
+	beltFlatSection10.name = 'BeltFlatSection10';
+	beltFlatSection10.position.x = 0;
+	beltFlatSection10.position.y = 166;
+	beltFlatSection10.position.z = -416;
+	beltFlatSection10.rotation.x = Math.PI/1;
+	belt.add(beltFlatSection10);
+
+	const beltFlatSection11 = beltFlatSection.clone()
+	beltFlatSection11.castShadow = true;
+	beltFlatSection11.name = 'BeltFlatSection11';
+	beltFlatSection11.position.x = 0;
+	beltFlatSection11.position.y = 166;
+	beltFlatSection11.position.z = -528;
+	beltFlatSection11.rotation.x = Math.PI/1;
+	belt.add(beltFlatSection11);
+
+	const beltFlatSection12 = beltFlatSection.clone()
+	beltFlatSection12.castShadow = true;
+	beltFlatSection12.name = 'BeltFlatSection12';
+	beltFlatSection12.position.x = 0;
+	beltFlatSection12.position.y = 166;
+	beltFlatSection12.position.z = -640;
+	beltFlatSection12.rotation.x = Math.PI/1;
+	belt.add(beltFlatSection12);
+
+	const beltFlatSection13 = beltFlatSection.clone()
+	beltFlatSection13.castShadow = true;
+	beltFlatSection13.name = 'BeltFlatSection13';
+	beltFlatSection13.position.x = 0;
+	beltFlatSection13.position.y = 166;
+	beltFlatSection13.position.z = -752;
+	beltFlatSection13.rotation.x = Math.PI/1;
+	belt.add(beltFlatSection13);
 
 
 
