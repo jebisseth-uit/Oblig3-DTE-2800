@@ -3,7 +3,7 @@ import '../style.css';
 import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 import {addCoordSystem} from "../../static/lib/wfa-coord.js";
-import {createArmMesh, createBodyMesh, createBoxMesh, createFootMesh, createHandlesMesh, createStairsMesh,} from "./oblig3Helper.js";
+import {createArmsMesh, createArmsMesh2, createBodyMesh, createBodyMesh2, createBoxMesh, createBoxMesh2, createFootMesh, createFootMesh2, createHandlesMesh, createHandlesMesh2, createRollersMesh, createStairsMesh, createStairsMesh2,} from "./oblig3Helper.js";
 
 //Globale variabler:
 let g_scene, g_renderer, g_camera, g_clock, g_controls, g_currentlyPressedKeys = [];
@@ -32,7 +32,7 @@ export async function main() {
 	addLights();
 
 	// Kamera:
-	g_camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
+	g_camera = new THREE.PerspectiveCamera(105, window.innerWidth / window.innerHeight, 0.1, 1000);
 	g_camera.position.x = -80;
 	g_camera.position.y = 30;
 	g_camera.position.z = 50;
@@ -77,20 +77,20 @@ async function addSceneObjects() {
 	g_scene.add(meshPlane);
 
 	//
-	let arm = await createArmMesh();
-	arm.name = "arm";
-	arm.baseRot = 0.0;
-	arm.joint1Rot = 0.0;
-	arm.joint2Rot = 0.0;
-	g_scene.add(arm);
-
-	//
 	let body = await createBodyMesh();
 	body.name = "body";
 	body.baseRot = 0.0;
 	body.joint1Rot = 0.0;
 	body.joint2Rot = 0.0;
 	g_scene.add(body);
+
+	//
+	let body2 = await createBodyMesh2();
+	body2.name = "body2";
+	body2.baseRot = 0.0;
+	body2.joint1Rot = 0.0;
+	body2.joint2Rot = 0.0;
+	g_scene.add(body2);
 
 	//
 	let box = await createBoxMesh();
@@ -101,12 +101,28 @@ async function addSceneObjects() {
 	g_scene.add(box);
 
 	//
+	let box2 = await createBoxMesh2();
+	box2.name = "box2";
+	box2.baseRot = 0.0;
+	box2.joint1Rot = 0.0;
+	box2.joint2Rot = 0.0;
+	g_scene.add(box2);
+
+	//
 	let foot = await createFootMesh();
 	foot.name = "foot";
 	foot.baseRot = 0.0;
 	foot.joint1Rot = 0.0;
 	foot.joint2Rot = 0.0;
 	g_scene.add(foot);
+
+	//
+	let foot2 = await createFootMesh2();
+	foot2.name = "foot2";
+	foot2.baseRot = 0.0;
+	foot2.joint1Rot = 0.0;
+	foot2.joint2Rot = 0.0;
+	g_scene.add(foot2);
 
 	//
 	let stairs = await createStairsMesh();
@@ -117,12 +133,53 @@ async function addSceneObjects() {
 	g_scene.add(stairs);
 
 	//
+	let stairs2 = await createStairsMesh2();
+	stairs2.name = "stairs2";
+	stairs2.baseRot = 0.0;
+	stairs2.joint1Rot = 0.0;
+	stairs2.joint2Rot = 0.0;
+	g_scene.add(stairs2);
+
+	//
 	let handles = await createHandlesMesh();
 	handles.name = "handles";
 	handles.baseRot = 0.0;
 	handles.joint1Rot = 0.0;
 	handles.joint2Rot = 0.0;
 	g_scene.add(handles);
+
+	//
+	let handles2 = await createHandlesMesh2();
+	handles2.name = "handles2";
+	handles2.baseRot = 0.0;
+	handles2.joint1Rot = 0.0;
+	handles2.joint2Rot = 0.0;
+	g_scene.add(handles2);
+
+	//
+	let arms = await createArmsMesh();
+	arms.name = "arms";
+	arms.baseRot = 0.0;
+	arms.joint1Rot = 0.0;
+	arms.joint2Rot = 0.0;
+	g_scene.add(arms);
+	g_scene.add(handles);
+
+	//
+	let arms2 = await createArmsMesh2();
+	arms2.name = "arms2";
+	arms2.baseRot = 0.0;
+	arms2.joint1Rot = 0.0;
+	arms2.joint2Rot = 0.0;
+	g_scene.add(arms2);
+
+	//
+	let rollers = await createRollersMesh();
+	rollers.name = "rollers";
+	rollers.baseRot = 0.0;
+	rollers.joint1Rot = 0.0;
+	rollers.joint2Rot = 0.0;
+	g_scene.add(rollers);
 }
 
 function addLights() {
@@ -154,18 +211,6 @@ function animate(currentTime) {
 
 	//Oppdater trackball-kontrollen:
 	g_controls.update();
-
-	//Roterer heile skjiten:
-	let arm = g_scene.getObjectByName("arm");
-	arm.rotation.y = arm.baseRot;
-	let armAndJoint1 = arm.getObjectByName('armAndJoint1', true);  //true = recursive...
-	armAndJoint1.rotation.x = arm.joint1Rot;
-
-	let armAndJoint2 = arm.getObjectByName('armAndJoint2', true);  //true = recursive...
-	armAndJoint2.rotation.x = arm.joint2Rot;
-
-	//Sjekker input:
-	handleKeys(delta, arm);
 
 	//Tegner scenen med gitt kamera:
 	renderScene();
