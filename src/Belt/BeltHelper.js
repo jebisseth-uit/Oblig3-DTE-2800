@@ -252,9 +252,9 @@ export async function createBeltMesh() {
 	beltCurvedSection2.castShadow = true;
 	beltCurvedSection2.name = 'BeltCurvedSection2';
 	beltCurvedSection2.position.x = 0;
-	beltCurvedSection2.position.y = 0;
-	beltCurvedSection2.position.z = -600;
-	beltCurvedSection2.rotation.x = -Math.PI/2
+	beltCurvedSection2.position.y = 28;
+	beltCurvedSection2.position.z = -545;
+	beltCurvedSection2.rotation.x = -Math.PI/1.6
 	beltCurvedSection2.rotation.z = -Math.PI/0.5;
 	belt.add(beltCurvedSection2);
 
@@ -271,8 +271,9 @@ export async function createBeltMesh() {
 	meshBeltPieceMainCopy4.castShadow = true;
 	meshBeltPieceMainCopy4.name = 'BeltPieceMainCopy4';
 	meshBeltPieceMainCopy4.position.x = 0;
-	meshBeltPieceMainCopy4.position.y = 110;
-	meshBeltPieceMainCopy4.position.z = -80;
+	meshBeltPieceMainCopy4.position.y = 130;
+	meshBeltPieceMainCopy4.position.z = -82;
+	2;
 	meshBeltPieceMainCopy4.rotation.x = -Math.PI/2;
 	beltFlatSection.add(meshBeltPieceMainCopy4);
 
@@ -281,8 +282,8 @@ export async function createBeltMesh() {
 	meshBeltPieceMainCopy5.castShadow = true;
 	meshBeltPieceMainCopy5.name = 'BeltPieceMainCopy5';
 	meshBeltPieceMainCopy5.position.x = 0;
-	meshBeltPieceMainCopy5.position.y = 110;
-	meshBeltPieceMainCopy5.position.z = -108;
+	meshBeltPieceMainCopy5.position.y = 130;
+	meshBeltPieceMainCopy5.position.z = -110;
 	meshBeltPieceMainCopy5.rotation.x = -Math.PI/2;
 	beltFlatSection.add(meshBeltPieceMainCopy5);
 
@@ -291,8 +292,8 @@ export async function createBeltMesh() {
 	meshBeltPieceMainCopy6.castShadow = true;
 	meshBeltPieceMainCopy6.name = 'BeltPieceMainCopy6';
 	meshBeltPieceMainCopy6.position.x = 0;
-	meshBeltPieceMainCopy6.position.y = 110;
-	meshBeltPieceMainCopy6.position.z = -136;
+	meshBeltPieceMainCopy6.position.y = 130;
+	meshBeltPieceMainCopy6.position.z = -138;
 	meshBeltPieceMainCopy6.rotation.x = -Math.PI/2;
 	beltFlatSection.add(meshBeltPieceMainCopy6);
 
@@ -301,10 +302,12 @@ export async function createBeltMesh() {
 	meshBeltPieceMainCopy7.castShadow = true;
 	meshBeltPieceMainCopy7.name = 'BeltPieceMainCopy7';
 	meshBeltPieceMainCopy7.position.x = 0;
-	meshBeltPieceMainCopy7.position.y = 110;
-	meshBeltPieceMainCopy7.position.z = -164;
+	meshBeltPieceMainCopy7.position.y = 130;
+	meshBeltPieceMainCopy7.position.z = -166;
 	meshBeltPieceMainCopy7.rotation.x = -Math.PI/2;
 	beltFlatSection.add(meshBeltPieceMainCopy7);
+
+
 
 	/**
 	 * Kopierer Det flate segmentet for å lage den lange flaten på toppen
@@ -337,6 +340,24 @@ export async function createBeltMesh() {
 	/**
 	 * Kopierer Det flate segmentet for å lage skrå partier
 	 */
+
+	const beltFlatSection5 = beltFlatSection.clone()
+	beltFlatSection5.castShadow = true;
+	beltFlatSection5.name = 'BeltFlatSection5';
+	beltFlatSection5.position.x = 0;
+	beltFlatSection5.position.y = -32;
+	beltFlatSection5.position.z = 80;
+	beltFlatSection5.rotation.x = 0.2;
+	belt.add(beltFlatSection5);
+
+	const beltFlatSection6 = beltFlatSection.clone()
+	beltFlatSection6.castShadow = true;
+	beltFlatSection6.name = 'BeltFlatSection6';
+	beltFlatSection6.position.x = 0;
+	beltFlatSection6.position.y = 14;
+	beltFlatSection6.position.z = -416;
+	beltFlatSection6.rotation.x = -0.2;
+	belt.add(beltFlatSection6);
 
 
 
