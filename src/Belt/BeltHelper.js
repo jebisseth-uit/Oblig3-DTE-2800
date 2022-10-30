@@ -16,16 +16,9 @@ export async function createBeltMesh() {
 	const material = new THREE.MeshPhongMaterial({ map: textureObject });
 	const materialAluminium = new THREE.MeshPhongMaterial({map: textureAluminium});
 
-/**
-	//* beltPieceWhole
-	const beltPieceWhole = new THREE.Group();
-	beltPieceWhole.position.x = 1;
-	beltPieceWhole.position.y = 1;
-	beltPieceWhole.position.z = 1;
-	beltPieceWhole.name = 'beltPieceWhole';
-	belt.add(beltPieceWhole);
- */
-
+	/**
+	 * Lager Belteseksjonen
+	 */
 
 	//* BeltPieceMain
 	const beltPieceMain = new THREE.BoxGeometry(100, 20, 4, 1, 1,1);
@@ -206,38 +199,153 @@ export async function createBeltMesh() {
 
 
 	/**
-	 * Setter sammen beltet av alle bitene:
+	 * Setter sammen Den kurvede delen av beltet (inkluderer utgangspunkt
 	*/
 
-		//* BeltPieceMainCopy1
+	const beltCurvedSection = new THREE.Group();
+	belt.add(beltCurvedSection);
+
+	//* BeltPieceMainCopy0
+	const meshBeltPieceMainCopy0 = meshBeltPieceMain.clone(true);
+	meshBeltPieceMainCopy0.castShadow = true;
+	meshBeltPieceMainCopy0.name = 'BeltPieceMainCopy0';
+	meshBeltPieceMainCopy0.position.x = 0;
+	meshBeltPieceMainCopy0.position.y = 50;
+	meshBeltPieceMainCopy0.position.z = 100;
+	beltCurvedSection.add(meshBeltPieceMainCopy0);
+
+	//* BeltPieceMainCopy1
 	const meshBeltPieceMainCopy1 = meshBeltPieceMain.clone(true);
 	meshBeltPieceMainCopy1.castShadow = true;
 	meshBeltPieceMainCopy1.name = 'BeltPieceMainCopy1';
 	meshBeltPieceMainCopy1.position.x = 0;
-	meshBeltPieceMainCopy1.position.y = 75;
-	meshBeltPieceMainCopy1.position.z = 100;
-	belt.add(meshBeltPieceMainCopy1);
+	meshBeltPieceMainCopy1.position.y = 76;
+	meshBeltPieceMainCopy1.position.z = 92;
+	meshBeltPieceMainCopy1.rotation.x = -Math.PI/6;
+	beltCurvedSection.add(meshBeltPieceMainCopy1);
 
 	//* BeltPieceMainCopy2
 	const meshBeltPieceMainCopy2 = meshBeltPieceMain.clone(true);
 	meshBeltPieceMainCopy2.castShadow = true;
 	meshBeltPieceMainCopy2.name = 'BeltPieceMainCopy2';
 	meshBeltPieceMainCopy2.position.x = 0;
-	meshBeltPieceMainCopy2.position.y = 101;
-	meshBeltPieceMainCopy2.position.z = 100;
-	meshBeltPieceMainCopy2.rotation.x = -0.1;
-	belt.add(meshBeltPieceMainCopy2);
+	meshBeltPieceMainCopy2.position.y = 96;
+	meshBeltPieceMainCopy2.position.z = 74;
+	meshBeltPieceMainCopy2.rotation.x = -Math.PI/3;
+	beltCurvedSection.add(meshBeltPieceMainCopy2);
 
 	//* BeltPieceMainCopy3
 	const meshBeltPieceMainCopy3 = meshBeltPieceMain.clone(true);
 	meshBeltPieceMainCopy3.castShadow = true;
 	meshBeltPieceMainCopy3.name = 'BeltPieceMainCopy3';
 	meshBeltPieceMainCopy3.position.x = 0;
-	meshBeltPieceMainCopy3.position.y = 150;
-	meshBeltPieceMainCopy3.position.z = 100;
-	meshBeltPieceMainCopy3.rotation.x = -0.1;
-	belt.add(meshBeltPieceMainCopy3);
-	
+	meshBeltPieceMainCopy3.position.y = 106;
+	meshBeltPieceMainCopy3.position.z = 50;
+	meshBeltPieceMainCopy3.rotation.x = -Math.PI/2.5;
+	beltCurvedSection.add(meshBeltPieceMainCopy3);
+
+	/**
+	 * kopierer den kurvede delen for andre siden
+	 */
+
+	const beltCurvedSection2 = beltCurvedSection.clone()
+	beltCurvedSection2.castShadow = true;
+	beltCurvedSection2.name = 'BeltCurvedSection2';
+	beltCurvedSection2.position.x = 0;
+	beltCurvedSection2.position.y = 0;
+	beltCurvedSection2.position.z = -600;
+	beltCurvedSection2.rotation.x = -Math.PI/2
+	beltCurvedSection2.rotation.z = -Math.PI/0.5;
+	belt.add(beltCurvedSection2);
+
+	/**
+	 * Lager et flatt parti
+	 */
+
+	const beltFlatSection = new THREE.Group();
+	belt.add(beltFlatSection);
+
+
+		//* BeltPieceMainCopy4
+	const meshBeltPieceMainCopy4 = meshBeltPieceMain.clone(true);
+	meshBeltPieceMainCopy4.castShadow = true;
+	meshBeltPieceMainCopy4.name = 'BeltPieceMainCopy4';
+	meshBeltPieceMainCopy4.position.x = 0;
+	meshBeltPieceMainCopy4.position.y = 110;
+	meshBeltPieceMainCopy4.position.z = -80;
+	meshBeltPieceMainCopy4.rotation.x = -Math.PI/2;
+	beltFlatSection.add(meshBeltPieceMainCopy4);
+
+	//* BeltPieceMainCopy5
+	const meshBeltPieceMainCopy5 = meshBeltPieceMain.clone(true);
+	meshBeltPieceMainCopy5.castShadow = true;
+	meshBeltPieceMainCopy5.name = 'BeltPieceMainCopy5';
+	meshBeltPieceMainCopy5.position.x = 0;
+	meshBeltPieceMainCopy5.position.y = 110;
+	meshBeltPieceMainCopy5.position.z = -108;
+	meshBeltPieceMainCopy5.rotation.x = -Math.PI/2;
+	beltFlatSection.add(meshBeltPieceMainCopy5);
+
+	//* BeltPieceMainCopy6
+	const meshBeltPieceMainCopy6 = meshBeltPieceMain.clone(true);
+	meshBeltPieceMainCopy6.castShadow = true;
+	meshBeltPieceMainCopy6.name = 'BeltPieceMainCopy6';
+	meshBeltPieceMainCopy6.position.x = 0;
+	meshBeltPieceMainCopy6.position.y = 110;
+	meshBeltPieceMainCopy6.position.z = -136;
+	meshBeltPieceMainCopy6.rotation.x = -Math.PI/2;
+	beltFlatSection.add(meshBeltPieceMainCopy6);
+
+	//* BeltPieceMainCopy7
+	const meshBeltPieceMainCopy7 = meshBeltPieceMain.clone(true);
+	meshBeltPieceMainCopy7.castShadow = true;
+	meshBeltPieceMainCopy7.name = 'BeltPieceMainCopy7';
+	meshBeltPieceMainCopy7.position.x = 0;
+	meshBeltPieceMainCopy7.position.y = 110;
+	meshBeltPieceMainCopy7.position.z = -164;
+	meshBeltPieceMainCopy7.rotation.x = -Math.PI/2;
+	beltFlatSection.add(meshBeltPieceMainCopy7);
+
+	/**
+	 * Kopierer Det flate segmentet for å lage den lange flaten på toppen
+	 */
+
+	const beltFlatSection2 = beltFlatSection.clone()
+	beltFlatSection2.castShadow = true;
+	beltFlatSection2.name = 'BeltFlatSection2';
+	beltFlatSection2.position.x = 0;
+	beltFlatSection2.position.y = 0;
+	beltFlatSection2.position.z = -110;
+	belt.add(beltFlatSection2);
+
+	const beltFlatSection3 = beltFlatSection.clone()
+	beltFlatSection3.castShadow = true;
+	beltFlatSection3.name = 'BeltFlatSection3';
+	beltFlatSection3.position.x = 0;
+	beltFlatSection3.position.y = 0;
+	beltFlatSection3.position.z = -220;
+	belt.add(beltFlatSection3);
+
+	const beltFlatSection4 = beltFlatSection.clone()
+	beltFlatSection4.castShadow = true;
+	beltFlatSection4.name = 'BeltFlatSection4';
+	beltFlatSection4.position.x = 0;
+	beltFlatSection4.position.y = 0;
+	beltFlatSection4.position.z = -330;
+	belt.add(beltFlatSection4);
+
+	/**
+	 * Kopierer Det flate segmentet for å lage skrå partier
+	 */
+
+
+
+
+
+
+
+
+
 
 
 
