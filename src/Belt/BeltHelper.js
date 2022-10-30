@@ -127,27 +127,27 @@ export async function createBeltMesh() {
 	meshBeltPieceSideRight.position.z = 0;
 	meshBeltPieceMain.add(meshBeltPieceSideRight);
 	
-	//* BeltPieceRound1
-	const beltPieceRound1 = new THREE.CylinderGeometry(2,2,10, 200,1,false);
-	const meshBeltPieceRound1 = new THREE.Mesh(beltPieceRound1, materialAluminium);
-	meshBeltPieceRound1.castShadow = true;
-	meshBeltPieceRound1.name = 'BeltPieceRound1';
-	meshBeltPieceRound1.position.x = 25;
-	meshBeltPieceRound1.position.y = 15;
-	meshBeltPieceRound1.position.z = 0;
-	meshBeltPieceRound1.rotation.z = Math.PI/2;
-	meshBeltPieceMain.add(meshBeltPieceRound1);
+	//* BeltPieceRoundTopRight
+	const beltPieceRoundTopRight = new THREE.CylinderGeometry(2,2,10, 200,1,false);
+	const meshBeltPieceRoundTopRight = new THREE.Mesh(beltPieceRoundTopRight, materialAluminium);
+	meshBeltPieceRoundTopRight.castShadow = true;
+	meshBeltPieceRoundTopRight.name = 'BeltPieceRoundTopRight';
+	meshBeltPieceRoundTopRight.position.x = 25;
+	meshBeltPieceRoundTopRight.position.y = 15;
+	meshBeltPieceRoundTopRight.position.z = 0;
+	meshBeltPieceRoundTopRight.rotation.z = Math.PI/2;
+	meshBeltPieceMain.add(meshBeltPieceRoundTopRight);
 
-	//* BeltPieceRound2
-	const beltPieceRound2 = new THREE.CylinderGeometry(2,2,10, 200,1,false);
-	const meshBeltPieceRound2 = new THREE.Mesh(beltPieceRound2, materialAluminium);
-	meshBeltPieceRound2.castShadow = true;
-	meshBeltPieceRound2.name = 'BeltPieceRound1';
-	meshBeltPieceRound2.position.x = -25;
-	meshBeltPieceRound2.position.y = 15;
-	meshBeltPieceRound2.position.z = 0;
-	meshBeltPieceRound2.rotation.z = Math.PI/2;
-	meshBeltPieceMain.add(meshBeltPieceRound2);
+	//* BeltPieceRoundTopLeft
+	const beltPieceRoundTopLeft = new THREE.CylinderGeometry(2,2,10, 200,1,false);
+	const meshBeltPieceRoundTopLeft = new THREE.Mesh(beltPieceRoundTopLeft, materialAluminium);
+	meshBeltPieceRoundTopLeft.castShadow = true;
+	meshBeltPieceRoundTopLeft.name = 'BeltPieceRoundTopLeft';
+	meshBeltPieceRoundTopLeft.position.x = -25;
+	meshBeltPieceRoundTopLeft.position.y = 15;
+	meshBeltPieceRoundTopLeft.position.z = 0;
+	meshBeltPieceRoundTopLeft.rotation.z = Math.PI/2;
+	meshBeltPieceMain.add(meshBeltPieceRoundTopLeft);
 
 	//* BeltPieceRoundTopMiddle
 	const beltPieceRoundTopMiddle = new THREE.CylinderGeometry(2,2,20, 200,1,false);
