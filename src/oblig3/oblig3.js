@@ -71,19 +71,19 @@ async function addSceneObjects() {
 	addCoordSystem(g_scene);
 
 	// Plan:
-	let gPlane = new THREE.PlaneGeometry(600, 600, 10, 10);
-	let mPlane = new THREE.MeshLambertMaterial({ color: 0x91aff11, side: THREE.DoubleSide, wireframe:true });
+	let gPlane = new THREE.PlaneGeometry(800, 800, 10, 10);
+	let mPlane = new THREE.MeshLambertMaterial({ color: 0x91aff11, side: THREE.DoubleSide, wireframe:false });
 	let meshPlane = new THREE.Mesh(gPlane, mPlane);
 	meshPlane.rotation.x = Math.PI / 2;
 	meshPlane.receiveShadow = true;	//NB!
 	g_scene.add(meshPlane);
 
 	//
-	let arm = await createArmMesh();
-	arm.name = "arm";
-	arm.baseRot = 0.0;
-	arm.joint1Rot = 0.0;
-	arm.joint2Rot = 0.0;
+	//let arm = await createArmMesh();
+	//arm.name = "arm";
+	//arm.baseRot = 0.0;
+	//arm.joint1Rot = 0.0;
+	//arm.joint2Rot = 0.0;
 	//g_scene.add(arm);
 
 	//let crane = await  createCraneArmMesh();
@@ -91,6 +91,7 @@ async function addSceneObjects() {
 
 	let crane = await craneArmBuilder()
 	g_scene.add(crane);
+	crane.rotation.z = -Math.PI/8;
 
 }
 
@@ -98,12 +99,14 @@ function addLights() {
 	//Retningsorientert lys (som gir skygge):
 	let directionalLight1 = new THREE.DirectionalLight(0xffffff, 1.0); //farge, intensitet (1=default)
 	directionalLight1.position.set(0, 300, 300);
+	directionalLight1.shadow.mapSize.width = 1024;
+	directionalLight1.shadow.mapSize.height = 1024;
 	directionalLight1.castShadow = true;
 	directionalLight1.shadow.camera.near = 0;
-	directionalLight1.shadow.camera.far = 500;
-	directionalLight1.shadow.camera.left = -500;
-	directionalLight1.shadow.camera.right = 500;
-	directionalLight1.shadow.camera.top = 500;
+	directionalLight1.shadow.camera.far = 800;
+	directionalLight1.shadow.camera.left = -300;
+	directionalLight1.shadow.camera.right = 300;
+	directionalLight1.shadow.camera.top = 300;
 	directionalLight1.shadow.camera.bottom = 0;
 	directionalLight1.shadow.camera.visible = true;
 
@@ -128,16 +131,16 @@ function animate(currentTime) {
 	g_controls.update();
 
 	//Roterer heile skjiten:
-	let arm = g_scene.getObjectByName("arm");
-	arm.rotation.y = arm.baseRot;
-	let armAndJoint1 = arm.getObjectByName('armAndJoint1', true);  //true = recursive...
-	armAndJoint1.rotation.x = arm.joint1Rot;
+	//let arm = g_scene.getObjectByName("arm");
+	//arm.rotation.y = arm.baseRot;
+	//let armAndJoint1 = arm.getObjectByName('armAndJoint1', true);  //true = recursive...
+	//armAndJoint1.rotation.x = arm.joint1Rot;
 
-	let armAndJoint2 = arm.getObjectByName('armAndJoint2', true);  //true = recursive...
-	armAndJoint2.rotation.x = arm.joint2Rot;
+	//let armAndJoint2 = arm.getObjectByName('armAndJoint2', true);  //true = recursive...
+	//armAndJoint2.rotation.x = arm.joint2Rot;
 
 	//Sjekker input:
-	handleKeys(delta, arm);
+	//handleKeys(delta, arm);
 
 	//Tegner scenen med gitt kamera:
 	renderScene();
