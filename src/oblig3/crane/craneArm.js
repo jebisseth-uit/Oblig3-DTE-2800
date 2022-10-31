@@ -39,6 +39,10 @@ export async function createCraneArmMesh(
 	const craneCentral = new THREE.Group;
 
 	let material = new THREE.MeshPhongMaterial({map: texture});
+	let materialRed = new THREE.MeshBasicMaterial({color: 0xff0000});
+	let materialGreen = new THREE.MeshBasicMaterial({color: 0x00ff00});
+	let materialBlue = new THREE.MeshBasicMaterial({color: 0x0000ff});
+	let materialYellow = new THREE.MeshBasicMaterial({color: 0xffff00});
 
 
 	for(let i = 0; i <= modules; i++){
@@ -86,7 +90,7 @@ export async function createCraneArmMesh(
 		console.log("X-angle = arctan(catFar/catNear)");
 		console.log("X-angle = " + radToDeg(xx_diag_angle));
 		// Z-angle
-		catNear = Math.hypot(deltaZ, (xLength_bottom+deltaX))
+		catNear = Math.hypot(deltaZ, (x_length+deltaX))
 		catFar = module_height;
 		const xz_diag_angle =Math.PI/2 - Math.atan(catFar/catNear);
 		//Console log for debugging
@@ -94,7 +98,7 @@ export async function createCraneArmMesh(
 		console.log("Z-angle = " + radToDeg(xz_diag_angle));
 
 		///////////////////
-		// Calculate angle of diagonals in X plane for every segment
+		// Calculate angle of diagonals in Z plane for every segment
 		// X plane from above
 		///////////////////
 		catNear = zLength_bottom+deltaZ;
@@ -108,7 +112,7 @@ export async function createCraneArmMesh(
 		console.log("X-angle = arctan(carFar/catNear)");
 		console.log("X-angle = " + radToDeg(zx_diag_angle));
 		// X-angle
-		catNear = Math.hypot(deltaX, (zLength_bottom+deltaZ))
+		catNear = Math.hypot(deltaX, (z_length+deltaZ))
 		catFar = module_height;
 		const zz_diag_angle =Math.PI/2 - Math.atan(catFar/catNear);
 		//Console log for debugging
@@ -225,7 +229,7 @@ export async function createCraneArmMesh(
 
 			// XY1
 			let gElementBarXY1 = new THREE.CylinderGeometry(radius, radius, diagXYLength, 10,5, false);
-			let meshElementBarXY1 = new THREE.Mesh(gElementBarXY1, material);
+			let meshElementBarXY1 = new THREE.Mesh(gElementBarXY1, materialRed);
 			meshElementBarXY1.name = "XY1";
 			meshElementBarXY1.castShadow = true;
 			meshElementBarXY1.receiveShadow = true
@@ -236,7 +240,7 @@ export async function createCraneArmMesh(
 
 			// XY2
 			let gElementBarXY2 = gElementBarXY1.clone();
-			let meshElementBarXY2 = new THREE.Mesh(gElementBarXY2, material);
+			let meshElementBarXY2 = new THREE.Mesh(gElementBarXY2, materialGreen);
 			meshElementBarXY2.name = "XY1";
 			meshElementBarXY2.castShadow = true;
 			meshElementBarXY2.receiveShadow = true
@@ -247,7 +251,7 @@ export async function createCraneArmMesh(
 
 			// ZY1
 			let gElementBarZY1 = new THREE.CylinderGeometry(radius,radius,diagZYLength,10,5,false)
-			let meshElementBarZY1 = new THREE.Mesh(gElementBarZY1, material);
+			let meshElementBarZY1 = new THREE.Mesh(gElementBarZY1, materialBlue);
 			meshElementBarZY1.name = "ZY1";
 			meshElementBarZY1.castShadow = true;
 			meshElementBarZY1.receiveShadow = true
@@ -258,7 +262,7 @@ export async function createCraneArmMesh(
 
 			// ZY2
 			let gElementBarZY2 = gElementBarZY1.clone();
-			let meshElementBarZY2 = new THREE.Mesh(gElementBarZY2, material);
+			let meshElementBarZY2 = new THREE.Mesh(gElementBarZY2, materialYellow);
 			meshElementBarZY2.name = "ZY2";
 			meshElementBarZY2.castShadow = true;
 			meshElementBarZY2.receiveShadow = true
