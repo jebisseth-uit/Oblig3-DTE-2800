@@ -3,18 +3,29 @@
  */
 import * as THREE from "three";
 import {createBeltPartMesh,} from "./BeltParts.js";
+import {BoxGeometry} from "three";
 
-export async function createBeltMesh() {
+export async function createUndercarriageMesh() {
 
 	const loader = new THREE.TextureLoader();
 	const textureObject = await loader.loadAsync('../../../assets/textures/metal1.jpg');
 	const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
 
-	//Konteiner for hele belten:
-	const belt = new THREE.Group();
 
 	const material = new THREE.MeshPhongMaterial({ map: textureObject });
 	const materialAluminium = new THREE.MeshPhongMaterial({map: textureAluminium});
+
+	//Konteiner for hele undercarriage:
+
+	const undercarriage = new THREE.Group();
+
+	// Belteseksjon
+	const belt = new THREE.Group();
+	belt.position.x = -200;
+	belt.position.y = 0;
+	belt.position.z = 200;
+	undercarriage.add(belt);
+
 
 	/**
 	 * Lager Belteseksjonen
@@ -426,16 +437,76 @@ export async function createBeltMesh() {
 	beltFlatSection13.rotation.x = Math.PI/1;
 	belt.add(beltFlatSection13);
 
+	/**
+	 * Lager en kopi av hele beltet
+	 */
+
+	const belt2 = belt.clone()
+	belt2.castShadow = true;
+	belt2.name = 'Belt2';
+	belt2.position.x = 200;
+	belt2.position.y = 0;
+	belt2.position.z = 200;
+	undercarriage.add(belt2);
+
+	/**
+	 * Lager en "kropp" til beltene samt en klone
+	 */
+
+	const beltBody = new BoxGeometry( 90, 90, 460, 10, 1,1);
+	const meshBeltBody = new THREE.Mesh(beltBody, materialAluminium);
+	meshBeltBody.castShadow = true;
+	meshBeltBody.name = 'BeltBody';
+	meshBeltBody.position.x = 200;
+	meshBeltBody.position.y = 80;
+	meshBeltBody.position.z = -100;
+	undercarriage.add(meshBeltBody);
+
+	const beltBodyEndPiece1 = new BoxGeometry( 90, 45, 760, 10, 1,1);
+	const meshbeltBodyEndPiece1 = new THREE.Mesh(beltBodyEndPiece1, materialAluminium);
+	meshbeltBodyEndPiece1.castShadow = true;
+	meshbeltBodyEndPiece1.name = 'beltBodyEndPiece1';
+	meshbeltBodyEndPiece1.position.x = 0;
+	meshbeltBodyEndPiece1.position.y = -20;
+	meshbeltBodyEndPiece1.position.z = 10;
+	meshBeltBody.add(meshbeltBodyEndPiece1);
+	
+	
+    //skrå bit i ene enden
+	const beltBodyEndPiece2 = new BoxGeometry( 90, 45, 160, 10, 1,1);
+	const meshbeltBodyEndPiece2 = new THREE.Mesh(beltBodyEndPiece2, materialAluminium);
+	meshbeltBodyEndPiece2.castShadow = true;
+	meshbeltBodyEndPiece2.name = 'beltBodyEndPiece2';
+	meshbeltBodyEndPiece2.position.x = 0;
+	meshbeltBodyEndPiece2.position.y = 6;
+	meshbeltBodyEndPiece2.position.z = 300;
+	meshbeltBodyEndPiece2.rotation.x = Math.PI/15;
+	meshBeltBody.add(meshbeltBodyEndPiece2);
+
+	const meshBeltBodyEndPiece3 = meshbeltBodyEndPiece2.clone();
+	meshBeltBodyEndPiece3.castShadow = true;
+	meshBeltBodyEndPiece3.name = 'beltBodyEndPiece3';
+	meshBeltBodyEndPiece3.position.x = 0;
+	meshBeltBodyEndPiece3.position.y = 5.5;
+	meshBeltBodyEndPiece3.position.z = -290;
+	meshBeltBodyEndPiece3.rotation.x = -Math.PI/13;
+	meshBeltBody.add(meshBeltBodyEndPiece3);
+
+
+
+	// Klonen
+	const meshBeltBody2 = meshBeltBody.clone();
+	meshBeltBody2.castShadow = true;
+	meshBeltBody2.name = 'BeltBody2';
+	meshBeltBody2.position.x = -200;
+	meshBeltBody2.position.y = 80;
+	meshBeltBody2.position.z = -100;
+	undercarriage.add(meshBeltBody2);
 
 
 
 
 
 
-
-
-
-
-
-	return belt;
+	return undercarriage;
 }

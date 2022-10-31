@@ -3,7 +3,7 @@ import '../style.css';
 import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 import {addCoordSystem} from "../../static/lib/wfa-coord.js";
-import {createBeltMesh,} from "./BeltHelper.js";
+import {createUndercarriageMesh,} from "./BeltHelper.js";
 
 //Globale variabler:
 let g_scene, g_renderer, g_camera, g_clock, g_controls, g_currentlyPressedKeys = [];
@@ -77,12 +77,12 @@ async function addSceneObjects() {
 	g_scene.add(meshPlane);
 
 	//
-	let belt = await createBeltMesh();
-	belt.name = "belt";
-	belt.baseRot = 0.0;
-	belt.joint1Rot = 0.0;
-	belt.joint2Rot = 0.0;
-	g_scene.add(belt);
+	let undercarriage = await createUndercarriageMesh();
+	undercarriage.name = "undercarriage";
+	undercarriage.baseRot = 0.0;
+	undercarriage.joint1Rot = 0.0;
+	undercarriage.joint2Rot = 0.0;
+	g_scene.add(undercarriage);
 }
 
 function addLights() {
@@ -116,16 +116,16 @@ function animate(currentTime) {
 	g_controls.update();
 
 	//Roterer heile skjiten:
-	let belt = g_scene.getObjectByName("belt");
-	belt.rotation.y = belt.baseRot;
-	//let beltAndJoint1 = belt.getObjectByName('belt', true);  //true = recursive...
-	belt.rotation.x = belt.joint1Rot;
+	let undercarriage = g_scene.getObjectByName("undercarriage");
+	undercarriage.rotation.y = undercarriage.baseRot;
+	//let undercarriageAndJoint1 = undercarriage.getObjectByName('undercarriage', true);  //true = recursive...
+	undercarriage.rotation.x = undercarriage.joint1Rot;
 
-	//let beltAndJoint2 = belt.getObjectByName('belt', true);  //true = recursive...
-	//belt.rotation.x = belt.joint2Rot;
+	//let undercarriageAndJoint2 = undercarriage.getObjectByName('undercarriage', true);  //true = recursive...
+	//undercarriage.rotation.x = undercarriage.joint2Rot;
 
 	//Sjekker input:
-	handleKeys(delta, belt);
+	handleKeys(delta, undercarriage);
 
 	//Tegner scenen med gitt kamera:
 	renderScene();
@@ -146,36 +146,36 @@ function onWindowResize() {
 }
 
 //Sjekker tastaturet:
-function handleKeys(delta, belt) {
+function handleKeys(delta, undercarriage) {
 	let rotationSpeed = (Math.PI); // Bestemmer rotasjonshastighet.
 
 	//Roter foten:s
 	if (g_currentlyPressedKeys['KeyA']) { //A
-		belt.baseRot = belt.baseRot + (rotationSpeed * delta);
-		belt.baseRot %= (Math.PI * 2); // "Rull rundt" dersom belt.baseRot >= 360 grader.
+		undercarriage.baseRot = undercarriage.baseRot + (rotationSpeed * delta);
+		undercarriage.baseRot %= (Math.PI * 2); // "Rull rundt" dersom undercarriage.baseRot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyD']) {	//D
-		belt.baseRot = belt.baseRot - (rotationSpeed * delta);
-		belt.baseRot %= (Math.PI * 2); // "Rull rundt" dersom belt.baseRot >= 360 grader.
+		undercarriage.baseRot = undercarriage.baseRot - (rotationSpeed * delta);
+		undercarriage.baseRot %= (Math.PI * 2); // "Rull rundt" dersom undercarriage.baseRot >= 360 grader.
 	}
 
 	//Roter joint1:
 	if (g_currentlyPressedKeys['KeyS']) {	//S
-		belt.joint1Rot = belt.joint1Rot + (rotationSpeed * delta);
-		belt.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom belt.joint1Rot >= 360 grader.
+		undercarriage.joint1Rot = undercarriage.joint1Rot + (rotationSpeed * delta);
+		undercarriage.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom undercarriage.joint1Rot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyW']) {	//W
-		belt.joint1Rot = belt.joint1Rot - (rotationSpeed * delta);
-		belt.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom belt.joint1Rot >= 360 grader.
+		undercarriage.joint1Rot = undercarriage.joint1Rot - (rotationSpeed * delta);
+		undercarriage.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom undercarriage.joint1Rot >= 360 grader.
 	}
 
 	//Roter joint2:
 	if (g_currentlyPressedKeys['KeyV']) { //V
-		belt.joint2Rot = belt.joint2Rot + (rotationSpeed * delta);
-		belt.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom belt.joint2Rot >= 360 grader.
+		undercarriage.joint2Rot = undercarriage.joint2Rot + (rotationSpeed * delta);
+		undercarriage.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom undercarriage.joint2Rot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyB']) {	//B
-		belt.joint2Rot = belt.joint2Rot - (rotationSpeed * delta);
-		belt.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom belt.joint2Rot >= 360 grader.
+		undercarriage.joint2Rot = undercarriage.joint2Rot - (rotationSpeed * delta);
+		undercarriage.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom undercarriage.joint2Rot >= 360 grader.
 	}
 }
