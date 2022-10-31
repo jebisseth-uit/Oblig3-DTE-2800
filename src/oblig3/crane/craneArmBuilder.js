@@ -15,7 +15,7 @@ export async function craneArmBuilder(){
 
 	//CraneStart
 	const craneStartModules = 6;
-	const craneStartModuleHeight = 10;
+	const craneStartModuleHeight = 15;
 	const craneStartBottomX = 10;
 	const craneStartBottomZ = 15;
 	const craneStartTopX = 40;

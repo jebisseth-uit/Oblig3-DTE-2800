@@ -27,60 +27,6 @@ export async function createCraneArmMesh(
 	const deltaX = (xLength_top-xLength_bottom)/modules;
 	const deltaZ = (zLength_top-zLength_bottom)/modules;
 
-	// Calculate angle of Y in XZ plane for every segment
-	catNear = xLength_top/2-xLength_bottom/2
-	catFar = module_height*modules;
-	const x_oblique_angle = Math.PI/2 - Math.atan(catFar/catNear);
-	catNear = zLength_top/2-zLength_bottom/2
-	catFar = module_height*modules;
-	const z_oblique_angle = Math.PI/2 - Math.atan(catFar/catNear);
-
-	//Console log - DEBUG
-	console.log(" ")
-	console.log(module_name)
-	console.log("---------")
-	console.log("Angle of Y in XZ plane:")
-	console.log("catFar = " + catFar + ", catNear = " + catNear);
-	console.log("X-angle: " + x_oblique_angle + ", " + radToDeg(x_oblique_angle));
-	console.log("Z-angle: " + z_oblique_angle + ", " + radToDeg(z_oblique_angle));
-
-	// Calculate angle of diagonals in X plane for every segment
-	catNear = xLength_bottom+deltaX;
-	catFar = deltaZ;
-	const xx_diag_angle = Math.atan(catFar/catNear);
-		//Console log - DEBUG
-		console.log(" ")
-		console.log("Diagonals in Z plane:")
-		console.log("catNear = " + catNear + ", catFar = " + catFar + ", mod = " + module_height)
-		console.log("X-angle = arctan(z/x)");
-		console.log("X-angle = " + radToDeg(xx_diag_angle));
-	// Z-angle
-	catNear = Math.hypot(deltaZ, (xLength_bottom+deltaX))
-	catFar = module_height;
-	const xz_diag_angle =Math.PI/2 - Math.atan(catFar/catNear);
-		//Console log - DEBUG
-		console.log("Z-angle = mod/x")
-		console.log("Z-angle = " + radToDeg(xz_diag_angle));
-
-	// Calculate angle of diagonals in X plane for every segment
-	catNear = zLength_bottom+deltaZ;
-	catFar = deltaX;
-	const zx_diag_angle = Math.atan(catFar/catNear);
-	//Console log - DEBUG
-	console.log(" ")
-	console.log("Diagonals in Z plane:")
-	console.log("catNear = " + catNear + ", catFar = " + catFar + ", mod = " + module_height)
-	console.log("X-angle = arctan(z/x)");
-	console.log("X-angle = " + radToDeg(zx_diag_angle));
-	// Z-angle
-	catNear = Math.hypot(deltaX, (zLength_bottom+deltaZ))
-	catFar = module_height;
-	const zz_diag_angle =Math.PI/2 - Math.atan(catFar/catNear);
-	//Console log - DEBUG
-	console.log("Z-angle = mod/x")
-	console.log("Z-angle = " + radToDeg(zz_diag_angle));
-
-
 	let x_length = xLength_bottom;
 	let z_length = zLength_bottom;
 	let y_length = 0;
@@ -109,7 +55,7 @@ export async function createCraneArmMesh(
 		catFar = module_height*modules;
 		const z_oblique_angle = Math.PI/2 - Math.atan(catFar/catNear);
 
-		// Calculate length of Y
+		// Calculate length of Y - WORKING
 		catNear = deltaX, catFar = deltaZ;
 		hyp = Math.hypot(catNear, catFar);
 		y_length = Math.hypot(hyp, module_height);
@@ -119,6 +65,7 @@ export async function createCraneArmMesh(
 		console.log(module_name)
 		console.log("---------")
 		console.log("Angle of Y in XZ plane:")
+		console.log("i = " + i);
 		console.log("catFar = " + catFar + ", catNear = " + catNear);
 		console.log("X-angle: " + x_oblique_angle + ", " + radToDeg(x_oblique_angle));
 		console.log("Z-angle: " + z_oblique_angle + ", " + radToDeg(z_oblique_angle));
@@ -134,15 +81,16 @@ export async function createCraneArmMesh(
 		//Console log for debugging
 		console.log(" ")
 		console.log("Diagonals in Z plane:")
+		console.log("i = " + i);
 		console.log("catNear = " + catNear + ", catFar = " + catFar + ", mod = " + module_height)
-		console.log("X-angle = arctan(z/x)");
+		console.log("X-angle = arctan(catFar/catNear)");
 		console.log("X-angle = " + radToDeg(xx_diag_angle));
 		// Z-angle
 		catNear = Math.hypot(deltaZ, (xLength_bottom+deltaX))
 		catFar = module_height;
 		const xz_diag_angle =Math.PI/2 - Math.atan(catFar/catNear);
 		//Console log for debugging
-		console.log("Z-angle = mod/x")
+		console.log("Z-angle = moduleheight/x")
 		console.log("Z-angle = " + radToDeg(xz_diag_angle));
 
 		///////////////////
@@ -155,15 +103,16 @@ export async function createCraneArmMesh(
 		//Console log for debugging
 		console.log(" ")
 		console.log("Diagonals in Z plane:")
+		console.log("i = " + i);
 		console.log("catNear = " + catNear + ", catFar = " + catFar + ", mod = " + module_height)
-		console.log("X-angle = arctan(z/x)");
+		console.log("X-angle = arctan(carFar/catNear)");
 		console.log("X-angle = " + radToDeg(zx_diag_angle));
 		// X-angle
 		catNear = Math.hypot(deltaX, (zLength_bottom+deltaZ))
 		catFar = module_height;
 		const zz_diag_angle =Math.PI/2 - Math.atan(catFar/catNear);
 		//Console log for debugging
-		console.log("Z-angle = mod/x")
+		console.log("Z-angle = moduleheight/x")
 		console.log("Z-angle = " + radToDeg(zz_diag_angle));
 
 		//Diagonal bars
@@ -234,7 +183,7 @@ export async function createCraneArmMesh(
 			meshElementBarY1.position.x = x_length/2 + deltaX/4;
 			meshElementBarY1.position.z = z_length/2 + deltaZ/4;
 			meshElementBarY1.position.y = offsetY + module_height/2;
-			meshElementBarY1.rotation.set(x_oblique_angle,0,z_oblique_angle);
+			meshElementBarY1.rotation.set(x_oblique_angle,0,-z_oblique_angle);
 			craneCentral.add(meshElementBarY1);
 
 			// Y2
@@ -246,7 +195,7 @@ export async function createCraneArmMesh(
 			meshElementBarY2.position.x = -x_length/2 - deltaX/4;
 			meshElementBarY2.position.z = -z_length/2 - deltaZ/4;
 			meshElementBarY2.position.y = offsetY + module_height/2;
-			meshElementBarY2.rotation.set(x_oblique_angle,0,z_oblique_angle);
+			meshElementBarY2.rotation.set(-x_oblique_angle,0,z_oblique_angle);
 			craneCentral.add(meshElementBarY2);
 
 			// Y3
@@ -270,7 +219,7 @@ export async function createCraneArmMesh(
 			meshElementBarY4.position.x = x_length/2 + deltaX/4;
 			meshElementBarY4.position.z = -z_length/2 - deltaZ/4;
 			meshElementBarY4.position.y = offsetY + module_height/2;
-			meshElementBarY4.rotation.set(x_oblique_angle,0,z_oblique_angle);
+			meshElementBarY4.rotation.set(-x_oblique_angle,0,-z_oblique_angle);
 			craneCentral.add(meshElementBarY4);
 
 
@@ -293,7 +242,7 @@ export async function createCraneArmMesh(
 			meshElementBarXY2.receiveShadow = true
 			meshElementBarXY2.position.z = -z_length/2;
 			meshElementBarXY2.position.y = offsetY + module_height/2;
-			meshElementBarXY2.rotation.set(-xx_diag_angle,0,-xz_diag_angle);
+			meshElementBarXY2.rotation.set(-xx_diag_angle,0,xz_diag_angle);
 			craneCentral.add(meshElementBarXY2);
 
 			// ZY1
@@ -315,7 +264,7 @@ export async function createCraneArmMesh(
 			meshElementBarZY2.receiveShadow = true
 			meshElementBarZY2.position.x = x_length/2;
 			meshElementBarZY2.position.y = offsetY + module_height/2;
-			meshElementBarZY2.rotation.set(-zx_diag_angle,-Math.PI/2,-zz_diag_angle);
+			meshElementBarZY2.rotation.set(-zx_diag_angle,-Math.PI/2,zz_diag_angle);
 			craneCentral.add(meshElementBarZY2);
 
 		}
