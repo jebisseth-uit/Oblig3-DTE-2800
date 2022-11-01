@@ -3,9 +3,9 @@ import '../style.css';
 import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 import {addCoordSystem} from "../../static/lib/wfa-coord.js";
-import {createArmMesh,} from "./oblig3Helper.js";
-import {createCraneArmMesh} from "./crane/craneArm.js";
-import {craneArmBuilder} from "./crane/craneArmBuilder";
+
+import {craneArmBuilder} from "./arm/craneArmBuilder";
+import {buildCrane} from "./build/buildCrane";
 
 //Globale variabler:
 let g_scene, g_renderer, g_camera, g_clock, g_controls, g_currentlyPressedKeys = [];
@@ -92,12 +92,12 @@ async function addSceneObjects() {
 	//arm.joint2Rot = 0.0;
 	//g_scene.add(arm);
 
-	//let crane = await  createCraneArmMesh();
-	//g_scene.add(crane);
+	//let arm = await  createCraneArmMesh();
+	//g_scene.add(arm);
 
-	let crane = await craneArmBuilder()
+	//let crane = await craneArmBuilder()
+	let crane = await buildCrane();
 	g_scene.add(crane);
-	crane.rotation.z = -Math.PI/8;
 
 }
 

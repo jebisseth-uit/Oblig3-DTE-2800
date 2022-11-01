@@ -1,8 +1,8 @@
-import '../style.css';
+import '../../style.css';
 //Globale variabler:
 import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
-import {addCoordSystem} from "../../static/lib/wfa-coord.js";
+import {addCoordSystem} from "../../../static/lib/wfa-coord.js";
 import {createUndercarriageMesh,} from "./BeltHelper.js";
 
 //Globale variabler:

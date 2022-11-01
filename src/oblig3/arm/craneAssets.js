@@ -12,7 +12,7 @@ export async function createLogoPlate(width=1, height=1, depth=1){
 
 	let material = new THREE.MeshPhongMaterial({map: texture});
 
-	//Container for crane logo:
+	//Container for arm logo:
 	const craneLogo = new THREE.Group;
 
 	let logoPlate = new THREE.BoxGeometry(width,height,depth);
@@ -32,7 +32,7 @@ export async function createCraneEndPiece(width = 1, height = 1, depth = 1){
 
 	let material = new THREE.MeshPhongMaterial({map: texture});
 
-	//Container for crane end-piece
+	//Container for arm end-piece
 	const endPiece = new THREE.Group;
 
 	//Box
