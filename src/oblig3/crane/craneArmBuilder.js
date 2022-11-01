@@ -5,6 +5,7 @@ import * as THREE from "three";
 import {createCraneArmMesh} from "./craneArm.js";
 import {createLogoPlate} from "./craneAssets.js";
 import {createCraneEndPiece} from "./craneAssets";
+import {createCraneHookWires} from "./craneAssets.js";
 
 export async function craneArmBuilder(){
 	const craneArm = new THREE.Group;
@@ -39,12 +40,16 @@ export async function craneArmBuilder(){
 	const craneEndTopX = 20;
 	const craneEndTopZ = 30;
 
+	//CraneWires
+	const wireLength = 400;
+
 	let craneStart = await createCraneArmMesh(craneStartModules,craneStartTopX,craneStartBottomX,craneStartTopZ,craneStartBottomZ,craneStartModuleHeight,barRadius, "craneStart");
 	let craneLowerJoint = await  createCraneArmMesh(craneLowerJointModules, craneStartTopX,craneStartTopZ,craneStartTopX,craneStartTopZ,craneLowerJointModuleHeight,barRadius, "craneLowerJoint");
 	let craneCentral = await createCraneArmMesh(craneCentralModules,craneStartTopX,craneStartTopX,craneStartTopZ,craneStartTopZ,craneCentralModuleHeight, barRadius, "craneCentral");
 	let craneUpperJoint = await  createCraneArmMesh(craneUpperJointModules, craneStartTopX,craneStartTopX,craneStartTopZ,craneStartTopZ,craneUpperJointModuleHeight,barRadius, "craneUpperJoint");
 	let craneEnd = await createCraneArmMesh(craneEndModules,craneStartTopX,craneEndTopX,craneStartTopZ,craneEndTopZ,craneEndModuleHeight,barRadius, "craneEnd");
 	let craneEndPiece = await createCraneEndPiece(craneEndTopX, craneEndTopX, craneEndTopZ, "craneEndPiece");
+	let craneWires = await createCraneHookWires(0.5, wireLength, 10,10)
 	let craneLogo = await createLogoPlate(60,30,1);
 	let craneLogo2 = craneLogo.clone();
 
@@ -59,12 +64,19 @@ export async function craneArmBuilder(){
 	craneUpperJoint.add(craneLogo);
 	craneUpperJoint.add(craneLogo2);
 	craneEnd.add(craneEndPiece);
+	craneEnd.add(craneWires);
 
 	craneLowerJoint.position.y = craneStartModules*craneStartModuleHeight; //Move lower joint to end of start-module
 	craneCentral.position.y = craneLowerJointModules*craneLowerJointModuleHeight; //Move central-module to end of lower joint
 	craneUpperJoint.position.y = craneCentralModules*craneCentralModuleHeight; //Move upper joint to end of central-module
 	craneEnd.position.y = (craneUpperJointModules*craneUpperJointModuleHeight)*2; //Move end-module to end of upper joint
-	//craneEndPiece.position.y = -craneEndModules*craneEndModuleHeight; //Move end piece to end of crane
+
+	//Wire
+	//craneWires.position.y = craneCentralModules*craneCentralModuleHeight
+	craneWires.position.y = craneEndModules*craneEndModuleHeight;
+	craneWires.position.y = (wireLength/2)-30;
+	craneWires.position.x = 85;
+	craneWires.rotation.z = -Math.PI/8;
 
 	//Logo
 	craneLogo.rotation.set(0,0,Math.PI/2)
@@ -75,6 +87,7 @@ export async function craneArmBuilder(){
 	craneLogo2.rotation.set(0,0,Math.PI/2)
 	craneLogo2.position.z = -craneStartTopX/2-2*barRadius;
 	craneLogo2.position.y = (craneUpperJointModules*craneUpperJointModuleHeight)/2
+
 
 	return craneArm;
 }
