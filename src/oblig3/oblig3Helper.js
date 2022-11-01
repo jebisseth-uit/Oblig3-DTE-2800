@@ -77,7 +77,7 @@ export async function createArmMesh() {
 	meshUpperArm.position.y = 50;
 	meshUpperArm.position.z = 0;
 	armAndJoint2.add(meshUpperArm);
-
+æ
 	// Legg til parent:
 	armAndJoint1.add(armAndJoint2);
 
