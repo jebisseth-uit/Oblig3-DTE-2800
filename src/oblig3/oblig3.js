@@ -33,10 +33,6 @@ export async function main() {
 	await addSceneObjects();
 	addLights();
 
-	//Texture
-	const loader = new THREE.TextureLoader();
-	const texture = await loader.loadAsync('../../assets/textures/metal1.jpg');
-
 	// Kamera:
 	g_camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
 	g_camera.position.x = 50;
@@ -74,12 +70,17 @@ function handleKeyDown(event) {
 async function addSceneObjects() {
 	addCoordSystem(g_scene);
 
+	//Texture
+	const loader = new THREE.TextureLoader();
+	const texture = await loader.loadAsync('../../assets/textures/dirtground.jpg');
+
 	// Plan:
-	let gPlane = new THREE.PlaneGeometry(800, 800, 10, 10);
+	let gPlane = new THREE.PlaneGeometry(800, 800, 40, 40);
 	//let mPlane = new THREE.MeshLambertMaterial({ color: 0x91aff11, side: THREE.DoubleSide, wireframe:false });
-	let mPlane = new THREE.Mesh(gPlane, materialBlue);
+	//let mPlane = new THREE.Mesh(gPlane, materialBlue);
+	let mPlane = new THREE.MeshPhongMaterial({map: texture});
 	let meshPlane = new THREE.Mesh(gPlane, mPlane);
-	meshPlane.rotation.x = Math.PI / 2;
+	meshPlane.rotation.x = Math.PI / -2;
 	meshPlane.receiveShadow = true;	//NB!
 	g_scene.add(meshPlane);
 
@@ -96,7 +97,7 @@ async function addSceneObjects() {
 
 	let crane = await craneArmBuilder()
 	g_scene.add(crane);
-	//crane.rotation.z = -Math.PI/8;
+	crane.rotation.z = -Math.PI/8;
 
 }
 

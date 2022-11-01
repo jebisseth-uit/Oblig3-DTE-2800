@@ -197,7 +197,7 @@ export async function createCraneArmMesh(
 
 			// Y1
 			let gElementBarY1 = new THREE.CylinderGeometry(radius, radius, y_xPlane_length,10,5,false);
-			let meshElementBarY1 = new THREE.Mesh(gElementBarY1, materialRed);
+			let meshElementBarY1 = new THREE.Mesh(gElementBarY1, material);
 			meshElementBarY1.name = "Y1";
 			meshElementBarY1.castShadow = true;
 			meshElementBarY1.receiveShadow = true
@@ -210,7 +210,7 @@ export async function createCraneArmMesh(
 
 			// Y2
 			let gElementBarY2 = new THREE.CylinderGeometry(radius, radius, y_zPlane_length,10,5,false);;
-			let meshElementBarY2 = new THREE.Mesh(gElementBarY2, materialGreen);
+			let meshElementBarY2 = new THREE.Mesh(gElementBarY2, material);
 			meshElementBarY2.name = "Y2";
 			meshElementBarY2.castShadow = true;
 			meshElementBarY2.receiveShadow = true
@@ -223,7 +223,7 @@ export async function createCraneArmMesh(
 
 			// Y3
 			let gElementBarY3 = gElementBarY1.clone();
-			let meshElementBarY3 = new THREE.Mesh(gElementBarY3, materialBlue);
+			let meshElementBarY3 = new THREE.Mesh(gElementBarY3, material);
 			meshElementBarY3.name = "Y3";
 			meshElementBarY3.castShadow = true;
 			meshElementBarY3.receiveShadow = true
@@ -236,7 +236,7 @@ export async function createCraneArmMesh(
 
 			// Y4
 			let gElementBarY4 = gElementBarY3.clone();
-			let meshElementBarY4 = new THREE.Mesh(gElementBarY4, materialYellow);
+			let meshElementBarY4 = new THREE.Mesh(gElementBarY4, material);
 			meshElementBarY4.name = "Y4";
 			meshElementBarY4.castShadow = true;
 			meshElementBarY4.receiveShadow = true

@@ -43,11 +43,13 @@ export async function craneArmBuilder(){
 	let craneLowerJoint = await  createCraneArmMesh(craneLowerJointModules, craneStartTopX,craneStartTopZ,craneStartTopX,craneStartTopZ,craneLowerJointModuleHeight,barRadius, "craneLowerJoint");
 	let craneCentral = await createCraneArmMesh(craneCentralModules,craneStartTopX,craneStartTopX,craneStartTopZ,craneStartTopZ,craneCentralModuleHeight, barRadius, "craneCentral");
 	let craneUpperJoint = await  createCraneArmMesh(craneUpperJointModules, craneStartTopX,craneStartTopX,craneStartTopZ,craneStartTopZ,craneUpperJointModuleHeight,barRadius, "craneUpperJoint");
-	let craneEnd = await createCraneArmMesh(craneEndModules,craneEndTopX,craneStartTopX,craneEndTopZ,craneStartTopZ,craneEndModuleHeight,barRadius, "craneEnd");
+	let craneEnd = await createCraneArmMesh(craneEndModules,craneStartTopX,craneEndTopX,craneStartTopZ,craneEndTopZ,craneEndModuleHeight,barRadius, "craneEnd");
 	let craneEndPiece = await createCraneEndPiece(craneEndTopX, craneEndTopX, craneEndTopZ, "craneEndPiece");
 	let craneLogo = await createLogoPlate(60,30,1);
 	let craneLogo2 = craneLogo.clone();
 
+	craneEnd.rotation.x = Math.PI;
+	craneEndPiece.rotation.x = Math.PI;
 
 	craneArm.add(craneStart);
 	craneArm.add(craneLowerJoint);
@@ -61,8 +63,8 @@ export async function craneArmBuilder(){
 	craneLowerJoint.position.y = craneStartModules*craneStartModuleHeight; //Move lower joint to end of start-module
 	craneCentral.position.y = craneLowerJointModules*craneLowerJointModuleHeight; //Move central-module to end of lower joint
 	craneUpperJoint.position.y = craneCentralModules*craneCentralModuleHeight; //Move upper joint to end of central-module
-	craneEnd.position.y = craneUpperJointModules*craneUpperJointModuleHeight; //Move end-module to end of upper joint
-	craneEndPiece.position.y = craneEndModules*craneEndModuleHeight; //Move end piece to end of crane
+	craneEnd.position.y = (craneUpperJointModules*craneUpperJointModuleHeight)*2; //Move end-module to end of upper joint
+	//craneEndPiece.position.y = -craneEndModules*craneEndModuleHeight; //Move end piece to end of crane
 
 	//Logo
 	craneLogo.rotation.set(0,0,Math.PI/2)
