@@ -1,15 +1,12 @@
-import '../style.css';
-//Globale variabler:
+
 import * as THREE from "three";
-import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 
 import {createArmsMesh, createArmsMesh2, createBodyMesh, createBodyMesh2, createBoxMesh, createBoxMesh2, createFootMesh, createFootMesh2, createHandlesMesh, createHandlesMesh2, createRollersMesh, createStairsMesh, createStairsMesh2,} from "./foot.js";
 
-
-
-async function styrhus() {
+export async function styrhus() {
 
     const body1 = new THREE.Group();
+
     let body = await createBodyMesh();
     body.name = "body";
     body1.add(body);
