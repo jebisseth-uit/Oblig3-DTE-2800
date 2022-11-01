@@ -3,9 +3,7 @@ import '../style.css';
 import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 import {addCoordSystem} from "../../static/lib/wfa-coord.js";
-
-import {craneArmBuilder} from "./arm/craneArmBuilder";
-import {buildCrane} from "./build/buildCrane";
+import {buildCrane} from "./build/buildCrane.js";
 
 //Globale variabler:
 let g_scene, g_renderer, g_camera, g_clock, g_controls, g_currentlyPressedKeys = [];
