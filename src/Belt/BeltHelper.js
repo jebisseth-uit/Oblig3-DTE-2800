@@ -491,6 +491,76 @@ export async function createUndercarriageMesh() {
 	meshBeltBodyEndPiece3.position.z = -290;
 	meshBeltBodyEndPiece3.rotation.x = -Math.PI/13;
 	meshBeltBody.add(meshBeltBodyEndPiece3);
+	
+
+    // Detaljbiter
+	const beltBodyDetail1 = new BoxGeometry( 10, 50, 2, 1, 1,1);
+	const meshBeltBodyDetail1 = new THREE.Mesh(beltBodyDetail1, materialAluminium);
+	meshBeltBodyDetail1.castShadow = true;
+	meshBeltBodyDetail1.name = 'BeltBodyDetail1';
+	meshBeltBodyDetail1.position.x = 50;
+	meshBeltBodyDetail1.position.y = -10;
+	meshBeltBodyDetail1.position.z = 300;
+	meshBeltBody.add(meshBeltBodyDetail1);
+
+	const meshBeltBodyDetail2 = meshBeltBodyDetail1.clone();
+	meshBeltBodyDetail2.castShadow = true;
+	meshBeltBodyDetail2.name = 'BeltBodyDetail2';
+	meshBeltBodyDetail2.position.x = 50;
+	meshBeltBodyDetail2.position.y = -10;
+	meshBeltBodyDetail2.position.z = -300;
+	meshBeltBody.add(meshBeltBodyDetail2);
+
+	const beltBodyDetail3 = new BoxGeometry( 10, 70, 2, 1, 1,1);
+	const meshBeltBodyDetail3 = new THREE.Mesh(beltBodyDetail3, materialAluminium);
+	meshBeltBodyDetail3.castShadow = true;
+	meshBeltBodyDetail3.name = 'BeltBodyDetail3';
+	meshBeltBodyDetail3.position.x = 50;
+	meshBeltBodyDetail3.position.y = 0;
+	meshBeltBodyDetail3.position.z = -100;
+	meshBeltBody.add(meshBeltBodyDetail3);
+
+	const meshBeltBodyDetail4 = meshBeltBodyDetail3.clone();
+	meshBeltBodyDetail4.castShadow = true;
+	meshBeltBodyDetail4.name = 'BeltBodyDetail4';
+	meshBeltBodyDetail4.position.x = 50;
+	meshBeltBodyDetail4.position.y = 0;
+	meshBeltBodyDetail4.position.z = 100;
+	meshBeltBody.add(meshBeltBodyDetail4);
+
+	//Other side of the beltbodies
+
+	const meshBeltBodyDetail5 = meshBeltBodyDetail3.clone();
+	meshBeltBodyDetail5.castShadow = true;
+	meshBeltBodyDetail5.name = 'BeltBodyDetail5';
+	meshBeltBodyDetail5.position.x = -50;
+	meshBeltBodyDetail5.position.y = 0;
+	meshBeltBodyDetail5.position.z = 100;
+	meshBeltBody.add(meshBeltBodyDetail5);
+
+	const meshBeltBodyDetail6 = meshBeltBodyDetail3.clone();
+	meshBeltBodyDetail6.castShadow = true;
+	meshBeltBodyDetail6.name = 'BeltBodyDetail6';
+	meshBeltBodyDetail6.position.x = -50;
+	meshBeltBodyDetail6.position.y = 0;
+	meshBeltBodyDetail6.position.z = -100;
+	meshBeltBody.add(meshBeltBodyDetail6);
+
+	const meshBeltBodyDetail7 = meshBeltBodyDetail1.clone();
+	meshBeltBodyDetail7.castShadow = true;
+	meshBeltBodyDetail7.name = 'BeltBodyDetail7';
+	meshBeltBodyDetail7.position.x = -50;
+	meshBeltBodyDetail7.position.y = -10;
+	meshBeltBodyDetail7.position.z = -300;
+	meshBeltBody.add(meshBeltBodyDetail7);
+
+	const meshBeltBodyDetail8 = meshBeltBodyDetail1.clone();
+	meshBeltBodyDetail8.castShadow = true;
+	meshBeltBodyDetail8.name = 'BeltBodyDetail8';
+	meshBeltBodyDetail8.position.x = -50;
+	meshBeltBodyDetail8.position.y = -10;
+	meshBeltBodyDetail8.position.z = 300;
+	meshBeltBody.add(meshBeltBodyDetail8);
 
 
 
@@ -502,6 +572,36 @@ export async function createUndercarriageMesh() {
 	meshBeltBody2.position.y = 80;
 	meshBeltBody2.position.z = -100;
 	undercarriage.add(meshBeltBody2);
+
+
+	
+	
+	
+	
+	/**
+	 * Lager en hovedkropp til understellet
+	 */
+
+	const undercarriageBody = new BoxGeometry( 280, 80, 280, 10, 1,1);
+	const meshUndercarriageBody = new THREE.Mesh(undercarriageBody, materialAluminium);
+	meshUndercarriageBody.castShadow = true;
+	meshUndercarriageBody.name = 'undercarriageBody';
+	meshUndercarriageBody.position.x = 0;
+	meshUndercarriageBody.position.y = 80;
+	meshUndercarriageBody.position.z = -100;
+	undercarriage.add(meshUndercarriageBody);
+
+
+	const undercarriageCone = new THREE.ConeGeometry( 30, 50, 50);
+	const meshUndercarriageCone = new THREE.Mesh(undercarriageCone, materialAluminium);
+	meshUndercarriageCone.castShadow = true;
+	meshUndercarriageCone.name = 'undercarriageBody';
+	meshUndercarriageCone.position.x = -60;
+	meshUndercarriageCone.position.y = 80;
+	meshUndercarriageCone.position.z = 50;
+	meshUndercarriageCone.rotation.x = Math.PI/2;
+	undercarriage.add(meshUndercarriageCone);
+
 
 
 
