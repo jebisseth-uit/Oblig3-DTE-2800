@@ -3,7 +3,7 @@ import '../style.css';
 import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 import {addCoordSystem} from "../../static/lib/wfa-coord.js";
-import {createArmsMesh, createArmsMesh2, createBodyMesh, createBodyMesh2, createBoxMesh, createBoxMesh2, createFootMesh, createFootMesh2, createHandlesMesh, createHandlesMesh2, createRollersMesh, createStairsMesh, createStairsMesh2,} from "./oblig3Helper.js";
+import {buildCrane} from "./build/buildCrane.js";
 
 //Globale variabler:
 let g_scene, g_renderer, g_camera, g_clock, g_controls, g_currentlyPressedKeys = [];
@@ -32,10 +32,10 @@ export async function main() {
 	addLights();
 
 	// Kamera:
-	g_camera = new THREE.PerspectiveCamera(105, window.innerWidth / window.innerHeight, 0.1, 1000);
-	g_camera.position.x = -80;
-	g_camera.position.y = 30;
-	g_camera.position.z = 50;
+	g_camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
+	g_camera.position.x = 50;
+	g_camera.position.y = 300;
+	g_camera.position.z = 300;
 	g_camera.up = new THREE.Vector3(0, 1, 0);
 	let target = new THREE.Vector3(0.0, 0.0, 0.0);
 	g_camera.lookAt(target);
@@ -68,136 +68,58 @@ function handleKeyDown(event) {
 async function addSceneObjects() {
 	addCoordSystem(g_scene);
 
+	//Texture
+	const loader = new THREE.TextureLoader();
+	const texture = await loader.loadAsync('../../assets/textures/dirtground.jpg');
+
 	// Plan:
-	let gPlane = new THREE.PlaneGeometry(600, 600, 10, 10);
-	let mPlane = new THREE.MeshLambertMaterial({ color: 0x91aff11, side: THREE.DoubleSide, wireframe:true });
+	let gPlane = new THREE.PlaneGeometry(6000, 6000, 40, 40);
+	//let mPlane = new THREE.MeshLambertMaterial({ color: 0x91aff11, side: THREE.DoubleSide, wireframe:false });
+	//let mPlane = new THREE.Mesh(gPlane, materialBlue);
+	let mPlane = new THREE.MeshPhongMaterial({map: texture});
 	let meshPlane = new THREE.Mesh(gPlane, mPlane);
-	meshPlane.rotation.x = Math.PI / 2;
+	meshPlane.rotation.x = Math.PI / -2;
 	meshPlane.receiveShadow = true;	//NB!
 	g_scene.add(meshPlane);
 
 	//
-	let body = await createBodyMesh();
-	body.name = "body";
-	body.baseRot = 0.0;
-	body.joint1Rot = 0.0;
-	body.joint2Rot = 0.0;
-	g_scene.add(body);
+	//let arm = await createArmMesh();
+	//arm.name = "arm";
+	//arm.baseRot = 0.0;
+	//arm.joint1Rot = 0.0;
+	//arm.joint2Rot = 0.0;
+	//g_scene.add(arm);
 
-	//
-	let body2 = await createBodyMesh2();
-	body2.name = "body2";
-	body2.baseRot = 0.0;
-	body2.joint1Rot = 0.0;
-	body2.joint2Rot = 0.0;
-	g_scene.add(body2);
+	//let arm = await  createCraneArmMesh();
+	//g_scene.add(arm);
 
-	//
-	let box = await createBoxMesh();
-	box.name = "box";
-	box.baseRot = 0.0;
-	box.joint1Rot = 0.0;
-	box.joint2Rot = 0.0;
-	g_scene.add(box);
+	//let crane = await craneArmBuilder()
+	let crane = await buildCrane();
+	g_scene.add(crane);
 
-	//
-	let box2 = await createBoxMesh2();
-	box2.name = "box2";
-	box2.baseRot = 0.0;
-	box2.joint1Rot = 0.0;
-	box2.joint2Rot = 0.0;
-	g_scene.add(box2);
-
-	//
-	let foot = await createFootMesh();
-	foot.name = "foot";
-	foot.baseRot = 0.0;
-	foot.joint1Rot = 0.0;
-	foot.joint2Rot = 0.0;
-	g_scene.add(foot);
-
-	//
-	let foot2 = await createFootMesh2();
-	foot2.name = "foot2";
-	foot2.baseRot = 0.0;
-	foot2.joint1Rot = 0.0;
-	foot2.joint2Rot = 0.0;
-	g_scene.add(foot2);
-
-	//
-	let stairs = await createStairsMesh();
-	stairs.name = "stairs";
-	stairs.baseRot = 0.0;
-	stairs.joint1Rot = 0.0;
-	stairs.joint2Rot = 0.0;
-	g_scene.add(stairs);
-
-	//
-	let stairs2 = await createStairsMesh2();
-	stairs2.name = "stairs2";
-	stairs2.baseRot = 0.0;
-	stairs2.joint1Rot = 0.0;
-	stairs2.joint2Rot = 0.0;
-	g_scene.add(stairs2);
-
-	//
-	let handles = await createHandlesMesh();
-	handles.name = "handles";
-	handles.baseRot = 0.0;
-	handles.joint1Rot = 0.0;
-	handles.joint2Rot = 0.0;
-	g_scene.add(handles);
-
-	//
-	let handles2 = await createHandlesMesh2();
-	handles2.name = "handles2";
-	handles2.baseRot = 0.0;
-	handles2.joint1Rot = 0.0;
-	handles2.joint2Rot = 0.0;
-	g_scene.add(handles2);
-
-	//
-	let arms = await createArmsMesh();
-	arms.name = "arms";
-	arms.baseRot = 0.0;
-	arms.joint1Rot = 0.0;
-	arms.joint2Rot = 0.0;
-	g_scene.add(arms);
-	g_scene.add(handles);
-
-	//
-	let arms2 = await createArmsMesh2();
-	arms2.name = "arms2";
-	arms2.baseRot = 0.0;
-	arms2.joint1Rot = 0.0;
-	arms2.joint2Rot = 0.0;
-	g_scene.add(arms2);
-
-	//
-	let rollers = await createRollersMesh();
-	rollers.name = "rollers";
-	rollers.baseRot = 0.0;
-	rollers.joint1Rot = 0.0;
-	rollers.joint2Rot = 0.0;
-	g_scene.add(rollers);
 }
 
 function addLights() {
 	//Retningsorientert lys (som gir skygge):
 	let directionalLight1 = new THREE.DirectionalLight(0xffffff, 1.0); //farge, intensitet (1=default)
-	directionalLight1.position.set(0, 300, 0);
+	directionalLight1.position.set(0, 300, 300);
+	directionalLight1.shadow.mapSize.width = 1024;
+	directionalLight1.shadow.mapSize.height = 1024;
 	directionalLight1.castShadow = true;
-	directionalLight1.shadow.camera.near = 0;
-	directionalLight1.shadow.camera.far = 301;
-	directionalLight1.shadow.camera.left = -50;
-	directionalLight1.shadow.camera.right = 50;
-	directionalLight1.shadow.camera.top = 250;
-	directionalLight1.shadow.camera.bottom = -250;
+	directionalLight1.shadow.camera.near = -800;
+	directionalLight1.shadow.camera.far = 2000;
+	directionalLight1.shadow.camera.left = -800;
+	directionalLight1.shadow.camera.right = 1200;
+	directionalLight1.shadow.camera.top = 2000;
+	directionalLight1.shadow.camera.bottom = -400;
 	directionalLight1.shadow.camera.visible = true;
+
+	let ambientLight1 = new THREE.AmbientLight(0xffffff,0.2)
+	g_scene.add(ambientLight1);
 
 	//Hjelpeklasse for å vise lysets utstrekning:
 	let lightCamHelper = new THREE.CameraHelper( directionalLight1.shadow.camera );
-	g_scene.add( lightCamHelper );
+	//g_scene.add( lightCamHelper );
 
 	g_scene.add(directionalLight1);
 }
@@ -211,6 +133,18 @@ function animate(currentTime) {
 
 	//Oppdater trackball-kontrollen:
 	g_controls.update();
+
+	//Roterer heile skjiten:
+	//let arm = g_scene.getObjectByName("arm");
+	//arm.rotation.y = arm.baseRot;
+	//let armAndJoint1 = arm.getObjectByName('armAndJoint1', true);  //true = recursive...
+	//armAndJoint1.rotation.x = arm.joint1Rot;
+
+	//let armAndJoint2 = arm.getObjectByName('armAndJoint2', true);  //true = recursive...
+	//armAndJoint2.rotation.x = arm.joint2Rot;
+
+	//Sjekker input:
+	//handleKeys(delta, arm);
 
 	//Tegner scenen med gitt kamera:
 	renderScene();
