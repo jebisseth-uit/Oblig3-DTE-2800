@@ -34,7 +34,7 @@ export async function createCraneArmMesh(
 	const loader = new THREE.TextureLoader();
 	const texture = await loader.loadAsync('../../assets/textures/metal1.jpg');
 
-	//Container for central crane part:
+	//Container for central arm part:
 	const craneCentral = new THREE.Group;
 
 	let material = new THREE.MeshPhongMaterial({map: texture});

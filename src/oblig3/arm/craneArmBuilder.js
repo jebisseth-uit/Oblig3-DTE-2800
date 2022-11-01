@@ -88,6 +88,7 @@ export async function craneArmBuilder(){
 	craneLogo2.position.z = -craneStartTopX/2-2*barRadius;
 	craneLogo2.position.y = (craneUpperJointModules*craneUpperJointModuleHeight)/2
 
+	craneArm.rotation.z = -Math.PI/8;
 
 	return craneArm;
 }
