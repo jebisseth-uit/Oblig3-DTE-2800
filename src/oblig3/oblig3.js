@@ -73,7 +73,7 @@ async function addSceneObjects() {
 	const texture = await loader.loadAsync('../../assets/textures/dirtground.jpg');
 
 	// Plan:
-	let gPlane = new THREE.PlaneGeometry(800, 800, 40, 40);
+	let gPlane = new THREE.PlaneGeometry(2000, 2000, 40, 40);
 	//let mPlane = new THREE.MeshLambertMaterial({ color: 0x91aff11, side: THREE.DoubleSide, wireframe:false });
 	//let mPlane = new THREE.Mesh(gPlane, materialBlue);
 	let mPlane = new THREE.MeshPhongMaterial({map: texture});
