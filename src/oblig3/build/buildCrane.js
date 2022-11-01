@@ -2,8 +2,6 @@
  * Funksjoner som lager meshobjekter til dronen.
  */
 import * as THREE from "three";
-import {radToDeg} from "three/src/math/MathUtils";
-import math from "dat.gui/src/dat/color/math";
 import {craneArmBuilder} from "../arm/craneArmBuilder.js";
 import {createUndercarriageMesh} from "../belt/BeltHelper.js";
 import {styrhus} from "../styrhus/styrhus.js";

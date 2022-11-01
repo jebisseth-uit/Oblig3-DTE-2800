@@ -2,7 +2,6 @@
  * Funksjoner som lager meshobjekter til dronen.
  */
 import * as THREE from "three";
-import {createBeltPartMesh,} from "./BeltParts.js";
 import {BoxGeometry} from "three";
 
 export async function createUndercarriageMesh() {
