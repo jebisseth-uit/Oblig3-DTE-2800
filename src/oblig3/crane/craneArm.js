@@ -29,7 +29,6 @@ export async function createCraneArmMesh(
 
 	let x_length = xLength_bottom;
 	let z_length = zLength_bottom;
-	let y_length = 0;
 	let offsetY = 0;
 
 	const loader = new THREE.TextureLoader();
@@ -48,21 +47,39 @@ export async function createCraneArmMesh(
 	for(let i = 0; i <= modules; i++){
 
 		////////////////////
-		// Calculate angle of Y in XZ plane for every segment
+		// Calculate angle of Y in X plane for every segment
 		// This will be diagonal inwards or outwards depending on the
 		// difference between the start and end width/length of the scaffold.
 		////////////////////
-		catNear = xLength_top/2-xLength_bottom/2
-		catFar = module_height*modules;
-		const x_oblique_angle = Math.PI/2 - Math.atan(catFar/catNear);
-		catNear = zLength_top/2-zLength_bottom/2
-		catFar = module_height*modules;
-		const z_oblique_angle = Math.PI/2 - Math.atan(catFar/catNear);
+		catNear = x_length + deltaX
+		catFar = deltaZ;
+		hyp = Math.hypot(deltaZ, deltaX);
+		let y_xPlane_xAngle = Math.atan(catFar/catNear);
+		catNear = hyp;
+		catFar = module_height;
+		let y_xPlane_zAngle = Math.PI/2 - Math.atan(catFar/catNear);
+		hyp = Math.hypot(module_height, hyp);
+		let y_xPlane_length = hyp;
+		//Console log for debugging
+		console.log(" ")
+		console.log("Y in X plane:")
+		console.log("i = " + i);
+		console.log("catNear = " + catNear + ", catFar = " + catFar + ", mod = " + module_height)
+		console.log("y_xPlane_xAngle = " + radToDeg(y_xPlane_xAngle));
+		console.log("y_xPlane_zAngle = " + radToDeg(y_xPlane_zAngle));
 
-		// Calculate length of Y - WORKING
-		catNear = deltaX, catFar = deltaZ;
-		hyp = Math.hypot(catNear, catFar);
-		y_length = Math.hypot(hyp, module_height);
+		////////////////////
+		// Calculate angle of Y in Z plane for every segment
+		////////////////////
+		catNear = z_length + deltaZ
+		catFar = deltaX;
+		hyp = Math.hypot(deltaX, deltaZ);
+		let y_zPlane_zAngle = Math.atan(catFar/catNear);
+		catNear = hyp
+		catFar = module_height;
+		let y_zPlane_xAngle = Math.PI/2 - Math.atan(catFar/catNear);
+		hyp = Math.hypot(module_height, hyp);
+		let y_zPlane_length = hyp;
 
 		//Console log for debugging
 		console.log(" ")
@@ -71,66 +88,66 @@ export async function createCraneArmMesh(
 		console.log("Angle of Y in XZ plane:")
 		console.log("i = " + i);
 		console.log("catFar = " + catFar + ", catNear = " + catNear);
-		console.log("X-angle: " + x_oblique_angle + ", " + radToDeg(x_oblique_angle));
-		console.log("Z-angle: " + z_oblique_angle + ", " + radToDeg(z_oblique_angle));
+		console.log("X-angle: " + y_xPlane_xAngle + ", " + radToDeg(y_xPlane_xAngle));
+		console.log("Z-angle: " + y_xPlane_zAngle + ", " + radToDeg(y_xPlane_zAngle));
+
+
+
+
+
 
 		////////////////////
 		// Calculate angle of diagonals in X plane for every segment
 		// Diagonal bars reaching from lower level to next level.
 		// Will be diagonal inwards/outwards in both X and Z plane if start/end width/length of scaffold differs.
 		////////////////////
-		catNear = xLength_bottom+deltaX;
+		catNear = x_length+deltaX;
 		catFar = deltaZ;
-		const xx_diag_angle = Math.atan(catFar/catNear);
+		hyp = Math.hypot(deltaZ, (x_length+deltaX));
+		let diag_xPlane_xAngle = Math.atan(catFar/catNear);
 		//Console log for debugging
 		console.log(" ")
 		console.log("Diagonals in Z plane:")
 		console.log("i = " + i);
 		console.log("catNear = " + catNear + ", catFar = " + catFar + ", mod = " + module_height)
 		console.log("X-angle = arctan(catFar/catNear)");
-		console.log("X-angle = " + radToDeg(xx_diag_angle));
-		// Z-angle
-		catNear = Math.hypot(deltaZ, (x_length+deltaX))
+		console.log("X-angle = " + radToDeg(diag_xPlane_xAngle));
+		// ZY-angle
+		catNear = hyp
 		catFar = module_height;
-		const xz_diag_angle =Math.PI/2 - Math.atan(catFar/catNear);
+		hyp = Math.hypot(hyp, module_height);
+		let diag_xPlane_zAngle = Math.PI/2 + Math.atan(catFar/catNear);
 		//Console log for debugging
-		console.log("Z-angle = moduleheight/x")
-		console.log("Z-angle = " + radToDeg(xz_diag_angle));
+		console.log("Z-angle = arctan(moduleheight/hyp)")
+		console.log("Z-angle = " + radToDeg(diag_xPlane_zAngle));
+		//Set XY length
+		let diag_xplane_length = hyp;
 
 		///////////////////
 		// Calculate angle of diagonals in Z plane for every segment
 		// X plane from above
 		///////////////////
-		catNear = zLength_bottom+deltaZ;
+		catNear = z_length+deltaZ;
 		catFar = deltaX;
-		const zx_diag_angle = Math.atan(catFar/catNear);
+		hyp = Math.hypot(deltaX, (z_length+deltaZ));
+		let diag_zPlane_zAngle = Math.atan(catFar/catNear);
 		//Console log for debugging
 		console.log(" ")
 		console.log("Diagonals in Z plane:")
 		console.log("i = " + i);
 		console.log("catNear = " + catNear + ", catFar = " + catFar + ", mod = " + module_height)
-		console.log("X-angle = arctan(carFar/catNear)");
-		console.log("X-angle = " + radToDeg(zx_diag_angle));
-		// X-angle
-		catNear = Math.hypot(deltaX, (z_length+deltaZ))
+		console.log("X-angle = arctan(catFar/catNear)");
+		console.log("X-angle = " + radToDeg(diag_zPlane_zAngle));
+		// XY-angle
+		catNear = hyp;
 		catFar = module_height;
-		const zz_diag_angle =Math.PI/2 - Math.atan(catFar/catNear);
+		hyp = Math.hypot(hyp, module_height);
+		let diag_zPlane_xAngle = Math.PI/2 + Math.atan(catFar/catNear);
 		//Console log for debugging
-		console.log("Z-angle = moduleheight/x")
-		console.log("Z-angle = " + radToDeg(zz_diag_angle));
-
-		//Diagonal bars
-		//Calculate hypothenus of diagonal in XZ plane
-		catNear = deltaZ, catFar = x_length+deltaX;
-		hyp = Math.hypot(catNear, catFar);
-		//Calculate hypothenus of diagonal i XY plane
-		catNear = hyp, catFar = module_height;
-		let diagXYLength = Math.hypot(catNear, catFar);
-
-		//const diagXYLength = Math.sqrt((x_length*x_length)+(y_length*y_length)); // Length of XY diagonal bar
-		const diagXYTheta = Math.PI/2 - Math.atan(y_length/x_length); // Angle of XY diagonal bar
-		const diagZYLength = Math.sqrt((z_length*z_length)+(y_length*y_length)); // Length of ZY diagonal bar
-		const diagZYTheta = Math.PI/2 - Math.atan(y_length/z_length); // Angle of ZY diagonal bar
+		console.log("Z-angle = arctan(moduleheight/hyp)")
+		console.log("Z-angle = " + radToDeg(diag_zPlane_xAngle));
+		//Set ZY length
+		let diag_zPlane_length = hyp;
 
 		// X1
 		let gElementBarX1 = new THREE.CylinderGeometry(radius, radius, x_length, 10, 5, false);
@@ -179,96 +196,103 @@ export async function createCraneArmMesh(
 		if (i !== modules){ // Skip if final loop (only create top rectangle)
 
 			// Y1
-			let gElementBarY1 = new THREE.CylinderGeometry(radius, radius, y_length,10,5,false);
-			let meshElementBarY1 = new THREE.Mesh(gElementBarY1, material);
+			let gElementBarY1 = new THREE.CylinderGeometry(radius, radius, y_xPlane_length,10,5,false);
+			let meshElementBarY1 = new THREE.Mesh(gElementBarY1, materialRed);
 			meshElementBarY1.name = "Y1";
 			meshElementBarY1.castShadow = true;
 			meshElementBarY1.receiveShadow = true
-			meshElementBarY1.position.x = x_length/2 + deltaX/4;
-			meshElementBarY1.position.z = z_length/2 + deltaZ/4;
+			meshElementBarY1.position.x = x_length/2;
+			meshElementBarY1.position.z = z_length/2;
 			meshElementBarY1.position.y = offsetY + module_height/2;
-			meshElementBarY1.rotation.set(x_oblique_angle,0,-z_oblique_angle);
+			meshElementBarY1.rotation.x = y_xPlane_xAngle;
+			meshElementBarY1.rotation.z = -y_xPlane_zAngle;
 			craneCentral.add(meshElementBarY1);
 
 			// Y2
-			let gElementBarY2 = gElementBarY1.clone();
-			let meshElementBarY2 = new THREE.Mesh(gElementBarY2, material);
+			let gElementBarY2 = new THREE.CylinderGeometry(radius, radius, y_zPlane_length,10,5,false);;
+			let meshElementBarY2 = new THREE.Mesh(gElementBarY2, materialGreen);
 			meshElementBarY2.name = "Y2";
 			meshElementBarY2.castShadow = true;
 			meshElementBarY2.receiveShadow = true
-			meshElementBarY2.position.x = -x_length/2 - deltaX/4;
-			meshElementBarY2.position.z = -z_length/2 - deltaZ/4;
+			meshElementBarY2.position.x = x_length/2;
+			meshElementBarY2.position.z = -z_length/2;
 			meshElementBarY2.position.y = offsetY + module_height/2;
-			meshElementBarY2.rotation.set(-x_oblique_angle,0,z_oblique_angle);
+			meshElementBarY2.rotation.x = -y_zPlane_xAngle;
+			meshElementBarY2.rotation.z = -y_zPlane_zAngle;
 			craneCentral.add(meshElementBarY2);
 
 			// Y3
 			let gElementBarY3 = gElementBarY1.clone();
-			let meshElementBarY3 = new THREE.Mesh(gElementBarY3, material);
+			let meshElementBarY3 = new THREE.Mesh(gElementBarY3, materialBlue);
 			meshElementBarY3.name = "Y3";
 			meshElementBarY3.castShadow = true;
 			meshElementBarY3.receiveShadow = true
-			meshElementBarY3.position.x = -x_length/2 - deltaX/4;
-			meshElementBarY3.position.z = z_length/2 + deltaZ/4;
+			meshElementBarY3.position.x = -x_length/2;
+			meshElementBarY3.position.z = -z_length/2;
 			meshElementBarY3.position.y = offsetY + module_height/2;
-			meshElementBarY3.rotation.set(x_oblique_angle,0,z_oblique_angle);
+			meshElementBarY3.rotation.x = -y_xPlane_xAngle;
+			meshElementBarY3.rotation.z = y_xPlane_zAngle;
 			craneCentral.add(meshElementBarY3);
 
 			// Y4
-			let gElementBarY4 = gElementBarY1.clone();
-			let meshElementBarY4 = new THREE.Mesh(gElementBarY4, material);
+			let gElementBarY4 = gElementBarY3.clone();
+			let meshElementBarY4 = new THREE.Mesh(gElementBarY4, materialYellow);
 			meshElementBarY4.name = "Y4";
 			meshElementBarY4.castShadow = true;
 			meshElementBarY4.receiveShadow = true
-			meshElementBarY4.position.x = x_length/2 + deltaX/4;
-			meshElementBarY4.position.z = -z_length/2 - deltaZ/4;
+			meshElementBarY4.position.x = -x_length/2;
+			meshElementBarY4.position.z = z_length/2;
 			meshElementBarY4.position.y = offsetY + module_height/2;
-			meshElementBarY4.rotation.set(-x_oblique_angle,0,-z_oblique_angle);
+			meshElementBarY4.rotation.x = y_zPlane_xAngle;
+			meshElementBarY4.rotation.z = y_zPlane_zAngle;
 			craneCentral.add(meshElementBarY4);
 
 
 			// XY1
-			let gElementBarXY1 = new THREE.CylinderGeometry(radius, radius, diagXYLength, 10,5, false);
-			let meshElementBarXY1 = new THREE.Mesh(gElementBarXY1, materialRed);
-			meshElementBarXY1.name = "XY1";
+			let gElementBarXY1 = new THREE.CylinderGeometry(radius, radius, diag_xplane_length, 10,5, false);
+			let meshElementBarXY1 = new THREE.Mesh(gElementBarXY1, material)
 			meshElementBarXY1.castShadow = true;
 			meshElementBarXY1.receiveShadow = true
 			meshElementBarXY1.position.z = z_length/2;
 			meshElementBarXY1.position.y = offsetY + module_height/2;
-			meshElementBarXY1.rotation.set(xx_diag_angle,0,xz_diag_angle);
+			meshElementBarXY1.rotation.x = diag_xPlane_xAngle;
+			meshElementBarXY1.rotation.z = -diag_xPlane_zAngle;
 			craneCentral.add(meshElementBarXY1);
 
 			// XY2
 			let gElementBarXY2 = gElementBarXY1.clone();
-			let meshElementBarXY2 = new THREE.Mesh(gElementBarXY2, materialGreen);
+			let meshElementBarXY2 = new THREE.Mesh(gElementBarXY2, material);
 			meshElementBarXY2.name = "XY1";
 			meshElementBarXY2.castShadow = true;
 			meshElementBarXY2.receiveShadow = true
 			meshElementBarXY2.position.z = -z_length/2;
 			meshElementBarXY2.position.y = offsetY + module_height/2;
-			meshElementBarXY2.rotation.set(-xx_diag_angle,0,xz_diag_angle);
+			meshElementBarXY2.rotation.x = -diag_xPlane_xAngle;
+			meshElementBarXY2.rotation.z = diag_xPlane_zAngle;
 			craneCentral.add(meshElementBarXY2);
 
 			// ZY1
-			let gElementBarZY1 = new THREE.CylinderGeometry(radius,radius,diagZYLength,10,5,false)
-			let meshElementBarZY1 = new THREE.Mesh(gElementBarZY1, materialBlue);
+			let gElementBarZY1 = new THREE.CylinderGeometry(radius,radius,diag_zPlane_length,10,5,false)
+			let meshElementBarZY1 = new THREE.Mesh(gElementBarZY1, material);
 			meshElementBarZY1.name = "ZY1";
 			meshElementBarZY1.castShadow = true;
 			meshElementBarZY1.receiveShadow = true
 			meshElementBarZY1.position.x = -x_length/2;
 			meshElementBarZY1.position.y = offsetY + module_height/2;
-			meshElementBarZY1.rotation.set(-zx_diag_angle,Math.PI/2,-zz_diag_angle);
+			meshElementBarZY1.rotation.x = -diag_zPlane_xAngle;
+			meshElementBarZY1.rotation.z = diag_zPlane_zAngle;
 			craneCentral.add(meshElementBarZY1);
 
 			// ZY2
 			let gElementBarZY2 = gElementBarZY1.clone();
-			let meshElementBarZY2 = new THREE.Mesh(gElementBarZY2, materialYellow);
+			let meshElementBarZY2 = new THREE.Mesh(gElementBarZY2, material);
 			meshElementBarZY2.name = "ZY2";
 			meshElementBarZY2.castShadow = true;
 			meshElementBarZY2.receiveShadow = true
 			meshElementBarZY2.position.x = x_length/2;
 			meshElementBarZY2.position.y = offsetY + module_height/2;
-			meshElementBarZY2.rotation.set(-zx_diag_angle,-Math.PI/2,zz_diag_angle);
+			meshElementBarZY2.rotation.x = diag_zPlane_xAngle;
+			meshElementBarZY2.rotation.z = diag_zPlane_zAngle;
 			craneCentral.add(meshElementBarZY2);
 
 		}
