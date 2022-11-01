@@ -2,8 +2,6 @@
  * Funksjoner som lager meshobjekter til dronen.
  */
 import * as THREE from "three";
-import {radToDeg} from "three/src/math/MathUtils";
-import math from "dat.gui/src/dat/color/math";
 
 export async function createLogoPlate(width=1, height=1, depth=1){
 
