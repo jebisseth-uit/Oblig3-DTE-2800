@@ -73,7 +73,7 @@ async function addSceneObjects() {
 	const texture = await loader.loadAsync('../../assets/textures/dirtground.jpg');
 
 	// Plan:
-	let gPlane = new THREE.PlaneGeometry(2000, 2000, 40, 40);
+	let gPlane = new THREE.PlaneGeometry(6000, 6000, 40, 40);
 	//let mPlane = new THREE.MeshLambertMaterial({ color: 0x91aff11, side: THREE.DoubleSide, wireframe:false });
 	//let mPlane = new THREE.Mesh(gPlane, materialBlue);
 	let mPlane = new THREE.MeshPhongMaterial({map: texture});
@@ -106,12 +106,12 @@ function addLights() {
 	directionalLight1.shadow.mapSize.width = 1024;
 	directionalLight1.shadow.mapSize.height = 1024;
 	directionalLight1.castShadow = true;
-	directionalLight1.shadow.camera.near = 0;
-	directionalLight1.shadow.camera.far = 800;
-	directionalLight1.shadow.camera.left = -300;
-	directionalLight1.shadow.camera.right = 300;
-	directionalLight1.shadow.camera.top = 300;
-	directionalLight1.shadow.camera.bottom = 0;
+	directionalLight1.shadow.camera.near = -800;
+	directionalLight1.shadow.camera.far = 2000;
+	directionalLight1.shadow.camera.left = -800;
+	directionalLight1.shadow.camera.right = 1200;
+	directionalLight1.shadow.camera.top = 2000;
+	directionalLight1.shadow.camera.bottom = -400;
 	directionalLight1.shadow.camera.visible = true;
 
 	let ambientLight1 = new THREE.AmbientLight(0xffffff,0.5)
