@@ -114,7 +114,7 @@ function addLights() {
 	directionalLight1.shadow.camera.bottom = -400;
 	directionalLight1.shadow.camera.visible = true;
 
-	let ambientLight1 = new THREE.AmbientLight(0xffffff,0.5)
+	let ambientLight1 = new THREE.AmbientLight(0xffffff,0.2)
 	g_scene.add(ambientLight1);
 
 	//Hjelpeklasse for å vise lysets utstrekning:
