@@ -6,6 +6,7 @@ import {radToDeg} from "three/src/math/MathUtils";
 import math from "dat.gui/src/dat/color/math";
 import {craneArmBuilder} from "../arm/craneArmBuilder.js";
 import {createUndercarriageMesh} from "../belt/BeltHelper.js";
+import {styrhus} from "../styrhus/styrhus.js";
 
 export async function createLogoPlate(width=1, height=1, depth=1){
 
@@ -42,6 +43,15 @@ export async function buildCrane(){
 	let craneBelt = await createUndercarriageMesh();
 	crane.add(craneBelt);
 	craneBelt.rotation.y = Math.PI/2;
+
+	//styrhus
+	let craneStyrhus = await styrhus();
+	craneStyrhus.position.y = 90;
+	craneStyrhus.position.x = 150;
+	craneStyrhus.scale.x = 8;
+	craneStyrhus.scale.y = 8;
+	craneStyrhus.scale.z = 8;
+	crane.add(craneStyrhus);
 
 	return crane;
 }
