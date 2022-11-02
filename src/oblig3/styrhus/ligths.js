@@ -24,6 +24,8 @@ export async function createSpotlights(width = 1, height = 1, depth = 1){
 	lightboxMesh.castShadow = true;
 	lightboxMesh.receiveShadow = true;
 	lightboxMesh.position.y = height/2;
+	lightboxMesh.position.x = 1;
+	lightboxMesh.rotation.z = -Math.PI/6;
 	spotlight.add(lightboxMesh);
 
 	return spotlight;

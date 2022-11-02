@@ -77,8 +77,8 @@ export async function styrhus() {
 
     let spotlight = await createSpotlights(2,5,12)
     spotlight.name = "roofLight";
-    spotlight.position.y = 37;
-    spotlight.position.x = -2;
+    spotlight.position.y = 36.5;
+    spotlight.position.x = -1;
     spotlight.position.z = -5;
     body1.add(spotlight);
 

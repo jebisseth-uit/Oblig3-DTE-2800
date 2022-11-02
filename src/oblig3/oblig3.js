@@ -117,12 +117,18 @@ function addLights() {
 	let ambientLight1 = new THREE.AmbientLight(0xffffff,0.2)
 	g_scene.add(ambientLight1);
 
-	let spotLight1 = new THREE.SpotLight(0x00ff00)
+	//Spotlight on crane roof
+	let spotLight1 = new THREE.SpotLight(0x00ff00,0.5)
 	let spotlightRoof = g_scene.getObjectByName("roofLight")
-	spotLight1.position.x = spotlightRoof.position.x;
-	spotLight1.position.y = spotlightRoof.position.y;
-	spotLight1.position.z = spotlightRoof.position.z;
+	const lightPos = new THREE.Vector3();
+	spotlightRoof.getWorldPosition(lightPos)
+	spotLight1.position.x = lightPos.x+10;
+	spotLight1.position.y = lightPos.y;
+	spotLight1.position.z = lightPos.z;
+	spotLight1.target.position.x = 800;
+	console.log(lightPos);
 	g_scene.add(spotLight1);
+	g_scene.add(spotLight1.target);
 
 
 	//Hjelpeklasse for å vise lysets utstrekning:
