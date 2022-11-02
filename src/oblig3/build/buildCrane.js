@@ -11,6 +11,9 @@ export async function buildCrane(){
 
 	const crane = new THREE.Group;
 	const craneAboveBelt = new THREE.Group;
+	const craneArmWithWires = new THREE.Group;
+	craneArmWithWires.name = 'craneArmWithWires'
+	craneAboveBelt.add(craneArmWithWires);
 	craneAboveBelt.name = 'craneAboveBelt'
 	crane.add(craneAboveBelt);
 
@@ -20,7 +23,7 @@ export async function buildCrane(){
 	hook.scale.y = 1;
 	hook.scale.x = 1;
 	hook.scale.z = 1;
-	craneAboveBelt.add(hook);
+	craneArmWithWires.add(hook);
 
 	//craneArm
 	let craneArm = await craneArmBuilder();
@@ -28,7 +31,7 @@ export async function buildCrane(){
 	craneArm.scale.y = 2;
 	craneArm.scale.x = 2;
 	craneArm.scale.z = 2;
-	craneAboveBelt.add(craneArm);
+	craneArmWithWires.add(craneArm);
 
 	//belt
 	let craneBelt = await createUndercarriageMesh();
