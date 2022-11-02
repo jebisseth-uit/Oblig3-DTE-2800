@@ -214,8 +214,8 @@ function animate(currentTime) {
 	let craneAboveBelt = crane.getObjectByName('craneAboveBelt', true);  //true = recursive...
 	craneAboveBelt.rotation.y = crane.joint1Rot;
 
-	//let craneAndJoint2 = crane.getObjectByName('craneAndJoint2', true);  //true = recursive...
-	//craneAndJoint2.rotation.x = crane.joint2Rot;
+	let craneArm = crane.getObjectByName('craneArm', true);  //true = recursive...
+	craneArm.rotation.z = crane.joint2Rot;
 
 	//Sjekker input:
 	handleKeys(delta, crane);
