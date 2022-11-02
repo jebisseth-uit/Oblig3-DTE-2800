@@ -5,26 +5,7 @@ import * as THREE from "three";
 import {craneArmBuilder} from "../arm/craneArmBuilder.js";
 import {createUndercarriageMesh} from "../belt/BeltHelper.js";
 import {styrhus} from "../styrhus/styrhus.js";
-
-export async function createLogoPlate(width=1, height=1, depth=1){
-
-	const loader = new THREE.TextureLoader();
-	const texture = await loader.loadAsync('../../assets/textures/238logo.png');
-
-	let material = new THREE.MeshPhongMaterial({map: texture});
-
-	//Container for arm logo:
-	const craneLogo = new THREE.Group;
-
-	let logoPlate = new THREE.BoxGeometry(width,height,depth);
-	let logoPlateMesh = new THREE.Mesh(logoPlate, material);
-	logoPlateMesh.castShadow = true;
-	logoPlateMesh.receiveShadow = true;
-	logoPlate.name = "Logo";
-	craneLogo.add(logoPlateMesh);
-
-	return craneLogo;
-}
+import {hookComplete} from "../Hook/hook";
 
 export async function buildCrane(){
 
@@ -32,6 +13,13 @@ export async function buildCrane(){
 	const craneOverBelt = new THREE.Group;
 	craneOverBelt.name = 'craneOverBelt'
 	crane.add(craneOverBelt);
+
+	//Hook
+	let hook = await hookComplete()
+	hook.scale.y = 1;
+	hook.scale.x = 1;
+	hook.scale.z = 1;
+	crane.add(hook);
 
 	//craneArm
 	let craneArm = await craneArmBuilder();

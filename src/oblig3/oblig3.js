@@ -83,19 +83,18 @@ async function addSceneObjects() {
 	g_scene.add(meshPlane);
 
 	//
-	//let crane = await createcraneMesh();
+	//let arm = await createArmMesh();
+	//arm.name = "arm";
+	//arm.baseRot = 0.0;
+	//arm.joint1Rot = 0.0;
+	//arm.joint2Rot = 0.0;
+	//g_scene.add(arm);
 
-	//g_scene.add(crane);
+	//let arm = await  createCraneArmMesh();
+	//g_scene.add(arm);
 
-	//let crane = await  createCranecraneMesh();
-	//g_scene.add(crane);
-
-	//let crane = await cranecraneBuilder()
+	//let crane = await craneArmBuilder()
 	let crane = await buildCrane();
-	crane.name = "crane";
-	crane.baseRot = 0.0;
-	crane.joint1Rot = 0.0;
-	crane.joint2Rot = 0.0;
 	g_scene.add(crane);
 
 }
@@ -136,16 +135,16 @@ function animate(currentTime) {
 	g_controls.update();
 
 	//Roterer heile skjiten:
-	let crane = g_scene.getObjectByName("crane");
-	crane.rotation.y = crane.baseRot;
-	let craneOverBelt = crane.getObjectByName('craneOverBelt', true);  //true = recursive...
-	craneOverBelt.rotation.y = crane.joint1Rot;
+	//let arm = g_scene.getObjectByName("arm");
+	//arm.rotation.y = arm.baseRot;
+	//let armAndJoint1 = arm.getObjectByName('armAndJoint1', true);  //true = recursive...
+	//armAndJoint1.rotation.x = arm.joint1Rot;
 
-	//let craneArm= crane.getObjectByName('craneArm', true);  //true = recursive...
-	//craneArm.rotation.x = crane.joint2Rot;
+	//let armAndJoint2 = arm.getObjectByName('armAndJoint2', true);  //true = recursive...
+	//armAndJoint2.rotation.x = arm.joint2Rot;
 
 	//Sjekker input:
-	handleKeys(delta, crane);
+	//handleKeys(delta, arm);
 
 	//Tegner scenen med gitt kamera:
 	renderScene();
@@ -166,36 +165,36 @@ function onWindowResize() {
 }
 
 //Sjekker tastaturet:
-function handleKeys(delta, crane) {
+function handleKeys(delta, arm) {
 	let rotationSpeed = (Math.PI); // Bestemmer rotasjonshastighet.
 
 	//Roter foten:s
 	if (g_currentlyPressedKeys['KeyA']) { //A
-		crane.baseRot = crane.baseRot + (rotationSpeed * delta);
-		crane.baseRot %= (Math.PI * 2); // "Rull rundt" dersom crane.baseRot >= 360 grader.
+		arm.baseRot = arm.baseRot + (rotationSpeed * delta);
+		arm.baseRot %= (Math.PI * 2); // "Rull rundt" dersom arm.baseRot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyD']) {	//D
-		crane.baseRot = crane.baseRot - (rotationSpeed * delta);
-		crane.baseRot %= (Math.PI * 2); // "Rull rundt" dersom crane.baseRot >= 360 grader.
+		arm.baseRot = arm.baseRot - (rotationSpeed * delta);
+		arm.baseRot %= (Math.PI * 2); // "Rull rundt" dersom arm.baseRot >= 360 grader.
 	}
 
 	//Roter joint1:
 	if (g_currentlyPressedKeys['KeyS']) {	//S
-		crane.joint1Rot = crane.joint1Rot + (rotationSpeed * delta);
-		crane.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint1Rot >= 360 grader.
+		arm.joint1Rot = arm.joint1Rot + (rotationSpeed * delta);
+		arm.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint1Rot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyW']) {	//W
-		crane.joint1Rot = crane.joint1Rot - (rotationSpeed * delta);
-		crane.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint1Rot >= 360 grader.
+		arm.joint1Rot = arm.joint1Rot - (rotationSpeed * delta);
+		arm.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint1Rot >= 360 grader.
 	}
 
 	//Roter joint2:
 	if (g_currentlyPressedKeys['KeyV']) { //V
-		crane.joint2Rot = crane.joint2Rot + (rotationSpeed * delta);
-		crane.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint2Rot >= 360 grader.
+		arm.joint2Rot = arm.joint2Rot + (rotationSpeed * delta);
+		arm.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint2Rot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyB']) {	//B
-		crane.joint2Rot = crane.joint2Rot - (rotationSpeed * delta);
-		crane.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint2Rot >= 360 grader.
+		arm.joint2Rot = arm.joint2Rot - (rotationSpeed * delta);
+		arm.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint2Rot >= 360 grader.
 	}
 }
