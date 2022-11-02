@@ -93,14 +93,38 @@ export async function createCraneHookWires(radius = 1, length = 100, widthX_top 
 	wire3Mesh.position.x = -widthX_top/2;
 	wire3Mesh.position.z = -widthZ_top/2;
 	wires.add(wire3Mesh);
-
-	let wire4 = wire1.clone();
-	let wire4Mesh = new THREE.Mesh(wire4, material);
-	wire4Mesh.castShadow = true;
-	wire4Mesh.receiveShadow = true;
-	wire4Mesh.position.x = -widthX_top/2;
-	wire4Mesh.position.z = widthZ_top/2;
-	wires.add(wire4Mesh);
+	
 
 	return wires;
+}
+
+export async function createCraneHookBackWires(radius = 1, length = 100, widthX_top = 10, widthZ_top = 10, widthX_bottom = 10, widthZ_bottom = 10) {
+	const wiresBack = new THREE.Group;
+
+	const loader = new THREE.TextureLoader();
+	const texture = await loader.loadAsync('../../assets/textures/aluminium.jpg');
+
+	let material = new THREE.MeshPhongMaterial({map: texture});
+
+	let wire10 = new THREE.CylinderGeometry(radius, radius, length)
+	let wire10Mesh = new THREE.Mesh(wire10, material);
+	wire10Mesh.castShadow = true;
+	wire10Mesh.receiveShadow = true;
+	wiresBack.add(wire10Mesh);
+
+	let wire5 = wire10.clone();
+	let wire5Mesh = new THREE.Mesh(wire5, material);
+	wire5Mesh.castShadow = true;
+	wire5Mesh.receiveShadow = true;
+	wire5Mesh.position.z = -widthZ_top / 2;
+	wiresBack.add(wire5Mesh);
+
+	let wire6 = wire10.clone();
+	let wire6Mesh = new THREE.Mesh(wire6, material);
+	wire6Mesh.castShadow = true;
+	wire6Mesh.receiveShadow = true;
+	wire6Mesh.position.z = widthZ_top / 2;
+	wiresBack.add(wire6Mesh);
+
+	return wiresBack
 }

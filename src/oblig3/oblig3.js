@@ -86,19 +86,14 @@ async function addSceneObjects() {
 	meshPlane.receiveShadow = true;	//NB!
 	g_scene.add(meshPlane);
 
-	//
-	//let arm = await createArmMesh();
-	//arm.name = "arm";
-	//arm.baseRot = 0.0;
-	//arm.joint1Rot = 0.0;
-	//arm.joint2Rot = 0.0;
-	//g_scene.add(arm);
 
-	//let arm = await  createCraneArmMesh();
-	//g_scene.add(arm);
 
-	//let crane = await craneArmBuilder()
 	let crane = await buildCrane()
+	crane.name = "crane";
+	crane.baseRot = 0.0;
+	crane.joint1Rot = 0.0;
+	crane.joint2Rot = 0.0;
+	crane.translate = 0.0;
 	g_scene.add(crane);
 
 }
@@ -204,17 +199,20 @@ function animate(currentTime) {
 	//Oppdater trackball-kontrollen:
 	g_controls.update();
 
-	//Roterer heile skjiten:
-	//let arm = g_scene.getObjectByName("arm");
-	//arm.rotation.y = arm.baseRot;
-	//let armAndJoint1 = arm.getObjectByName('armAndJoint1', true);  //true = recursive...
-	//armAndJoint1.rotation.x = arm.joint1Rot;
 
-	//let armAndJoint2 = arm.getObjectByName('armAndJoint2', true);  //true = recursive...
-	//armAndJoint2.rotation.x = arm.joint2Rot;
+	let crane = g_scene.getObjectByName("crane", true);
+	crane.rotation.y = crane.baseRot;
+	let craneAboveBelt = crane.getObjectByName('craneAboveBelt', true);  //true = recursive...
+	craneAboveBelt.rotation.y = crane.joint1Rot;
+
+	let craneArm = crane.getObjectByName('craneArmWithWires', true);  //true = recursive...
+	craneArm.rotation.z = crane.joint2Rot;
+
+	let hook = crane.getObjectByName('hook', true);  //true = recursive...
+
 
 	//Sjekker input:
-	//handleKeys(delta, arm);
+	handleKeys(delta, crane, hook);
 
 	//Tegner scenen med gitt kamera:
 	renderScene();
@@ -235,36 +233,43 @@ function onWindowResize() {
 }
 
 //Sjekker tastaturet:
-function handleKeys(delta, arm) {
+function handleKeys(delta, crane, hook) {
 	let rotationSpeed = (Math.PI); // Bestemmer rotasjonshastighet.
 
-	//Roter foten:s
+	//Roter Hele Krana
 	if (g_currentlyPressedKeys['KeyA']) { //A
-		arm.baseRot = arm.baseRot + (rotationSpeed * delta);
-		arm.baseRot %= (Math.PI * 2); // "Rull rundt" dersom arm.baseRot >= 360 grader.
+		crane.baseRot = crane.baseRot + (rotationSpeed * delta);
+		crane.baseRot %= (Math.PI * 2); // "Rull rundt" dersom crane.baseRot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyD']) {	//D
-		arm.baseRot = arm.baseRot - (rotationSpeed * delta);
-		arm.baseRot %= (Math.PI * 2); // "Rull rundt" dersom arm.baseRot >= 360 grader.
+		crane.baseRot = crane.baseRot - (rotationSpeed * delta);
+		crane.baseRot %= (Math.PI * 2); // "Rull rundt" dersom crane.baseRot >= 360 grader.
 	}
 
-	//Roter joint1:
+	//Roter Styrhus og ovenfor
 	if (g_currentlyPressedKeys['KeyS']) {	//S
-		arm.joint1Rot = arm.joint1Rot + (rotationSpeed * delta);
-		arm.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint1Rot >= 360 grader.
+		crane.joint1Rot = crane.joint1Rot + (rotationSpeed * delta);
+		crane.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint1Rot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyW']) {	//W
-		arm.joint1Rot = arm.joint1Rot - (rotationSpeed * delta);
-		arm.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint1Rot >= 360 grader.
+		crane.joint1Rot = crane.joint1Rot - (rotationSpeed * delta);
+		crane.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint1Rot >= 360 grader.
 	}
 
-	//Roter joint2:
+	//Roter kranarmen
 	if (g_currentlyPressedKeys['KeyV']) { //V
-		arm.joint2Rot = arm.joint2Rot + (rotationSpeed * delta);
-		arm.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint2Rot >= 360 grader.
+		crane.joint2Rot = crane.joint2Rot + (rotationSpeed * delta);
+		crane.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint2Rot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyB']) {	//B
-		arm.joint2Rot = arm.joint2Rot - (rotationSpeed * delta);
-		arm.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint2Rot >= 360 grader.
+		crane.joint2Rot = crane.joint2Rot - (rotationSpeed * delta);
+		crane.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint2Rot >= 360 grader.
+	}
+	//Hever Kroken
+	if (g_currentlyPressedKeys['KeyN']) { //V
+		hook.position.y += 0.5
+	}
+	if (g_currentlyPressedKeys['KeyM']) {	//B
+		hook.position.y -= 0.5
 	}
 }
