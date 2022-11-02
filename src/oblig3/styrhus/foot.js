@@ -26,7 +26,7 @@ export async function createFootMesh() {
     meshstyrhusFoot2.name = 'styrhusFoot2';
     meshstyrhusFoot2.position.x = -10;
     meshstyrhusFoot2.position.y = 20;
-    meshstyrhusFoot2.position.z = -13;
+    meshstyrhusFoot2.position.z = -19.5;
     foot.add(meshstyrhusFoot2);
 
     let styrhusFoot3 = new THREE.BoxGeometry(20, 0.2, 6, 20, 5);
@@ -42,7 +42,7 @@ export async function createFootMesh() {
     meshstyrhusFoot4.name = 'styrhusFoot4';
     meshstyrhusFoot4.position.x = -30;
     meshstyrhusFoot4.position.y = 20;
-    meshstyrhusFoot4.position.z = -13;
+    meshstyrhusFoot4.position.z = -19.5;
     foot.add(meshstyrhusFoot4);
 
     let styrhusFoot5 = new THREE.BoxGeometry(10, 0.2, 6, 20, 5);
@@ -58,7 +58,7 @@ export async function createFootMesh() {
     meshstyrhusFoot6.name = 'styrhusFoot6';
     meshstyrhusFoot6.position.x = -45;
     meshstyrhusFoot6.position.y = 20;
-    meshstyrhusFoot6.position.z = -13;
+    meshstyrhusFoot6.position.z = -19.5;
     foot.add(meshstyrhusFoot6);
 
     let styrhusFoot7 = new THREE.BoxGeometry(10, 0.2, 6, 20, 5);
@@ -74,7 +74,7 @@ export async function createFootMesh() {
     meshstyrhusFoot8.name = 'styrhusFoot8';
     meshstyrhusFoot8.position.x = -55;
     meshstyrhusFoot8.position.y = 20;
-    meshstyrhusFoot8.position.z = -13;
+    meshstyrhusFoot8.position.z = -19.5;
     foot.add(meshstyrhusFoot8);
 
     return foot;
@@ -95,7 +95,7 @@ export async function createFootMesh2() {
     meshstyrhusFoot9.name = 'styrhusFoot9';
     meshstyrhusFoot9.position.x = -10;
     meshstyrhusFoot9.position.y = 20;
-    meshstyrhusFoot9.position.z = -19;
+    meshstyrhusFoot9.position.z = -18;
     foot.add(meshstyrhusFoot9);
 
     let styrhusFoot10 = new THREE.BoxGeometry(20, 0.2, 6, 20, 5);
@@ -103,7 +103,7 @@ export async function createFootMesh2() {
     meshstyrhusFoot10.name = 'styrhusFoot10';
     meshstyrhusFoot10.position.x = -10;
     meshstyrhusFoot10.position.y = 20;
-    meshstyrhusFoot10.position.z = -35;
+    meshstyrhusFoot10.position.z = -40;
     foot.add(meshstyrhusFoot10);
 
     let styrhusFoot11 = new THREE.BoxGeometry(20, 0.2, 6, 20, 5);
@@ -111,7 +111,7 @@ export async function createFootMesh2() {
     meshstyrhusFoot11.name = 'styrhusFoot11';
     meshstyrhusFoot11.position.x = -30;
     meshstyrhusFoot11.position.y = 20;
-    meshstyrhusFoot11.position.z = -19;
+    meshstyrhusFoot11.position.z = -18;
     foot.add(meshstyrhusFoot11);
 
     let styrhusFoot12 = new THREE.BoxGeometry(20, 0.2, 6, 20, 5);
@@ -119,7 +119,7 @@ export async function createFootMesh2() {
     meshstyrhusFoot12.name = 'styrhusFoot12';
     meshstyrhusFoot12.position.x = -30;
     meshstyrhusFoot12.position.y = 20;
-    meshstyrhusFoot12.position.z = -35;
+    meshstyrhusFoot12.position.z = -40;
     foot.add(meshstyrhusFoot12);
 
     let styrhusFoot13 = new THREE.BoxGeometry(10, 0.2, 6, 20, 5);
@@ -127,7 +127,7 @@ export async function createFootMesh2() {
     meshstyrhusFoot13.name = 'styrhusFoot13';
     meshstyrhusFoot13.position.x = -45;
     meshstyrhusFoot13.position.y = 20;
-    meshstyrhusFoot13.position.z = -19;
+    meshstyrhusFoot13.position.z = -18;
     foot.add(meshstyrhusFoot13);
 
     let styrhusFoot14 = new THREE.BoxGeometry(10, 0.2, 6, 20, 5);
@@ -135,7 +135,7 @@ export async function createFootMesh2() {
     meshstyrhusFoot14.name = 'styrhusFoot14';
     meshstyrhusFoot14.position.x = -45;
     meshstyrhusFoot14.position.y = 20;
-    meshstyrhusFoot14.position.z = -35;
+    meshstyrhusFoot14.position.z = -40;
     foot.add(meshstyrhusFoot14);
 
     let styrhusFoot15 = new THREE.BoxGeometry(10, 0.2, 6, 20, 5);
@@ -143,7 +143,7 @@ export async function createFootMesh2() {
     meshstyrhusFoot15.name = 'styrhusFoot15';
     meshstyrhusFoot15.position.x = -55;
     meshstyrhusFoot15.position.y = 20;
-    meshstyrhusFoot15.position.z = -19;
+    meshstyrhusFoot15.position.z = -18;
     foot.add(meshstyrhusFoot15);
 
     let styrhusFoot16 = new THREE.BoxGeometry(10, 0.2, 6, 20, 5);
@@ -151,7 +151,7 @@ export async function createFootMesh2() {
     meshstyrhusFoot16.name = 'styrhusFoot16';
     meshstyrhusFoot16.position.x = -55;
     meshstyrhusFoot16.position.y = 20;
-    meshstyrhusFoot16.position.z = -35;
+    meshstyrhusFoot16.position.z = -40;
     foot.add(meshstyrhusFoot16);
 
     return foot;
@@ -168,65 +168,76 @@ export async function createBodyMesh() {
     const front = await loader.loadAsync('../../../assets/textures/front.png');
     const front2 = await loader.loadAsync('../../../assets/textures/front2.png');
     const front3 = await loader.loadAsync('../../../assets/textures/front3.png');
-    let material1 = new THREE.MeshBasicMaterial({ map: door1 });
-    let material2 = new THREE.MeshBasicMaterial({ map: door2 });
-    let material3 = new THREE.MeshBasicMaterial({ map: door3 });
-    let material4 = new THREE.MeshBasicMaterial({ map: front });
-    let material5 = new THREE.MeshBasicMaterial({ map: front2 });
-    let material6 = new THREE.MeshBasicMaterial({ map: front3 });
-    const blackMaterial = new THREE.MeshBasicMaterial({color: '#000'});
+    let material1 = new THREE.MeshPhongMaterial({ map: door1 });
+    let material2 = new THREE.MeshPhongMaterial({ map: door2 });
+    let material3 = new THREE.MeshPhongMaterial({ map: door3 });
+    let material4 = new THREE.MeshPhongMaterial({ map: front });
+    let material5 = new THREE.MeshPhongMaterial({ map: front2 });
+    let material6 = new THREE.MeshPhongMaterial({ map: front3 });
+    const blackMaterial = new THREE.MeshPhongMaterial({color: '#000'});
 
     const body = new THREE.Group();
 
-
-    let styrhusBody1 = new THREE.BoxGeometry(20, 16, 10, 30, 5);
+    let styrhusBody1 = new THREE.BoxGeometry(10, 16, 8, 30, 5);
     let meshstyrhusBody1 = new THREE.Mesh(styrhusBody1, [material6, blackMaterial, material5, blackMaterial, material4, material4]);
+    meshstyrhusBody1.castShadow = true;
+    meshstyrhusBody1.receiveShadow = true;
     meshstyrhusBody1.name = 'styrhusBody1';
-    meshstyrhusBody1.position.x = -10;
-    meshstyrhusBody1.position.y = 28;
+    meshstyrhusBody1.position.x = -15;
+    meshstyrhusBody1.position.y = 15;
     meshstyrhusBody1.position.z = -5;
     body.add(meshstyrhusBody1);
 
 
     let styrhusBody2 = new THREE.BoxGeometry(4, 14, 10, 30, 5);
     let meshstyrhusBody2 = new THREE.Mesh(styrhusBody2, material2);
+    meshstyrhusBody2.castShadow = true;
+    meshstyrhusBody2.receiveShadow = true;
     meshstyrhusBody2.name = 'styrhusBody2';
     meshstyrhusBody2.position.x = -22;
-    meshstyrhusBody2.position.y = 27;
+    meshstyrhusBody2.position.y = 11.9;
     meshstyrhusBody2.position.z = -5;
     body.add(meshstyrhusBody2);
 
 
     let styrhusBody3 = new THREE.BoxGeometry(10, 14, 10, 30, 5);
     let meshstyrhusBody3 = new THREE.Mesh(styrhusBody3, [material2, material2, material2, material2, material1, material2]);
+    meshstyrhusBody3.castShadow = true;
+    meshstyrhusBody3.receiveShadow = true;
     meshstyrhusBody3.name = 'styrhusBody3';
     meshstyrhusBody3.position.x = -29;
-    meshstyrhusBody3.position.y = 27;
+    meshstyrhusBody3.position.y = 11.9;
     meshstyrhusBody3.position.z = -5;
     body.add(meshstyrhusBody3);
 
 
     let styrhusBody4 = new THREE.BoxGeometry(10, 14, 10, 30, 5);
     let meshstyrhusBody4 = new THREE.Mesh(styrhusBody4, [material2, material2, material2, material2, material3, material2]);
+    meshstyrhusBody4.castShadow = true;
+    meshstyrhusBody4.receiveShadow = true;
     meshstyrhusBody4.name = 'styrhusBody4';
     meshstyrhusBody4.position.x = -39;
-    meshstyrhusBody4.position.y = 27;
+    meshstyrhusBody4.position.y = 11.9;
     meshstyrhusBody4.position.z = -5;
     body.add(meshstyrhusBody4);
 
     let styrhusBody5 = new THREE.BoxGeometry(7, 14, 10, 30, 5);
     let meshstyrhusBody5 = new THREE.Mesh(styrhusBody5, [material2, material2, material2, material2, material1, material2]);
+    meshstyrhusBody5.castShadow = true;
+    meshstyrhusBody5.receiveShadow = true;
     meshstyrhusBody5.name = 'styrhusBody5';
     meshstyrhusBody5.position.x = -47;
-    meshstyrhusBody5.position.y = 27;
+    meshstyrhusBody5.position.y = 11.9;
     meshstyrhusBody5.position.z = -5;
     body.add(meshstyrhusBody5);
 
     let styrhusBody6 = new THREE.BoxGeometry(10, 14, 10, 30, 5);
     let meshstyrhusBody6 = new THREE.Mesh(styrhusBody6, [material2, material2, material2, material2, material3, material2]);
+    meshstyrhusBody6.castShadow = true;
+    meshstyrhusBody6.receiveShadow = true;
     meshstyrhusBody6.name = 'styrhusBody6';
     meshstyrhusBody6.position.x = -55.2;
-    meshstyrhusBody6.position.y = 27;
+    meshstyrhusBody6.position.y = 11.9;
     meshstyrhusBody6.position.z = -5;
     body.add(meshstyrhusBody6);
 
@@ -241,10 +252,10 @@ export async function createBodyMesh2() {
     const door1 = await loader.loadAsync('../../../assets/textures/door1.jpeg');
     const door2 = await loader.loadAsync('../../../assets/textures/door2.jpeg');
     const door3 = await loader.loadAsync('../../../assets/textures/door3.jpeg');
-    let material1 = new THREE.MeshBasicMaterial({ map: door1 });
-    let material2 = new THREE.MeshBasicMaterial({ map: door2 });
-    let material3 = new THREE.MeshBasicMaterial({ map: door3 });
-    const blackMaterial = new THREE.MeshBasicMaterial({color: '#000'});
+    let material1 = new THREE.MeshPhongMaterial({ map: door1 });
+    let material2 = new THREE.MeshPhongMaterial({ map: door2 });
+    let material3 = new THREE.MeshPhongMaterial({ map: door3 });
+    
 
     const body = new THREE.Group();
 
@@ -252,8 +263,8 @@ export async function createBodyMesh2() {
     let meshstyrhusBody8 = new THREE.Mesh(styrhusBody8, material2);
     meshstyrhusBody8.name = 'styrhusBody8';
     meshstyrhusBody8.position.x = -22;
-    meshstyrhusBody8.position.y = 27;
-    meshstyrhusBody8.position.z = -5;
+    meshstyrhusBody8.position.y = 11.9;
+    meshstyrhusBody8.position.z = -27;
     body.add(meshstyrhusBody8);
 
 
@@ -261,7 +272,7 @@ export async function createBodyMesh2() {
     let meshstyrhusBody9 = new THREE.Mesh(styrhusBody9, [material2, material2, material2, material2, material1, material2]);
     meshstyrhusBody9.name = 'styrhusBody9';
     meshstyrhusBody9.position.x = -29;
-    meshstyrhusBody9.position.y = 27;
+    meshstyrhusBody9.position.y = 11.9;
     meshstyrhusBody9.position.z = -27;
     body.add(meshstyrhusBody9);
 
@@ -270,7 +281,7 @@ export async function createBodyMesh2() {
     let meshstyrhusBody10 = new THREE.Mesh(styrhusBody10, [material2, material2, material2, material2, material3, material2]);
     meshstyrhusBody10.name = 'styrhusBody10';
     meshstyrhusBody10.position.x = -39;
-    meshstyrhusBody10.position.y = 27;
+    meshstyrhusBody10.position.y = 11.9;
     meshstyrhusBody10.position.z = -27;
     body.add(meshstyrhusBody10);
 
@@ -278,7 +289,7 @@ export async function createBodyMesh2() {
     let meshstyrhusBody11 = new THREE.Mesh(styrhusBody11, [material2, material2, material2, material2, material1, material2]);
     meshstyrhusBody11.name = 'styrhusBody11';
     meshstyrhusBody11.position.x = -47;
-    meshstyrhusBody11.position.y = 27;
+    meshstyrhusBody11.position.y = 11.9;
     meshstyrhusBody11.position.z = -27;
     body.add(meshstyrhusBody11);
 
@@ -286,17 +297,11 @@ export async function createBodyMesh2() {
     let meshstyrhusBody12 = new THREE.Mesh(styrhusBody12, [material2, material2, material2, material2, material3, material2]);
     meshstyrhusBody12.name = 'styrhusBody12';
     meshstyrhusBody12.position.x = -55.2;
-    meshstyrhusBody12.position.y = 27;
+    meshstyrhusBody12.position.y = 11.9;
     meshstyrhusBody12.position.z = -27;
     body.add(meshstyrhusBody12);
 
-    let styrhusBody13 = new THREE.BoxGeometry(30, 15, 20, 30, 5);
-    let meshstyrhusBody13 = new THREE.Mesh(styrhusBody13, blackMaterial);
-    meshstyrhusBody13.name = 'styrhusBody13';
-    meshstyrhusBody13.position.x = -30.2;
-    meshstyrhusBody13.position.y = 12.5;
-    meshstyrhusBody13.position.z = 0;
-    body.add(meshstyrhusBody13);
+
 
     return body;
 }
@@ -440,8 +445,7 @@ export async function createStairsMesh2() {
 export async function createHandlesMesh() {
 
     const loader = new THREE.TextureLoader();
-    const textureObject = await loader.loadAsync('../../../assets/textures/metal1.jpg');
-    let material = new THREE.MeshPhongMaterial({ map: textureObject });
+
 
     const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
     textureAluminium.wrapS = THREE.RepeatWrapping;
@@ -546,8 +550,8 @@ export async function createHandlesMesh() {
 export async function createHandlesMesh2() {
 
     const loader = new THREE.TextureLoader();
-    const textureObject = await loader.loadAsync('../../../assets/textures/metal1.jpg');
-    let material = new THREE.MeshPhongMaterial({ map: textureObject });
+
+
 
     const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
     textureAluminium.wrapS = THREE.RepeatWrapping;
@@ -653,8 +657,8 @@ export async function createBoxMesh() {
 
     const loader = new THREE.TextureLoader();
     const textureObject = await loader.loadAsync('../../../assets/textures/box.jpeg');
-    let material = new THREE.MeshBasicMaterial({ map: textureObject });
-    let materialRed = new THREE.MeshBasicMaterial({ color: 'rgb(205, 27, 27)' });
+    let material = new THREE.MeshPhongMaterial({ map: textureObject });
+    let materialRed = new THREE.MeshPhongMaterial({ color: 'rgb(205, 27, 27)' });
 
     const box = new THREE.Group();
 
@@ -700,8 +704,8 @@ export async function createBoxMesh2() {
 
     const loader = new THREE.TextureLoader();
     const textureObject = await loader.loadAsync('../../../assets/textures/box.jpeg');
-    let material = new THREE.MeshBasicMaterial({ map: textureObject });
-    let materialRed = new THREE.MeshBasicMaterial({ color: 'rgb(205, 27, 27)' });
+    let material = new THREE.MeshPhongMaterial({ map: textureObject });
+    let materialRed = new THREE.MeshPhongMaterial({ color: 'rgb(205, 27, 27)' });
 
     const box = new THREE.Group();
 
@@ -753,8 +757,12 @@ export async function createArmsMesh() {
     let materialAluminium = new THREE.MeshMatcapMaterial({map: textureAluminium});
 
     const arms = new THREE.Group();
+    arms.castShadow = true;
+    arms.receiveShadow = true;
 
     const arms1 = new THREE.Group();
+    arms1.castShadow = true;
+    arms1.receiveShadow = true;
 
     let arm1 = new THREE.CylinderGeometry(1, 1, 70, 24, 1, false);
     let meshArm1 = new THREE.Mesh(arm1, materialAluminium);
@@ -802,6 +810,7 @@ export async function createArmsMesh() {
     return arms;
 }
 
+
 // Add all arms 2
 
 export async function createArmsMesh2() {
@@ -814,11 +823,16 @@ export async function createArmsMesh2() {
     let materialAluminium = new THREE.MeshMatcapMaterial({map: textureAluminium});
 
     const arms = new THREE.Group();
+    arms.castShadow = true;
+    arms.receiveShadow = true;
 
     const arms1 = new THREE.Group();
 
     let arm1 = new THREE.CylinderGeometry(1, 1, 70, 24, 1, false);
     let meshArm1 = new THREE.Mesh(arm1, materialAluminium);
+    meshArm1.castShadow = true;
+    meshArm1.receiveShadow = true;
+
     meshArm1.name = 'arm1';
     meshArm1.position.x = -25;
     meshArm1.position.y = 54;
@@ -864,6 +878,31 @@ export async function createArmsMesh2() {
 }
 
 // Add all roller 2
+
+export  async  function creatRollerMesh1(){
+
+    const loader = new THREE.TextureLoader();
+    const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
+    textureAluminium.wrapS = THREE.RepeatWrapping;
+    textureAluminium.wrapT = THREE.RepeatWrapping;
+    let materialAluminium = new THREE.MeshMatcapMaterial({map: textureAluminium});
+
+    let joiner = new THREE.CylinderGeometry(2, 2, 11, 24, 1, false);
+    let meshJoiner = new THREE.Mesh(joiner, materialAluminium);
+    meshJoiner.castShadow = true;
+    meshJoiner.receiveShadow = true;
+
+
+    meshJoiner.name = 'joiner';
+    meshJoiner.position.x = -41;
+    meshJoiner.position.y = 21;
+    meshJoiner.position.z = 0;
+    meshJoiner.rotation.z = 1.6;
+    meshJoiner.rotation.y = 1.6;
+
+    return meshJoiner;
+
+}
 
 export async function createRollersMesh() {
 
