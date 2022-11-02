@@ -103,6 +103,7 @@ async function addSceneObjects() {
 	crane.baseRot = 0.0;
 	crane.joint1Rot = 0.0;
 	crane.joint2Rot = 0.0;
+	crane.translate = 0.0;
 	g_scene.add(crane);
 
 }
@@ -217,6 +218,9 @@ function animate(currentTime) {
 	let craneArm = crane.getObjectByName('craneArmWithWires', true);  //true = recursive...
 	craneArm.rotation.z = crane.joint2Rot;
 
+	let hook = crane.getObjectByName('hook', true);  //true = recursive...
+	hook.translation = crane.joint2Rot;
+
 	//Sjekker input:
 	handleKeys(delta, crane);
 
@@ -270,5 +274,12 @@ function handleKeys(delta, crane) {
 	if (g_currentlyPressedKeys['KeyB']) {	//B
 		crane.joint2Rot = crane.joint2Rot - (rotationSpeed * delta);
 		crane.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint2Rot >= 360 grader.
+	}
+	//Roter joint3:
+	if (g_currentlyPressedKeys['KeyN']) { //V
+		crane.position.y += 0.1
+	}
+	if (g_currentlyPressedKeys['KeyM']) {	//B
+		crane.position.y -= 0.1
 	}
 }
