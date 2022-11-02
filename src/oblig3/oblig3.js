@@ -120,6 +120,7 @@ function addLights() {
 	directionalLight1.shadow.camera.visible = true;
 
 	let ambientLight1 = new THREE.AmbientLight(0xffffff,0.2)
+	ambientLight1.visible = true;
 	g_scene.add(ambientLight1);
 
 	//Spotlight on crane roof
@@ -165,10 +166,16 @@ function addLights() {
 	g_scene.add(spotLight2.target);
 
 	//lil-gui:
+	//Directional light
 	const directionalFolder = g_lilGui.addFolder( 'Directional Light' );
 	directionalFolder.add(directionalLight1, 'visible').name("On/Off");
 	directionalFolder.add(directionalLight1, 'intensity').min(0).max(1).step(0.01).name("Intensity");
 	directionalFolder.addColor(directionalLight1, 'color').name("Color");
+	//Ambient light
+	const ambientLightFolder = g_lilGui.addFolder( 'Ambient Light' );
+	ambientLightFolder.add(ambientLight1, 'visible').name("On/Off");
+	ambientLightFolder.add(ambientLight1, 'intensity').min(0).max(1).step(0.01).name("Intensity");
+	ambientLightFolder.addColor(ambientLight1, 'color').name("Color");
 	//Front spot
 	const frontSpotFolder = g_lilGui.addFolder("Front spotlight");
 	frontSpotFolder.add(spotLight1, 'visible').name("On/Off");
