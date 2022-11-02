@@ -1,7 +1,10 @@
 
 import * as THREE from "three";
 
-import {createArmsMesh, createArmsMesh2, createBodyMesh, createBodyMesh2, createBoxMesh, createBoxMesh2, createFootMesh, createFootMesh2, createHandlesMesh, createHandlesMesh2, createRollersMesh, createStairsMesh, createStairsMesh2,} from "./foot.js";
+import {createArmsMesh, createArmsMesh2, createBodyMesh, createBodyMesh2, createBoxMesh, createBoxMesh2,
+    createFootMesh, createFootMesh2, createHandlesMesh, createHandlesMesh2, createRollersMesh,
+    createStairsMesh, createStairsMesh2} from "./foot.js";
+import {createSpotlights} from "./ligths.js";
 
 export async function styrhus() {
 
@@ -71,6 +74,13 @@ export async function styrhus() {
     let rollers = await createRollersMesh();
     rollers.name = "rollers";
     body1.add(rollers);
+
+    let spotlight = await createSpotlights(2,5,12)
+    spotlight.name = "roofLight";
+    spotlight.position.y = 37;
+    spotlight.position.x = -2;
+    spotlight.position.z = -5;
+    body1.add(spotlight);
 
     return body1;
 }

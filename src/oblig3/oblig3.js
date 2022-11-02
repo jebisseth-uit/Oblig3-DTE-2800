@@ -94,7 +94,7 @@ async function addSceneObjects() {
 	//g_scene.add(arm);
 
 	//let crane = await craneArmBuilder()
-	let crane = await buildCrane();
+	let crane = await buildCrane()
 	g_scene.add(crane);
 
 }
@@ -117,9 +117,17 @@ function addLights() {
 	let ambientLight1 = new THREE.AmbientLight(0xffffff,0.2)
 	g_scene.add(ambientLight1);
 
+	let spotLight1 = new THREE.SpotLight(0x00ff00)
+	let spotlightRoof = g_scene.getObjectByName("roofLight")
+	spotLight1.position.x = spotlightRoof.position.x;
+	spotLight1.position.y = spotlightRoof.position.y;
+	spotLight1.position.z = spotlightRoof.position.z;
+	g_scene.add(spotLight1);
+
+
 	//Hjelpeklasse for å vise lysets utstrekning:
 	let lightCamHelper = new THREE.CameraHelper( directionalLight1.shadow.camera );
-	//g_scene.add( lightCamHelper );
+	g_scene.add( lightCamHelper );
 
 	g_scene.add(directionalLight1);
 }
