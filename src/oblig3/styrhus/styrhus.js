@@ -54,6 +54,10 @@ export async function styrhus() {
     //
     let box2 = await createBoxMesh2();
     box2.name = "box2";
+    box2.translateZ(14);
+    box2.translateY(-12);
+    box2.translateX(-18);
+    box2.scale.set(0.5, 0.8, 0.8);
     body1.add(box2);
 
     //
@@ -120,7 +124,6 @@ export async function styrhus() {
     arms.translateX(-9);
     arms.scale.set(0.5, 0.5, 0.5);
     body1.add(arms);
-    body1.add(handles);
 
     //
     let arms2 = await createArmsMesh2();

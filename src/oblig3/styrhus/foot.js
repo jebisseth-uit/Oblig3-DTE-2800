@@ -1,6 +1,7 @@
 /**
  * Funksjoner som lager meshobjekter til dronen.
  */
+
 import * as THREE from "three";
 
 // Add all foots
@@ -158,8 +159,24 @@ export async function createFootMesh2() {
 }
 
 // Add all bodies
-
 export async function createBodyMesh() {
+
+    const cubeTextureLoader = new THREE.CubeTextureLoader();
+    // Mer rekkfølgen:
+    const environmentMapTexture = await cubeTextureLoader.load([
+        '../../../assets/cubemaps/GardenNook/nz.png',   //positiv x (høyre)
+        '../../../assets/cubemaps/GardenNook/nz.png',   //negativ x (venstre)
+        '../../../assets/cubemaps/GardenNook/nz.png',   //positiv y (opp)
+        '../../../assets/cubemaps/GardenNook/nz.png',   //negativ y (ned)
+        '../../../assets/cubemaps/GardenNook/nz.png',   //positiv z (ut)
+        '../../../assets/cubemaps/GardenNook/px.png',   //negativ z (inn)
+    ]);
+
+    const materialStandardEnvironmentMapping = new THREE.MeshStandardMaterial();
+    materialStandardEnvironmentMapping.metalness = 1;
+    materialStandardEnvironmentMapping.roughness = 0;
+    materialStandardEnvironmentMapping.envMap = environmentMapTexture;
+
 
     const loader = new THREE.TextureLoader();
     const door1 = await loader.loadAsync('../../../assets/textures/door1.jpeg');
@@ -168,25 +185,40 @@ export async function createBodyMesh() {
     const front = await loader.loadAsync('../../../assets/textures/front.png');
     const front2 = await loader.loadAsync('../../../assets/textures/front2.png');
     const front3 = await loader.loadAsync('../../../assets/textures/front3.png');
+    const transparent = await loader.loadAsync('../../../assets/textures/transparent.png');
     let material1 = new THREE.MeshPhongMaterial({ map: door1 });
     let material2 = new THREE.MeshPhongMaterial({ map: door2 });
     let material3 = new THREE.MeshPhongMaterial({ map: door3 });
     let material4 = new THREE.MeshPhongMaterial({ map: front });
+    material4.transparent = true;
     let material5 = new THREE.MeshPhongMaterial({ map: front2 });
+    material5.transparent = true;
     let material6 = new THREE.MeshPhongMaterial({ map: front3 });
+    material6.transparent = true;
     const blackMaterial = new THREE.MeshPhongMaterial({color: '#000'});
-
+    const transparentMaterial = new THREE.MeshPhongMaterial({map: transparent});
+    transparentMaterial.transparent = true;
     const body = new THREE.Group();
 
     let styrhusBody1 = new THREE.BoxGeometry(10, 16, 8, 30, 5);
-    let meshstyrhusBody1 = new THREE.Mesh(styrhusBody1, [material6, blackMaterial, material5, blackMaterial, material4, material4]);
+    let meshstyrhusBody1 = new THREE.Mesh(styrhusBody1, [material4, blackMaterial, blackMaterial, blackMaterial, material4, material4]);
     meshstyrhusBody1.castShadow = true;
     meshstyrhusBody1.receiveShadow = true;
     meshstyrhusBody1.name = 'styrhusBody1';
     meshstyrhusBody1.position.x = -15;
     meshstyrhusBody1.position.y = 15;
-    meshstyrhusBody1.position.z = -5;
+    meshstyrhusBody1.position.z = -3;
     body.add(meshstyrhusBody1);
+
+    let styrhusBody12 = new THREE.BoxGeometry(10, 16, 8, 30, 5);
+    let meshstyrhusBody12 = new THREE.Mesh(styrhusBody12, materialStandardEnvironmentMapping);
+    meshstyrhusBody12.castShadow = true;
+    meshstyrhusBody12.receiveShadow = true;
+    meshstyrhusBody12.name = 'styrhusBody12';
+    meshstyrhusBody12.position.x = -15;
+    meshstyrhusBody12.position.y = 15;
+    meshstyrhusBody12.position.z = -3;
+    body.add(meshstyrhusBody12);
 
 
     let styrhusBody2 = new THREE.BoxGeometry(4, 14, 10, 30, 5);
@@ -255,7 +287,7 @@ export async function createBodyMesh2() {
     let material1 = new THREE.MeshPhongMaterial({ map: door1 });
     let material2 = new THREE.MeshPhongMaterial({ map: door2 });
     let material3 = new THREE.MeshPhongMaterial({ map: door3 });
-    
+
 
     const body = new THREE.Group();
 
@@ -447,6 +479,7 @@ export async function createHandlesMesh() {
     const loader = new THREE.TextureLoader();
 
 
+
     const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
     textureAluminium.wrapS = THREE.RepeatWrapping;
     textureAluminium.wrapT = THREE.RepeatWrapping;
@@ -551,7 +584,7 @@ export async function createHandlesMesh2() {
 
     const loader = new THREE.TextureLoader();
 
-
+    
 
     const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
     textureAluminium.wrapS = THREE.RepeatWrapping;
