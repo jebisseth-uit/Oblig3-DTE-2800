@@ -6,6 +6,7 @@ import {createCraneArmMesh} from "./craneArm.js";
 import {createLogoPlate} from "./craneAssets.js";
 import {createCraneEndPiece} from "./craneAssets";
 import {createCraneHookWires} from "./craneAssets.js";
+import {createCraneHookBackWires} from "./craneAssets.js";
 
 export async function craneArmBuilder(){
 	const craneArm = new THREE.Group;
@@ -42,6 +43,7 @@ export async function craneArmBuilder(){
 
 	//CraneWires
 	const wireLength = 400;
+	const wireLengthBack = 580;
 
 	let craneStart = await createCraneArmMesh(craneStartModules,craneStartTopX,craneStartBottomX,craneStartTopZ,craneStartBottomZ,craneStartModuleHeight,barRadius, "craneStart");
 	let craneLowerJoint = await  createCraneArmMesh(craneLowerJointModules, craneStartTopX,craneStartTopZ,craneStartTopX,craneStartTopZ,craneLowerJointModuleHeight,barRadius, "craneLowerJoint");
@@ -50,6 +52,7 @@ export async function craneArmBuilder(){
 	let craneEnd = await createCraneArmMesh(craneEndModules,craneStartTopX,craneEndTopX,craneStartTopZ,craneEndTopZ,craneEndModuleHeight,barRadius, "craneEnd");
 	let craneEndPiece = await createCraneEndPiece(craneEndTopX, craneEndTopX, craneEndTopZ, "craneEndPiece");
 	let craneWires = await createCraneHookWires(0.5, wireLength, 10,10)
+	let craneWiresBack = await createCraneHookBackWires(0.5, wireLengthBack, 10,10)
 	let craneLogo = await createLogoPlate(60,30,1);
 	let craneLogo2 = craneLogo.clone();
 
@@ -65,6 +68,7 @@ export async function craneArmBuilder(){
 	craneUpperJoint.add(craneLogo2);
 	craneEnd.add(craneEndPiece);
 	craneEnd.add(craneWires);
+	craneCentral.add(craneWiresBack);
 
 	craneLowerJoint.position.y = craneStartModules*craneStartModuleHeight; //Move lower joint to end of start-module
 	craneCentral.position.y = craneLowerJointModules*craneLowerJointModuleHeight; //Move central-module to end of lower joint
@@ -77,6 +81,14 @@ export async function craneArmBuilder(){
 	craneWires.position.y = (wireLength/2)-30;
 	craneWires.position.x = 85;
 	craneWires.rotation.z = -Math.PI/8;
+
+	//WireBack
+	craneWiresBack.position.y = craneEndModules*craneEndModuleHeight
+	craneWiresBack.position.y = 255
+	craneWiresBack.position.x = -100;
+	craneWiresBack.rotation.z = -Math.PI/9;
+	//craneWiresBack.position.z = -Math.PI/8;
+
 
 	//Logo
 	craneLogo.rotation.set(0,0,Math.PI/2)
