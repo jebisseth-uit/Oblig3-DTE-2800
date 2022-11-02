@@ -125,7 +125,7 @@ function addLights() {
 	spotLight1.position.x = lightPos.x+15;
 	spotLight1.position.y = lightPos.y+8;
 	spotLight1.position.z = lightPos.z;
-	spotLight1.target.position.x = 900;
+	spotLight1.target.position.x = 1400;
 	spotLight1.castShadow = true;
 	spotLight1.shadow.mapSize.width = 1024;
 	spotLight1.shadow.mapSize.height = 1024;
@@ -136,6 +136,26 @@ function addLights() {
 	spotLight1.shadow.camera.visible = false;
 	g_scene.add(spotLight1);
 	g_scene.add(spotLight1.target);
+
+	//Spotlight on crane back
+	let spotLight2 = new THREE.SpotLight(0xffffff,0.8, 5000, Math.PI/3)
+	let spotlighBack = g_scene.getObjectByName("backLight")
+	const lightBackPos = new THREE.Vector3();
+	spotlighBack.getWorldPosition(lightPos)
+	spotLight2.position.x = lightPos.x-15;
+	spotLight2.position.y = lightPos.y-8;
+	spotLight2.position.z = lightPos.z;
+	spotLight2.target.position.x = -1400;
+	spotLight2.castShadow = true;
+	spotLight2.shadow.mapSize.width = 1024;
+	spotLight2.shadow.mapSize.height = 1024;
+	spotLight2.shadow.camera.fov = 90;
+	spotLight2.shadow.camera.near = -10;
+	spotLight2.shadow.camera.far = -1000;
+
+	spotLight2.shadow.camera.visible = false;
+	g_scene.add(spotLight2);
+	g_scene.add(spotLight2.target);
 
 
 	//Hjelpeklasse for å vise lysets utstrekning:
