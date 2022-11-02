@@ -2,13 +2,16 @@
  * Funksjoner som lager meshobjekter til dronen.
  */
 import * as THREE from "three";
+import {roughness} from "three/nodes";
 
 export async function createLogoPlate(width=1, height=1, depth=1){
 
 	const loader = new THREE.TextureLoader();
 	const texture = await loader.loadAsync('../../assets/textures/238logo.png');
 
-	let material = new THREE.MeshPhongMaterial({map: texture});
+	let material = new THREE.MeshStandardMaterial({map: texture});
+	material.metalness = 0.5;
+	material.roughness = 0.0;
 
 	//Container for arm logo:
 	const craneLogo = new THREE.Group;
@@ -26,9 +29,11 @@ export async function createLogoPlate(width=1, height=1, depth=1){
 export async function createCraneEndPiece(width = 1, height = 1, depth = 1){
 
 	const loader = new THREE.TextureLoader();
-	const texture = await loader.loadAsync('../../assets/textures/metal1.jpg');
+	const texture = await loader.loadAsync('../../assets/textures/aluminium.jpg');
 
-	let material = new THREE.MeshPhongMaterial({map: texture});
+	let material = new THREE.MeshStandardMaterial({map: texture});
+	material.metalness = 0.5;
+	material.roughness = 0;
 
 	//Container for arm end-piece
 	const endPiece = new THREE.Group;

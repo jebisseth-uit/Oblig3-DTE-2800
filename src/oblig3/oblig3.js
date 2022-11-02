@@ -4,10 +4,10 @@ import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 import {addCoordSystem} from "../../static/lib/wfa-coord.js";
 import {buildCrane} from "./build/buildCrane.js";
-import GUI from "lil-gui"
+
 
 //Globale variabler:
-let g_scene, g_renderer, g_camera, g_clock, g_controls, g_currentlyPressedKeys = [], g_lilGui;
+let g_scene, g_renderer, g_camera, g_clock, g_controls, g_currentlyPressedKeys = [];
 let g_propellerAngle = 0;
 
 //STARTER!
@@ -17,8 +17,7 @@ export async function main() {
 	const canvas = document.createElement('canvas');
 	document.body.appendChild(canvas);
 
-	// lil-gui kontroller:
-	g_lilGui = new GUI();
+
 
 	// Renderer:
 	g_renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});
@@ -87,27 +86,27 @@ async function addSceneObjects() {
 	g_scene.add(meshPlane);
 
 	//
-	//let arm = await createArmMesh();
-	//arm.name = "arm";
-	//arm.baseRot = 0.0;
-	//arm.joint1Rot = 0.0;
-	//arm.joint2Rot = 0.0;
-	//g_scene.add(arm);
+	//let crane = await createcraneMesh();
 
-	//let arm = await  createCraneArmMesh();
-	//g_scene.add(arm);
+	//g_scene.add(crane);
 
-	//let crane = await craneArmBuilder()
-	let crane = await buildCrane()
+	//let crane = await  createCranecraneMesh();
+	//g_scene.add(crane);
+
+	//let crane = await cranecraneBuilder()
+	let crane = await buildCrane();
+	crane.name = "crane";
+	crane.baseRot = 0.0;
+	crane.joint1Rot = 0.0;
+	crane.joint2Rot = 0.0;
 	g_scene.add(crane);
 
 }
 
 function addLights() {
 	//Retningsorientert lys (som gir skygge):
-	let directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.5); //farge, intensitet (1=default)
+	let directionalLight1 = new THREE.DirectionalLight(0xffffff, 1.0); //farge, intensitet (1=default)
 	directionalLight1.position.set(0, 300, 300);
-	directionalLight1.visible = false;
 	directionalLight1.shadow.mapSize.width = 1024;
 	directionalLight1.shadow.mapSize.height = 1024;
 	directionalLight1.castShadow = true;
@@ -120,75 +119,10 @@ function addLights() {
 	directionalLight1.shadow.camera.visible = true;
 
 	let ambientLight1 = new THREE.AmbientLight(0xffffff,0.2)
-	ambientLight1.visible = true;
 	g_scene.add(ambientLight1);
 
-	//Spotlight on crane roof
-	let spotLight1 = new THREE.SpotLight(0xffffff,0.8, 5000, Math.PI/3)
-	let spotlightRoof = g_scene.getObjectByName("roofLight")
-	const lightPos = new THREE.Vector3();
-	spotlightRoof.getWorldPosition(lightPos)
-	spotLight1.visible = true;
-	spotLight1.position.x = lightPos.x+15;
-	spotLight1.position.y = lightPos.y+8;
-	spotLight1.position.z = lightPos.z;
-	spotLight1.target.position.x = 1400;
-	spotLight1.castShadow = true;
-	spotLight1.shadow.mapSize.width = 1024;
-	spotLight1.shadow.mapSize.height = 1024;
-	spotLight1.shadow.camera.fov = 90;
-	spotLight1.shadow.camera.near = 10;
-	spotLight1.shadow.camera.far = 1000;
-
-	spotLight1.shadow.camera.visible = false;
-	g_scene.add(spotLight1);
-	g_scene.add(spotLight1.target);
-
-	//Spotlight on crane back
-	let spotLight2 = new THREE.SpotLight(0xffffff,0.8, 5000, Math.PI/3)
-	let spotlighBack = g_scene.getObjectByName("backLight")
-	const lightBackPos = new THREE.Vector3();
-	spotlighBack.getWorldPosition(lightPos)
-	spotLight2.visible = true;
-	spotLight2.position.x = lightPos.x-15;
-	spotLight2.position.y = lightPos.y-8;
-	spotLight2.position.z = lightPos.z;
-	spotLight2.target.position.x = -1400;
-	spotLight2.castShadow = true;
-	spotLight2.shadow.mapSize.width = 1024;
-	spotLight2.shadow.mapSize.height = 1024;
-	spotLight2.shadow.camera.fov = 90;
-	spotLight2.shadow.camera.near = -10;
-	spotLight2.shadow.camera.far = -1000;
-
-	spotLight2.shadow.camera.visible = false;
-	g_scene.add(spotLight2);
-	g_scene.add(spotLight2.target);
-
-	//lil-gui:
-	//Directional light
-	const directionalFolder = g_lilGui.addFolder( 'Directional Light' );
-	directionalFolder.add(directionalLight1, 'visible').name("On/Off");
-	directionalFolder.add(directionalLight1, 'intensity').min(0).max(1).step(0.01).name("Intensity");
-	directionalFolder.addColor(directionalLight1, 'color').name("Color");
-	//Ambient light
-	const ambientLightFolder = g_lilGui.addFolder( 'Ambient Light' );
-	ambientLightFolder.add(ambientLight1, 'visible').name("On/Off");
-	ambientLightFolder.add(ambientLight1, 'intensity').min(0).max(1).step(0.01).name("Intensity");
-	ambientLightFolder.addColor(ambientLight1, 'color').name("Color");
-	//Front spot
-	const frontSpotFolder = g_lilGui.addFolder("Front spotlight");
-	frontSpotFolder.add(spotLight1, 'visible').name("On/Off");
-	frontSpotFolder.add(spotLight1, 'intensity').min(0).max(1).step(0.01).name("Intensity");
-	frontSpotFolder.addColor(spotLight1, 'color').name("Color");
-	//Back spot
-	const backSpotFolder = g_lilGui.addFolder("Rear spotlight");
-	backSpotFolder.add(spotLight2, 'visible').name("On/Off");
-	backSpotFolder.add(spotLight2, 'intensity').min(0).max(1).step(0.01).name("Intensity");
-	backSpotFolder.addColor(spotLight2, 'color').name("Color");
-
 	//Hjelpeklasse for å vise lysets utstrekning:
-	let lightCamHelper = new THREE.CameraHelper( spotLight1.shadow.camera );
+	let lightCamHelper = new THREE.CameraHelper( directionalLight1.shadow.camera );
 	//g_scene.add( lightCamHelper );
 
 	g_scene.add(directionalLight1);
@@ -205,16 +139,16 @@ function animate(currentTime) {
 	g_controls.update();
 
 	//Roterer heile skjiten:
-	//let arm = g_scene.getObjectByName("arm");
-	//arm.rotation.y = arm.baseRot;
-	//let armAndJoint1 = arm.getObjectByName('armAndJoint1', true);  //true = recursive...
-	//armAndJoint1.rotation.x = arm.joint1Rot;
+	let crane = g_scene.getObjectByName("crane");
+	crane.rotation.y = crane.baseRot;
+	let craneOverBelt = crane.getObjectByName('craneOverBelt', true);  //true = recursive...
+	craneOverBelt.rotation.y = crane.joint1Rot;
 
-	//let armAndJoint2 = arm.getObjectByName('armAndJoint2', true);  //true = recursive...
-	//armAndJoint2.rotation.x = arm.joint2Rot;
+	//let craneArm= crane.getObjectByName('craneArm', true);  //true = recursive...
+	//craneArm.rotation.x = crane.joint2Rot;
 
 	//Sjekker input:
-	//handleKeys(delta, arm);
+	handleKeys(delta, crane);
 
 	//Tegner scenen med gitt kamera:
 	renderScene();
@@ -235,36 +169,36 @@ function onWindowResize() {
 }
 
 //Sjekker tastaturet:
-function handleKeys(delta, arm) {
+function handleKeys(delta, crane) {
 	let rotationSpeed = (Math.PI); // Bestemmer rotasjonshastighet.
 
 	//Roter foten:s
 	if (g_currentlyPressedKeys['KeyA']) { //A
-		arm.baseRot = arm.baseRot + (rotationSpeed * delta);
-		arm.baseRot %= (Math.PI * 2); // "Rull rundt" dersom arm.baseRot >= 360 grader.
+		crane.baseRot = crane.baseRot + (rotationSpeed * delta);
+		crane.baseRot %= (Math.PI * 2); // "Rull rundt" dersom crane.baseRot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyD']) {	//D
-		arm.baseRot = arm.baseRot - (rotationSpeed * delta);
-		arm.baseRot %= (Math.PI * 2); // "Rull rundt" dersom arm.baseRot >= 360 grader.
+		crane.baseRot = crane.baseRot - (rotationSpeed * delta);
+		crane.baseRot %= (Math.PI * 2); // "Rull rundt" dersom crane.baseRot >= 360 grader.
 	}
 
 	//Roter joint1:
 	if (g_currentlyPressedKeys['KeyS']) {	//S
-		arm.joint1Rot = arm.joint1Rot + (rotationSpeed * delta);
-		arm.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint1Rot >= 360 grader.
+		crane.joint1Rot = crane.joint1Rot + (rotationSpeed * delta);
+		crane.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint1Rot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyW']) {	//W
-		arm.joint1Rot = arm.joint1Rot - (rotationSpeed * delta);
-		arm.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint1Rot >= 360 grader.
+		crane.joint1Rot = crane.joint1Rot - (rotationSpeed * delta);
+		crane.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint1Rot >= 360 grader.
 	}
 
 	//Roter joint2:
 	if (g_currentlyPressedKeys['KeyV']) { //V
-		arm.joint2Rot = arm.joint2Rot + (rotationSpeed * delta);
-		arm.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint2Rot >= 360 grader.
+		crane.joint2Rot = crane.joint2Rot + (rotationSpeed * delta);
+		crane.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint2Rot >= 360 grader.
 	}
 	if (g_currentlyPressedKeys['KeyB']) {	//B
-		arm.joint2Rot = arm.joint2Rot - (rotationSpeed * delta);
-		arm.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom arm.joint2Rot >= 360 grader.
+		crane.joint2Rot = crane.joint2Rot - (rotationSpeed * delta);
+		crane.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint2Rot >= 360 grader.
 	}
 }

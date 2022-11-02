@@ -31,12 +31,14 @@ export async function createCraneArmMesh(
 	let offsetY = 0;
 
 	const loader = new THREE.TextureLoader();
-	const texture = await loader.loadAsync('../../assets/textures/metal1.jpg');
+	const texture = await loader.loadAsync('../../assets/textures/aluminium.jpg');
 
 	//Container for central arm part:
 	const craneCentral = new THREE.Group;
 
-	let material = new THREE.MeshPhongMaterial({map: texture});
+	let material = new THREE.MeshStandardMaterial({map: texture});
+	material.metalness = 0.5;
+	material.roughness = 0.0;
 	let materialRed = new THREE.MeshBasicMaterial({color: 0xff0000});
 	let materialGreen = new THREE.MeshBasicMaterial({color: 0x00ff00});
 	let materialBlue = new THREE.MeshBasicMaterial({color: 0x0000ff});

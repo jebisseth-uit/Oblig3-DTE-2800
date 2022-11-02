@@ -17,6 +17,7 @@ export async function createUndercarriageMesh() {
 	//Konteiner for hele undercarriage:
 
 	const undercarriage = new THREE.Group();
+	undercarriage.recieveShadow = true;
 
 	// Belteseksjon
 	const belt = new THREE.Group();
@@ -34,6 +35,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceMain = new THREE.BoxGeometry(100, 20, 4, 1, 1,1);
 	const meshBeltPieceMain = new THREE.Mesh(beltPieceMain, material);
 	meshBeltPieceMain.castShadow = true;
+	meshBeltPieceMain.recieveShadow = true;
 	meshBeltPieceMain.name = 'BeltPieceMain';
 	meshBeltPieceMain.position.x = 0;
 	meshBeltPieceMain.position.y = 50;
@@ -44,6 +46,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceTopMiddle = new THREE.BoxGeometry(20, 10, 4, 1, 1,1);
 	const meshBeltPieceTopMiddle = new THREE.Mesh(beltPieceTopMiddle, materialAluminium);
 	meshBeltPieceTopMiddle.castShadow = true;
+	meshBeltPieceTopMiddle.recieveShadow = true;
 	meshBeltPieceTopMiddle.name = 'BeltPieceTopMiddle';
 	meshBeltPieceTopMiddle.position.x = 0;
 	meshBeltPieceTopMiddle.position.y = 10;
@@ -54,6 +57,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceTopSmallLeft = new THREE.BoxGeometry(10, 10, 4, 1, 1,1);
 	const meshBeltPieceTopSmallLeft = new THREE.Mesh(beltPieceTopSmallLeft, materialAluminium);
 	meshBeltPieceTopSmallLeft.castShadow = true;
+	meshBeltPieceTopSmallLeft.recieveShadow = true;
 	meshBeltPieceTopSmallLeft.name = 'BeltPieceTopSmallLeft';
 	meshBeltPieceTopSmallLeft.position.x = -25;
 	meshBeltPieceTopSmallLeft.position.y = 10;
@@ -64,6 +68,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceTopSmallRight = new THREE.BoxGeometry(10, 10, 4, 1, 1,1);
 	const meshBeltPieceTopSmallRight = new THREE.Mesh(beltPieceTopSmallRight, materialAluminium);
 	meshBeltPieceTopSmallRight.castShadow = true;
+	meshBeltPieceTopSmallRight.recieveShadow = true;
 	meshBeltPieceTopSmallRight.name = 'BeltPieceTopSmallRight';
 	meshBeltPieceTopSmallRight.position.x = 25;
 	meshBeltPieceTopSmallRight.position.y = 10;
@@ -74,6 +79,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceBottomSmallLeft = new THREE.BoxGeometry(10, 10, 4, 1, 1,1);
 	const meshBeltPieceBottomSmallLeft = new THREE.Mesh(beltPieceBottomSmallLeft, materialAluminium);
 	meshBeltPieceBottomSmallLeft.castShadow = true;
+	meshBeltPieceBottomSmallLeft.recieveShadow = true;
 	meshBeltPieceBottomSmallLeft.name = 'BeltPieceBottomSmallLeft';
 	meshBeltPieceBottomSmallLeft.position.x = -15;
 	meshBeltPieceBottomSmallLeft.position.y = -10;
@@ -84,6 +90,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceBottomSmallRight = new THREE.BoxGeometry(10, 10, 4, 1, 1,1);
 	const meshBeltPieceBottomSmallRight = new THREE.Mesh(beltPieceBottomSmallRight, materialAluminium);
 	meshBeltPieceBottomSmallRight.castShadow = true;
+	meshBeltPieceBottomSmallRight.recieveShadow = true;
 	meshBeltPieceBottomSmallRight.name = 'BeltPieceBottomSmallRight';
 	meshBeltPieceBottomSmallRight.position.x = 15;
 	meshBeltPieceBottomSmallRight.position.y = -10;
@@ -94,6 +101,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceBottomBigLeft = new THREE.BoxGeometry(20, 10, 4, 1, 1,1);
 	const meshBeltPieceBottomBigLeft = new THREE.Mesh(beltPieceBottomBigLeft, materialAluminium);
 	meshBeltPieceBottomBigLeft.castShadow = true;
+	meshBeltPieceBottomBigLeft.recieveShadow = true;
 	meshBeltPieceBottomBigLeft.name = 'BeltPieceBottomBigLeft';
 	meshBeltPieceBottomBigLeft.position.x = -40;
 	meshBeltPieceBottomBigLeft.position.y = -10;
@@ -104,6 +112,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceBottomBigRight = new THREE.BoxGeometry(20, 10, 4, 1, 1,1);
 	const meshBeltPieceBottomBigRight = new THREE.Mesh(beltPieceBottomBigRight, materialAluminium);
 	meshBeltPieceBottomBigRight.castShadow = true;
+	meshBeltPieceBottomBigRight.recieveShadow = true;
 	meshBeltPieceBottomBigRight.name = 'BeltPieceBottomBigRight';
 	meshBeltPieceBottomBigRight.position.x = 40;
 	meshBeltPieceBottomBigRight.position.y = -10;
@@ -114,6 +123,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceSideLeft = new THREE.BoxGeometry(30, 20, 2, 1, 1,1);
 	const meshBeltPieceSideLeft = new THREE.Mesh(beltPieceSideLeft, material);
 	meshBeltPieceSideLeft.castShadow = true;
+	meshBeltPieceSideLeft.recieveShadow = true;
 	meshBeltPieceSideLeft.name = 'BeltPieceSideLeft';
 	meshBeltPieceSideLeft.position.x = -50;
 	meshBeltPieceSideLeft.position.y = 0;
@@ -124,6 +134,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceSideRight = new THREE.BoxGeometry(30, 20, 2, 1, 1,1);
 	const meshBeltPieceSideRight = new THREE.Mesh(beltPieceSideRight, material);
 	meshBeltPieceSideRight.castShadow = true;
+	meshBeltPieceSideRight.recieveShadow = true;
 	meshBeltPieceSideRight.name = 'BeltPieceSideRight';
 	meshBeltPieceSideRight.position.x = 50;
 	meshBeltPieceSideRight.position.y = 0;
@@ -134,6 +145,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceRoundTopRight = new THREE.CylinderGeometry(2,2,10, 200,1,false);
 	const meshBeltPieceRoundTopRight = new THREE.Mesh(beltPieceRoundTopRight, materialAluminium);
 	meshBeltPieceRoundTopRight.castShadow = true;
+	meshBeltPieceRoundTopRight.recieveShadow = true;
 	meshBeltPieceRoundTopRight.name = 'BeltPieceRoundTopRight';
 	meshBeltPieceRoundTopRight.position.x = 25;
 	meshBeltPieceRoundTopRight.position.y = 15;
@@ -145,6 +157,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceRoundTopLeft = new THREE.CylinderGeometry(2,2,10, 200,1,false);
 	const meshBeltPieceRoundTopLeft = new THREE.Mesh(beltPieceRoundTopLeft, materialAluminium);
 	meshBeltPieceRoundTopLeft.castShadow = true;
+	meshBeltPieceRoundTopLeft.recieveShadow = true;
 	meshBeltPieceRoundTopLeft.name = 'BeltPieceRoundTopLeft';
 	meshBeltPieceRoundTopLeft.position.x = -25;
 	meshBeltPieceRoundTopLeft.position.y = 15;
@@ -156,6 +169,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceRoundTopMiddle = new THREE.CylinderGeometry(2,2,20, 200,1,false);
 	const meshBeltPieceRoundTopMiddle = new THREE.Mesh(beltPieceRoundTopMiddle, materialAluminium);
 	meshBeltPieceRoundTopMiddle.castShadow = true;
+	meshBeltPieceRoundTopMiddle.recieveShadow = true;
 	meshBeltPieceRoundTopMiddle.name = 'BeltPieceRoundTopMiddle';
 	meshBeltPieceRoundTopMiddle.position.x = 0;
 	meshBeltPieceRoundTopMiddle.position.y = 15;
@@ -167,6 +181,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceRoundBottomSmallLeft = new THREE.CylinderGeometry(2,2,10, 200,1,false);
 	const meshBeltPieceRoundBottomSmallLeft = new THREE.Mesh(beltPieceRoundBottomSmallLeft, materialAluminium);
 	meshBeltPieceRoundBottomSmallLeft.castShadow = true;
+	meshBeltPieceRoundBottomSmallLeft.recieveShadow = true;
 	meshBeltPieceRoundBottomSmallLeft.name = 'BeltPieceRoundBottomSmallLeft';
 	meshBeltPieceRoundBottomSmallLeft.position.x = -15;
 	meshBeltPieceRoundBottomSmallLeft.position.y = -15;
@@ -178,6 +193,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceRoundBottomSmallRight = new THREE.CylinderGeometry(2,2,10, 200,1,false);
 	const meshBeltPieceRoundBottomSmallRight = new THREE.Mesh(beltPieceRoundBottomSmallRight, materialAluminium);
 	meshBeltPieceRoundBottomSmallRight.castShadow = true;
+	meshBeltPieceRoundBottomSmallRight.recieveShadow = true;
 	meshBeltPieceRoundBottomSmallRight.name = 'BeltPieceRoundBottomSmallRight';
 	meshBeltPieceRoundBottomSmallRight.position.x = 15;
 	meshBeltPieceRoundBottomSmallRight.position.y = -15;
@@ -189,6 +205,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceRoundBottomLargeRight = new THREE.CylinderGeometry(2,2,20, 200,1,false);
 	const meshBeltPieceRoundBottomLargeRight = new THREE.Mesh(beltPieceRoundBottomLargeRight, materialAluminium);
 	meshBeltPieceRoundBottomLargeRight.castShadow = true;
+	meshBeltPieceRoundBottomLargeRight.recieveShadow = true;
 	meshBeltPieceRoundBottomLargeRight.name = 'BeltPieceRoundBottomLargeRight';
 	meshBeltPieceRoundBottomLargeRight.position.x = 40;
 	meshBeltPieceRoundBottomLargeRight.position.y = -15;
@@ -200,6 +217,7 @@ export async function createUndercarriageMesh() {
 	const beltPieceRoundBottomLargeLeft = new THREE.CylinderGeometry(2,2,20, 200,1,false);
 	const meshBeltPieceRoundBottomLargeLeft = new THREE.Mesh(beltPieceRoundBottomLargeLeft, materialAluminium);
 	meshBeltPieceRoundBottomLargeLeft.castShadow = true;
+	meshBeltPieceRoundBottomLargeLeft.recieveShadow = true;
 	meshBeltPieceRoundBottomLargeLeft.name = 'BeltPieceRoundBottomLargeLeft';
 	meshBeltPieceRoundBottomLargeLeft.position.x = -40;
 	meshBeltPieceRoundBottomLargeLeft.position.y = -15;
@@ -218,6 +236,7 @@ export async function createUndercarriageMesh() {
 	//* BeltPieceMainCopy0
 	const meshBeltPieceMainCopy0 = meshBeltPieceMain.clone(true);
 	meshBeltPieceMainCopy0.castShadow = true;
+	meshBeltPieceMainCopy0.recieveShadow = true;
 	meshBeltPieceMainCopy0.name = 'BeltPieceMainCopy0';
 	meshBeltPieceMainCopy0.position.x = 0;
 	meshBeltPieceMainCopy0.position.y = 50;
@@ -227,6 +246,7 @@ export async function createUndercarriageMesh() {
 	//* BeltPieceMainCopy1
 	const meshBeltPieceMainCopy1 = meshBeltPieceMain.clone(true);
 	meshBeltPieceMainCopy1.castShadow = true;
+	meshBeltPieceMainCopy1.recieveShadow = true;
 	meshBeltPieceMainCopy1.name = 'BeltPieceMainCopy1';
 	meshBeltPieceMainCopy1.position.x = 0;
 	meshBeltPieceMainCopy1.position.y = 76;
@@ -237,6 +257,7 @@ export async function createUndercarriageMesh() {
 	//* BeltPieceMainCopy2
 	const meshBeltPieceMainCopy2 = meshBeltPieceMain.clone(true);
 	meshBeltPieceMainCopy2.castShadow = true;
+	meshBeltPieceMainCopy2.recieveShadow = true;
 	meshBeltPieceMainCopy2.name = 'BeltPieceMainCopy2';
 	meshBeltPieceMainCopy2.position.x = 0;
 	meshBeltPieceMainCopy2.position.y = 96;
@@ -247,6 +268,7 @@ export async function createUndercarriageMesh() {
 	//* BeltPieceMainCopy3
 	const meshBeltPieceMainCopy3 = meshBeltPieceMain.clone(true);
 	meshBeltPieceMainCopy3.castShadow = true;
+	meshBeltPieceMainCopy3.recieveShadow = true;
 	meshBeltPieceMainCopy3.name = 'BeltPieceMainCopy3';
 	meshBeltPieceMainCopy3.position.x = 0;
 	meshBeltPieceMainCopy3.position.y = 106;
@@ -260,6 +282,7 @@ export async function createUndercarriageMesh() {
 
 	const beltCurvedSection2 = beltCurvedSection.clone()
 	beltCurvedSection2.castShadow = true;
+	beltCurvedSection2.recieveShadow = true;
 	beltCurvedSection2.name = 'BeltCurvedSection2';
 	beltCurvedSection2.position.x = 0;
 	beltCurvedSection2.position.y = 18;
@@ -279,6 +302,7 @@ export async function createUndercarriageMesh() {
 		//* BeltPieceMainCopy4
 	const meshBeltPieceMainCopy4 = meshBeltPieceMain.clone(true);
 	meshBeltPieceMainCopy4.castShadow = true;
+	meshBeltPieceMainCopy4.recieveShadow = true;
 	meshBeltPieceMainCopy4.name = 'BeltPieceMainCopy4';
 	meshBeltPieceMainCopy4.position.x = 0;
 	meshBeltPieceMainCopy4.position.y = 130;
@@ -290,6 +314,7 @@ export async function createUndercarriageMesh() {
 	//* BeltPieceMainCopy5
 	const meshBeltPieceMainCopy5 = meshBeltPieceMain.clone(true);
 	meshBeltPieceMainCopy5.castShadow = true;
+	meshBeltPieceMainCopy5.recieveShadow = true;
 	meshBeltPieceMainCopy5.name = 'BeltPieceMainCopy5';
 	meshBeltPieceMainCopy5.position.x = 0;
 	meshBeltPieceMainCopy5.position.y = 130;
@@ -300,6 +325,7 @@ export async function createUndercarriageMesh() {
 	//* BeltPieceMainCopy6
 	const meshBeltPieceMainCopy6 = meshBeltPieceMain.clone(true);
 	meshBeltPieceMainCopy6.castShadow = true;
+	meshBeltPieceMainCopy6.recieveShadow = true;
 	meshBeltPieceMainCopy6.name = 'BeltPieceMainCopy6';
 	meshBeltPieceMainCopy6.position.x = 0;
 	meshBeltPieceMainCopy6.position.y = 130;
@@ -310,6 +336,7 @@ export async function createUndercarriageMesh() {
 	//* BeltPieceMainCopy7
 	const meshBeltPieceMainCopy7 = meshBeltPieceMain.clone(true);
 	meshBeltPieceMainCopy7.castShadow = true;
+	meshBeltPieceMainCopy7.recieveShadow = true;
 	meshBeltPieceMainCopy7.name = 'BeltPieceMainCopy7';
 	meshBeltPieceMainCopy7.position.x = 0;
 	meshBeltPieceMainCopy7.position.y = 130;
@@ -325,6 +352,7 @@ export async function createUndercarriageMesh() {
 
 	const beltFlatSection2 = beltFlatSection.clone()
 	beltFlatSection2.castShadow = true;
+	beltFlatSection2.recieveShadow = true;
 	beltFlatSection2.name = 'BeltFlatSection2';
 	beltFlatSection2.position.x = 0;
 	beltFlatSection2.position.y = 0;
@@ -333,6 +361,7 @@ export async function createUndercarriageMesh() {
 
 	const beltFlatSection3 = beltFlatSection.clone()
 	beltFlatSection3.castShadow = true;
+	beltFlatSection3.recieveShadow = true;
 	beltFlatSection3.name = 'BeltFlatSection3';
 	beltFlatSection3.position.x = 0;
 	beltFlatSection3.position.y = 0;
@@ -341,6 +370,7 @@ export async function createUndercarriageMesh() {
 
 	const beltFlatSection4 = beltFlatSection.clone()
 	beltFlatSection4.castShadow = true;
+	beltFlatSection4.recieveShadow = true;
 	beltFlatSection4.name = 'BeltFlatSection4';
 	beltFlatSection4.position.x = 0;
 	beltFlatSection4.position.y = 0;
@@ -353,6 +383,7 @@ export async function createUndercarriageMesh() {
 
 	const beltFlatSection5 = beltFlatSection.clone()
 	beltFlatSection5.castShadow = true;
+	beltFlatSection5.recieveShadow = true;
 	beltFlatSection5.name = 'BeltFlatSection5';
 	beltFlatSection5.position.x = 0;
 	beltFlatSection5.position.y = -32;
@@ -362,6 +393,7 @@ export async function createUndercarriageMesh() {
 
 	const beltFlatSection6 = beltFlatSection.clone()
 	beltFlatSection6.castShadow = true;
+	beltFlatSection6.recieveShadow = true;
 	beltFlatSection6.name = 'BeltFlatSection6';
 	beltFlatSection6.position.x = 0;
 	beltFlatSection6.position.y = 16;
@@ -375,6 +407,7 @@ export async function createUndercarriageMesh() {
 
 	const beltFlatSection7 = beltFlatSection.clone()
 	beltFlatSection7.castShadow = true;
+	beltFlatSection7.recieveShadow = true;
 	beltFlatSection7.name = 'BeltFlatSection7';
 	beltFlatSection7.position.x = 0;
 	beltFlatSection7.position.y = 166;
@@ -384,6 +417,7 @@ export async function createUndercarriageMesh() {
 
 	const beltFlatSection8 = beltFlatSection.clone()
 	beltFlatSection8.castShadow = true;
+	beltFlatSection8.recieveShadow = true;
 	beltFlatSection8.name = 'BeltFlatSection8';
 	beltFlatSection8.position.x = 0;
 	beltFlatSection8.position.y = 166;
@@ -393,6 +427,7 @@ export async function createUndercarriageMesh() {
 
 	const beltFlatSection9 = beltFlatSection.clone()
 	beltFlatSection9.castShadow = true;
+	beltFlatSection9.recieveShadow = true;
 	beltFlatSection9.name = 'BeltFlatSection9';
 	beltFlatSection9.position.x = 0;
 	beltFlatSection9.position.y = 166;
@@ -402,6 +437,7 @@ export async function createUndercarriageMesh() {
 
 	const beltFlatSection10 = beltFlatSection.clone()
 	beltFlatSection10.castShadow = true;
+	beltFlatSection10.recieveShadow = true;
 	beltFlatSection10.name = 'BeltFlatSection10';
 	beltFlatSection10.position.x = 0;
 	beltFlatSection10.position.y = 166;
@@ -411,6 +447,7 @@ export async function createUndercarriageMesh() {
 
 	const beltFlatSection11 = beltFlatSection.clone()
 	beltFlatSection11.castShadow = true;
+	beltFlatSection11.recieveShadow = true;
 	beltFlatSection11.name = 'BeltFlatSection11';
 	beltFlatSection11.position.x = 0;
 	beltFlatSection11.position.y = 166;
@@ -420,6 +457,7 @@ export async function createUndercarriageMesh() {
 
 	const beltFlatSection12 = beltFlatSection.clone()
 	beltFlatSection12.castShadow = true;
+	beltFlatSection12.recieveShadow = true;
 	beltFlatSection12.name = 'BeltFlatSection12';
 	beltFlatSection12.position.x = 0;
 	beltFlatSection12.position.y = 166;
@@ -429,6 +467,7 @@ export async function createUndercarriageMesh() {
 
 	const beltFlatSection13 = beltFlatSection.clone()
 	beltFlatSection13.castShadow = true;
+	beltFlatSection13.recieveShadow = true;
 	beltFlatSection13.name = 'BeltFlatSection13';
 	beltFlatSection13.position.x = 0;
 	beltFlatSection13.position.y = 166;
@@ -442,6 +481,7 @@ export async function createUndercarriageMesh() {
 
 	const belt2 = belt.clone()
 	belt2.castShadow = true;
+	belt2.recieveShadow = true;
 	belt2.name = 'Belt2';
 	belt2.position.x = 200;
 	belt2.position.y = 0;
@@ -455,6 +495,7 @@ export async function createUndercarriageMesh() {
 	const beltBody = new BoxGeometry( 90, 90, 460, 10, 1,1);
 	const meshBeltBody = new THREE.Mesh(beltBody, materialAluminium);
 	meshBeltBody.castShadow = true;
+	meshBeltBody.recieveShadow = true;
 	meshBeltBody.name = 'BeltBody';
 	meshBeltBody.position.x = 200;
 	meshBeltBody.position.y = 80;
@@ -464,6 +505,7 @@ export async function createUndercarriageMesh() {
 	const beltBodyEndPiece1 = new BoxGeometry( 90, 45, 760, 10, 1,1);
 	const meshbeltBodyEndPiece1 = new THREE.Mesh(beltBodyEndPiece1, materialAluminium);
 	meshbeltBodyEndPiece1.castShadow = true;
+	meshbeltBodyEndPiece1.recieveShadow = true;
 	meshbeltBodyEndPiece1.name = 'beltBodyEndPiece1';
 	meshbeltBodyEndPiece1.position.x = 0;
 	meshbeltBodyEndPiece1.position.y = -20;
@@ -475,6 +517,7 @@ export async function createUndercarriageMesh() {
 	const beltBodyEndPiece2 = new BoxGeometry( 90, 45, 160, 10, 1,1);
 	const meshbeltBodyEndPiece2 = new THREE.Mesh(beltBodyEndPiece2, materialAluminium);
 	meshbeltBodyEndPiece2.castShadow = true;
+	meshbeltBodyEndPiece2.recieveShadow = true;
 	meshbeltBodyEndPiece2.name = 'beltBodyEndPiece2';
 	meshbeltBodyEndPiece2.position.x = 0;
 	meshbeltBodyEndPiece2.position.y = 6;
@@ -484,6 +527,7 @@ export async function createUndercarriageMesh() {
 
 	const meshBeltBodyEndPiece3 = meshbeltBodyEndPiece2.clone();
 	meshBeltBodyEndPiece3.castShadow = true;
+	meshBeltBodyEndPiece3.recieveShadow = true;
 	meshBeltBodyEndPiece3.name = 'beltBodyEndPiece3';
 	meshBeltBodyEndPiece3.position.x = 0;
 	meshBeltBodyEndPiece3.position.y = 5.5;
@@ -496,6 +540,7 @@ export async function createUndercarriageMesh() {
 	const beltBodyDetail1 = new BoxGeometry( 10, 50, 2, 1, 1,1);
 	const meshBeltBodyDetail1 = new THREE.Mesh(beltBodyDetail1, materialAluminium);
 	meshBeltBodyDetail1.castShadow = true;
+	meshBeltBodyDetail1.recieveShadow = true;
 	meshBeltBodyDetail1.name = 'BeltBodyDetail1';
 	meshBeltBodyDetail1.position.x = 50;
 	meshBeltBodyDetail1.position.y = -10;
@@ -504,6 +549,7 @@ export async function createUndercarriageMesh() {
 
 	const meshBeltBodyDetail2 = meshBeltBodyDetail1.clone();
 	meshBeltBodyDetail2.castShadow = true;
+	meshBeltBodyDetail2.recieveShadow = true;
 	meshBeltBodyDetail2.name = 'BeltBodyDetail2';
 	meshBeltBodyDetail2.position.x = 50;
 	meshBeltBodyDetail2.position.y = -10;
@@ -513,6 +559,7 @@ export async function createUndercarriageMesh() {
 	const beltBodyDetail3 = new BoxGeometry( 10, 70, 2, 1, 1,1);
 	const meshBeltBodyDetail3 = new THREE.Mesh(beltBodyDetail3, materialAluminium);
 	meshBeltBodyDetail3.castShadow = true;
+	meshBeltBodyDetail3.recieveShadow = true;
 	meshBeltBodyDetail3.name = 'BeltBodyDetail3';
 	meshBeltBodyDetail3.position.x = 50;
 	meshBeltBodyDetail3.position.y = 0;
@@ -521,6 +568,7 @@ export async function createUndercarriageMesh() {
 
 	const meshBeltBodyDetail4 = meshBeltBodyDetail3.clone();
 	meshBeltBodyDetail4.castShadow = true;
+	meshBeltBodyDetail4.recieveShadow = true;
 	meshBeltBodyDetail4.name = 'BeltBodyDetail4';
 	meshBeltBodyDetail4.position.x = 50;
 	meshBeltBodyDetail4.position.y = 0;
@@ -531,6 +579,7 @@ export async function createUndercarriageMesh() {
 
 	const meshBeltBodyDetail5 = meshBeltBodyDetail3.clone();
 	meshBeltBodyDetail5.castShadow = true;
+	meshBeltBodyDetail5.recievetShadow = true;
 	meshBeltBodyDetail5.name = 'BeltBodyDetail5';
 	meshBeltBodyDetail5.position.x = -50;
 	meshBeltBodyDetail5.position.y = 0;
@@ -539,6 +588,7 @@ export async function createUndercarriageMesh() {
 
 	const meshBeltBodyDetail6 = meshBeltBodyDetail3.clone();
 	meshBeltBodyDetail6.castShadow = true;
+	meshBeltBodyDetail6.recieveShadow = true;
 	meshBeltBodyDetail6.name = 'BeltBodyDetail6';
 	meshBeltBodyDetail6.position.x = -50;
 	meshBeltBodyDetail6.position.y = 0;
@@ -547,6 +597,7 @@ export async function createUndercarriageMesh() {
 
 	const meshBeltBodyDetail7 = meshBeltBodyDetail1.clone();
 	meshBeltBodyDetail7.castShadow = true;
+	meshBeltBodyDetail7.recieveShadow = true;
 	meshBeltBodyDetail7.name = 'BeltBodyDetail7';
 	meshBeltBodyDetail7.position.x = -50;
 	meshBeltBodyDetail7.position.y = -10;
@@ -555,6 +606,7 @@ export async function createUndercarriageMesh() {
 
 	const meshBeltBodyDetail8 = meshBeltBodyDetail1.clone();
 	meshBeltBodyDetail8.castShadow = true;
+	meshBeltBodyDetail8.recieveShadow = true;
 	meshBeltBodyDetail8.name = 'BeltBodyDetail8';
 	meshBeltBodyDetail8.position.x = -50;
 	meshBeltBodyDetail8.position.y = -10;
@@ -566,6 +618,7 @@ export async function createUndercarriageMesh() {
 	// Klonen
 	const meshBeltBody2 = meshBeltBody.clone();
 	meshBeltBody2.castShadow = true;
+	meshBeltBody2.recieveShadow = true;
 	meshBeltBody2.name = 'BeltBody2';
 	meshBeltBody2.position.x = -200;
 	meshBeltBody2.position.y = 80;
@@ -584,6 +637,7 @@ export async function createUndercarriageMesh() {
 	const undercarriageBody = new BoxGeometry( 280, 80, 280, 10, 1,1);
 	const meshUndercarriageBody = new THREE.Mesh(undercarriageBody, materialAluminium);
 	meshUndercarriageBody.castShadow = true;
+	meshUndercarriageBody.recieveShadow = true;
 	meshUndercarriageBody.name = 'undercarriageBody';
 	meshUndercarriageBody.position.x = 0;
 	meshUndercarriageBody.position.y = 80;
@@ -594,6 +648,7 @@ export async function createUndercarriageMesh() {
 	const undercarriageCone = new THREE.ConeGeometry( 30, 50, 50);
 	const meshUndercarriageCone = new THREE.Mesh(undercarriageCone, materialAluminium);
 	meshUndercarriageCone.castShadow = true;
+	meshUndercarriageCone.recieveShadow = true;
 	meshUndercarriageCone.name = 'undercarriageBody';
 	meshUndercarriageCone.position.x = -60;
 	meshUndercarriageCone.position.y = 80;
