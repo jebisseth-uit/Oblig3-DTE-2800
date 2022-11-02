@@ -86,18 +86,8 @@ async function addSceneObjects() {
 	meshPlane.receiveShadow = true;	//NB!
 	g_scene.add(meshPlane);
 
-	//
-	//let crane = await createcraneMesh();
-	//crane.name = "crane";
-	//crane.baseRot = 0.0;
-	//crane.joint1Rot = 0.0;
-	//crane.joint2Rot = 0.0;
-	//g_scene.add(crane);
 
-	//let crane = await  createCranecraneMesh();
-	//g_scene.add(crane);
 
-	//let crane = await cranecraneBuilder()
 	let crane = await buildCrane()
 	crane.name = "crane";
 	crane.baseRot = 0.0;
@@ -209,7 +199,7 @@ function animate(currentTime) {
 	//Oppdater trackball-kontrollen:
 	g_controls.update();
 
-	//Roterer heile skjiten:
+
 	let crane = g_scene.getObjectByName("crane", true);
 	crane.rotation.y = crane.baseRot;
 	let craneAboveBelt = crane.getObjectByName('craneAboveBelt', true);  //true = recursive...
@@ -219,10 +209,10 @@ function animate(currentTime) {
 	craneArm.rotation.z = crane.joint2Rot;
 
 	let hook = crane.getObjectByName('hook', true);  //true = recursive...
-	hook.translation = crane.joint2Rot;
+
 
 	//Sjekker input:
-	handleKeys(delta, crane);
+	handleKeys(delta, crane, hook);
 
 	//Tegner scenen med gitt kamera:
 	renderScene();
@@ -243,10 +233,10 @@ function onWindowResize() {
 }
 
 //Sjekker tastaturet:
-function handleKeys(delta, crane) {
+function handleKeys(delta, crane, hook) {
 	let rotationSpeed = (Math.PI); // Bestemmer rotasjonshastighet.
 
-	//Roter foten:s
+	//Roter Hele Krana
 	if (g_currentlyPressedKeys['KeyA']) { //A
 		crane.baseRot = crane.baseRot + (rotationSpeed * delta);
 		crane.baseRot %= (Math.PI * 2); // "Rull rundt" dersom crane.baseRot >= 360 grader.
@@ -256,7 +246,7 @@ function handleKeys(delta, crane) {
 		crane.baseRot %= (Math.PI * 2); // "Rull rundt" dersom crane.baseRot >= 360 grader.
 	}
 
-	//Roter joint1:
+	//Roter Styrhus og ovenfor
 	if (g_currentlyPressedKeys['KeyS']) {	//S
 		crane.joint1Rot = crane.joint1Rot + (rotationSpeed * delta);
 		crane.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint1Rot >= 360 grader.
@@ -266,7 +256,7 @@ function handleKeys(delta, crane) {
 		crane.joint1Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint1Rot >= 360 grader.
 	}
 
-	//Roter joint2:
+	//Roter kranarmen
 	if (g_currentlyPressedKeys['KeyV']) { //V
 		crane.joint2Rot = crane.joint2Rot + (rotationSpeed * delta);
 		crane.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint2Rot >= 360 grader.
@@ -275,11 +265,11 @@ function handleKeys(delta, crane) {
 		crane.joint2Rot = crane.joint2Rot - (rotationSpeed * delta);
 		crane.joint2Rot %= (Math.PI * 2); // "Rull rundt" dersom crane.joint2Rot >= 360 grader.
 	}
-	//Roter joint3:
+	//Hever Kroken
 	if (g_currentlyPressedKeys['KeyN']) { //V
-		crane.position.y += 0.1
+		hook.position.y += 0.5
 	}
 	if (g_currentlyPressedKeys['KeyM']) {	//B
-		crane.position.y -= 0.1
+		hook.position.y -= 0.5
 	}
 }
