@@ -10,20 +10,25 @@ import {hookComplete} from "../Hook/hook";
 export async function buildCrane(){
 
 	const crane = new THREE.Group;
+	const craneAboveBelt = new THREE.Group;
+	craneAboveBelt.name = 'craneAboveBelt'
+	crane.add(craneAboveBelt);
 
 	//Hook
 	let hook = await hookComplete()
+	hook.name = 'hook'
 	hook.scale.y = 1;
 	hook.scale.x = 1;
 	hook.scale.z = 1;
-	crane.add(hook);
+	craneAboveBelt.add(hook);
 
 	//craneArm
 	let craneArm = await craneArmBuilder();
+	craneArm.name = 'craneArm'
 	craneArm.scale.y = 2;
 	craneArm.scale.x = 2;
 	craneArm.scale.z = 2;
-	crane.add(craneArm);
+	craneAboveBelt.add(craneArm);
 
 	//belt
 	let craneBelt = await createUndercarriageMesh();
@@ -37,7 +42,7 @@ export async function buildCrane(){
 	craneStyrhus.scale.x = 15;
 	craneStyrhus.scale.y = 15;
 	craneStyrhus.scale.z = 15;
-	crane.add(craneStyrhus);
+	craneAboveBelt.add(craneStyrhus);
 
 	return crane;
 }
