@@ -33,7 +33,7 @@ export async function buildCrane(){
 	//styrhus
 	let craneStyrhus = await styrhus();
 	craneStyrhus.position.y = 90;
-	craneStyrhus.position.x = 350;
+	craneStyrhus.position.x = 360;
 	craneStyrhus.scale.x = 15;
 	craneStyrhus.scale.y = 15;
 	craneStyrhus.scale.z = 15;

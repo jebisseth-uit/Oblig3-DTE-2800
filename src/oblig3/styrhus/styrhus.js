@@ -144,17 +144,18 @@ export async function styrhus() {
     rollers.scale.set(0.5, 0.5, 0.66)
     body1.add(rollers);
 
-    let spotlightRoof = await createSpotlights(2,5,12)
+    let spotlightRoof = await createSpotlights(1,3,6)
     spotlightRoof.name = "roofLight";
-    spotlightRoof.position.y = 36.5;
-    spotlightRoof.position.z = -5;
+    spotlightRoof.position.x = -6;
+    spotlightRoof.position.y = 15;
+    spotlightRoof.position.z = 10;
     body1.add(spotlightRoof);
 
-    let spotlightBack = await createSpotlights(2,5,12)
+    let spotlightBack = await createSpotlights(1,3,6)
     spotlightBack.name = "backLight";
-    spotlightBack.position.y = 38;
-    spotlightBack.position.z = -5;
-    spotlightBack.position.x = -69;
+    spotlightBack.position.y = 19;
+    spotlightBack.position.z = 10;
+    spotlightBack.position.x = -51;
     spotlightBack.rotation.y = Math.PI;
     body1.add(spotlightBack);
 
