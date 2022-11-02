@@ -10,7 +10,7 @@ export async function createSpotlights(width = 1, height = 1, depth = 1){
 
 	let material = new THREE.MeshPhongMaterial({map: texture});
 
-	//Container for arm logo:
+	//Spotlight
 	const spotlight = new THREE.Group;
 
 	const base = new THREE.BoxGeometry(width*0.3, height*0.3, depth*0.3)
