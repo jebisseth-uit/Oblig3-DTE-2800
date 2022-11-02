@@ -4,9 +4,10 @@ import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 import {addCoordSystem} from "../../static/lib/wfa-coord.js";
 import {buildCrane} from "./build/buildCrane.js";
+import GUI from "lil-gui"
 
 //Globale variabler:
-let g_scene, g_renderer, g_camera, g_clock, g_controls, g_currentlyPressedKeys = [];
+let g_scene, g_renderer, g_camera, g_clock, g_controls, g_currentlyPressedKeys = [], g_lilGui;
 let g_propellerAngle = 0;
 
 //STARTER!
@@ -15,6 +16,9 @@ await main();
 export async function main() {
 	const canvas = document.createElement('canvas');
 	document.body.appendChild(canvas);
+
+	// lil-gui kontroller:
+	g_lilGui = new GUI();
 
 	// Renderer:
 	g_renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});
@@ -103,6 +107,7 @@ function addLights() {
 	//Retningsorientert lys (som gir skygge):
 	let directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.5); //farge, intensitet (1=default)
 	directionalLight1.position.set(0, 300, 300);
+	directionalLight1.visible = false;
 	directionalLight1.shadow.mapSize.width = 1024;
 	directionalLight1.shadow.mapSize.height = 1024;
 	directionalLight1.castShadow = true;
@@ -115,6 +120,7 @@ function addLights() {
 	directionalLight1.shadow.camera.visible = true;
 
 	let ambientLight1 = new THREE.AmbientLight(0xffffff,0.2)
+	ambientLight1.visible = true;
 	g_scene.add(ambientLight1);
 
 	//Spotlight on crane roof
@@ -122,6 +128,7 @@ function addLights() {
 	let spotlightRoof = g_scene.getObjectByName("roofLight")
 	const lightPos = new THREE.Vector3();
 	spotlightRoof.getWorldPosition(lightPos)
+	spotLight1.visible = true;
 	spotLight1.position.x = lightPos.x+15;
 	spotLight1.position.y = lightPos.y+8;
 	spotLight1.position.z = lightPos.z;
@@ -142,6 +149,7 @@ function addLights() {
 	let spotlighBack = g_scene.getObjectByName("backLight")
 	const lightBackPos = new THREE.Vector3();
 	spotlighBack.getWorldPosition(lightPos)
+	spotLight2.visible = true;
 	spotLight2.position.x = lightPos.x-15;
 	spotLight2.position.y = lightPos.y-8;
 	spotLight2.position.z = lightPos.z;
@@ -157,6 +165,27 @@ function addLights() {
 	g_scene.add(spotLight2);
 	g_scene.add(spotLight2.target);
 
+	//lil-gui:
+	//Directional light
+	const directionalFolder = g_lilGui.addFolder( 'Directional Light' );
+	directionalFolder.add(directionalLight1, 'visible').name("On/Off");
+	directionalFolder.add(directionalLight1, 'intensity').min(0).max(1).step(0.01).name("Intensity");
+	directionalFolder.addColor(directionalLight1, 'color').name("Color");
+	//Ambient light
+	const ambientLightFolder = g_lilGui.addFolder( 'Ambient Light' );
+	ambientLightFolder.add(ambientLight1, 'visible').name("On/Off");
+	ambientLightFolder.add(ambientLight1, 'intensity').min(0).max(1).step(0.01).name("Intensity");
+	ambientLightFolder.addColor(ambientLight1, 'color').name("Color");
+	//Front spot
+	const frontSpotFolder = g_lilGui.addFolder("Front spotlight");
+	frontSpotFolder.add(spotLight1, 'visible').name("On/Off");
+	frontSpotFolder.add(spotLight1, 'intensity').min(0).max(1).step(0.01).name("Intensity");
+	frontSpotFolder.addColor(spotLight1, 'color').name("Color");
+	//Back spot
+	const backSpotFolder = g_lilGui.addFolder("Rear spotlight");
+	backSpotFolder.add(spotLight2, 'visible').name("On/Off");
+	backSpotFolder.add(spotLight2, 'intensity').min(0).max(1).step(0.01).name("Intensity");
+	backSpotFolder.addColor(spotLight2, 'color').name("Color");
 
 	//Hjelpeklasse for å vise lysets utstrekning:
 	let lightCamHelper = new THREE.CameraHelper( spotLight1.shadow.camera );
