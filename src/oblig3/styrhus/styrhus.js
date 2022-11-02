@@ -1,9 +1,7 @@
 
 import * as THREE from "three";
 
-import {createArmsMesh, createArmsMesh2, createBodyMesh, createBodyMesh2, createBoxMesh, createBoxMesh2,
-    createFootMesh, createFootMesh2, createHandlesMesh, createHandlesMesh2, createRollersMesh,
-    createStairsMesh, createStairsMesh2} from "./foot.js";
+import {createArmsMesh, createArmsMesh2, createBodyMesh, createBodyMesh2, createBoxMesh, createBoxMesh2, createFootMesh, createFootMesh2, createHandlesMesh, createHandlesMesh2, createRollersMesh, createStairsMesh, createStairsMesh2} from "./foot.js";
 import {createSpotlights} from "./ligths.js";
 
 export async function styrhus() {
