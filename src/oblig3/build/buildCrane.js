@@ -29,17 +29,22 @@ export async function createLogoPlate(width=1, height=1, depth=1){
 export async function buildCrane(){
 
 	const crane = new THREE.Group;
+	const craneOverBelt = new THREE.Group;
+	craneOverBelt.name = 'craneOverBelt'
+	crane.add(craneOverBelt);
 
 	//craneArm
 	let craneArm = await craneArmBuilder();
 	craneArm.scale.y = 2;
 	craneArm.scale.x = 2;
 	craneArm.scale.z = 2;
-	crane.add(craneArm);
+	craneOverBelt.add(craneArm);
 
 	//belt
 	let craneBelt = await createUndercarriageMesh();
 	crane.add(craneBelt);
+	craneBelt.castShadow = true;
+	craneBelt.recieveShadow = true;
 	craneBelt.rotation.y = Math.PI/2;
 
 	//styrhus
@@ -49,7 +54,7 @@ export async function buildCrane(){
 	craneStyrhus.scale.x = 8;
 	craneStyrhus.scale.y = 8;
 	craneStyrhus.scale.z = 8;
-	crane.add(craneStyrhus);
+	craneOverBelt.add(craneStyrhus);
 
 	return crane;
 }
