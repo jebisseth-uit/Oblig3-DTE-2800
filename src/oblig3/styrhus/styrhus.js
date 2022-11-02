@@ -1,6 +1,7 @@
 
 import * as THREE from "three";
 
+
 import {
     createArmsMesh,
     createArmsMesh2,
@@ -18,6 +19,7 @@ import {
     creatRollerMesh1,
 } from "./foot.js";
 
+import {createSpotlights} from "./ligths.js";
 export async function styrhus() {
 
     const body1 = new THREE.Group();
@@ -52,10 +54,6 @@ export async function styrhus() {
     //
     let box2 = await createBoxMesh2();
     box2.name = "box2";
-    box2.translateZ(14);
-    box2.translateY(-12);
-    box2.translateX(-18);
-    box2.scale.set(0.5, 0.8, 0.8);
     body1.add(box2);
 
     //
@@ -122,6 +120,7 @@ export async function styrhus() {
     arms.translateX(-9);
     arms.scale.set(0.5, 0.5, 0.5);
     body1.add(arms);
+    body1.add(handles);
 
     //
     let arms2 = await createArmsMesh2();
@@ -142,6 +141,21 @@ export async function styrhus() {
     rollers.scale.set(0.5, 0.5, 0.66)
     body1.add(rollers);
 
+    let spotlightRoof = await createSpotlights(2,5,12)
+    spotlightRoof.name = "roofLight";
+    spotlightRoof.position.y = 36.5;
+    spotlightRoof.position.z = -5;
+    body1.add(spotlightRoof);
+
+    let spotlightBack = await createSpotlights(2,5,12)
+    spotlightBack.name = "backLight";
+    spotlightBack.position.y = 38;
+    spotlightBack.position.z = -5;
+    spotlightBack.position.x = -69;
+    spotlightBack.rotation.y = Math.PI;
+    body1.add(spotlightBack);
+
+
 
     let joiner = await creatRollerMesh1();
     joiner.name = "rollers";
@@ -154,7 +168,6 @@ export async function styrhus() {
         child.castShadow = true;
         child.receiveShadow = true;
     });
-
     return body1;
 }
 
