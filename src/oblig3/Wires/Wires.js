@@ -11,6 +11,13 @@ export async function flexibleWires() {
 
     const flexibleWires = new THREE.Group;
 
+    /**
+     * Prøvde å legge dette inn i fila Oblig3, men tok det ut og la det i egen fil for ryddighets skyld,
+     * da jeg ikke fikk det til å fungere.
+     * Prøvde mange forskjellige varianter, regner med det er det med point.push
+     * Også veldig usikker på de computeBounding linjene og hva jeg burde putte der i stedet.
+     */
+
 // Linje
     const lineMaterial = new THREE.LineBasicMaterial({color: 0x0000ff});
     const points = [];
