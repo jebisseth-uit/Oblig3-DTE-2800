@@ -60,7 +60,7 @@ export async function hookComplete() {
     meshHook.position.x = 10;
     meshHook.position.y = 0;
     meshHook.position.z = 30;
-    meshHook.rotation.x = Math.PI/2.5;
+    meshHook.rotation.x = Math.PI/2.3;
     meshHook.rotation.z = Math.PI/1.2;
     meshHook.rotation.y = Math.PI/1;
     meshHookBlock.add(meshHook);
