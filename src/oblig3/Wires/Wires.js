@@ -14,23 +14,24 @@ export async function flexibleWires() {
 // Linje
     const lineMaterial = new THREE.LineBasicMaterial({color: 0x0000ff});
     const points = [];
-    points.push(meshSphere.position);
-    points.push(cubeMesh.position);
+    points.push(g_scene.getObjectByName("hook").position);
+    points.push(g_scene.getObjectByName("craneArmWithWires").position);
     const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
     const line = new THREE.Line(lineGeometry, lineMaterial);
     line.name = "myLine";
     g_scene.add(line);
 
 
-    const myCube = g_scene.getObjectByName("myCube");
+    const myHook= g_scene.getObjectByName("hook");
+    const myCraneArmWithWires = g_scene.getObjectByName("craneArmWithWires");
     const myLine = g_scene.getObjectByName("myLine");
     const lineVertexPositions = myLine.geometry.attributes.position.array;
-    lineVertexPositions[0] = mySphere.position.x;
-    lineVertexPositions[1] = mySphere.position.y;
-    lineVertexPositions[2] = mySphere.position.z;
-    lineVertexPositions[3] = myCube.position.x;
-    lineVertexPositions[4] = myCube.position.y;
-    lineVertexPositions[5] = myCube.position.z;
+    lineVertexPositions[0] = myCraneArmWithWires.position.x;
+    lineVertexPositions[1] = myCraneArmWithWires.position.y;
+    lineVertexPositions[2] = myCraneArmWithWires.position.z;
+    lineVertexPositions[3] = myHook.position.x;
+    lineVertexPositions[4] = myHook.position.y;
+    lineVertexPositions[5] = myHook.position.z;
     myLine.geometry.attributes.position.needsUpdate = true;
     myLine.geometry.computeBoundingBox();
     myLine.geometry.computeBoundingSphere();
