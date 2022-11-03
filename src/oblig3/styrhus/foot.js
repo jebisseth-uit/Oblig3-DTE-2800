@@ -182,26 +182,27 @@ export async function createBodyMesh() {
     const door1 = await loader.loadAsync('../../../assets/textures/door1.jpeg');
     const door2 = await loader.loadAsync('../../../assets/textures/door2.jpeg');
     const door3 = await loader.loadAsync('../../../assets/textures/door3.jpeg');
-    const front = await loader.loadAsync('../../../assets/textures/front.png');
-    const front2 = await loader.loadAsync('../../../assets/textures/front2.png');
-    const front3 = await loader.loadAsync('../../../assets/textures/front3.png');
+    const front = await loader.loadAsync('../../../assets/textures/window.png');
+    const front1 = await loader.loadAsync('../../../assets/textures/aluminium.jpg');
     const transparent = await loader.loadAsync('../../../assets/textures/transparent.png');
     let material1 = new THREE.MeshPhongMaterial({ map: door1 });
     let material2 = new THREE.MeshPhongMaterial({ map: door2 });
     let material3 = new THREE.MeshPhongMaterial({ map: door3 });
-    let material4 = new THREE.MeshPhongMaterial({ map: front });
+    let material4 = new THREE.MeshStandardMaterial({ map: front });
+    material4.metalness = 0.5;
+    material4.roughness = 0;
     material4.transparent = true;
-    let material5 = new THREE.MeshPhongMaterial({ map: front2 });
+
+    let material5 = new THREE.MeshPhongMaterial({ map: front1});
     material5.transparent = true;
-    let material6 = new THREE.MeshPhongMaterial({ map: front3 });
-    material6.transparent = true;
-    const blackMaterial = new THREE.MeshPhongMaterial({color: '#000'});
+    material5.metalness = 0.5;
+    material5.roughness = 0;
     const transparentMaterial = new THREE.MeshPhongMaterial({map: transparent});
     transparentMaterial.transparent = true;
     const body = new THREE.Group();
 
     let styrhusBody1 = new THREE.BoxGeometry(10, 16, 8, 30, 5);
-    let meshstyrhusBody1 = new THREE.Mesh(styrhusBody1, [material4, blackMaterial, blackMaterial, blackMaterial, material4, material4]);
+    let meshstyrhusBody1 = new THREE.Mesh(styrhusBody1, [material4, material5, material5, material5, material4, material4]);
     meshstyrhusBody1.castShadow = true;
     meshstyrhusBody1.receiveShadow = true;
     meshstyrhusBody1.name = 'styrhusBody1';
@@ -346,7 +347,9 @@ export async function createStairsMesh() {
 
     const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
 
-    let materialAluminium = new THREE.MeshMatcapMaterial({map: textureAluminium});
+    let materialAluminium = new THREE.MeshStandardMaterial({map: textureAluminium});
+    materialAluminium.metalness = 0.5;
+    materialAluminium.roughness = 0;
 
     const stairs = new THREE.Group();
 
@@ -413,7 +416,10 @@ export async function createStairsMesh2() {
 
     const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
 
-    let materialAluminium = new THREE.MeshMatcapMaterial({map: textureAluminium});
+
+    let materialAluminium = new THREE.MeshStandardMaterial({map: textureAluminium});
+    materialAluminium.metalness = 0.5;
+    materialAluminium.roughness = 0;
 
     const stairs = new THREE.Group();
 
@@ -479,12 +485,14 @@ export async function createHandlesMesh() {
     const loader = new THREE.TextureLoader();
 
 
-
     const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
     textureAluminium.wrapS = THREE.RepeatWrapping;
     textureAluminium.wrapT = THREE.RepeatWrapping;
 
-    let materialAluminium = new THREE.MeshMatcapMaterial({map: textureAluminium});
+
+    let materialAluminium = new THREE.MeshStandardMaterial({map: textureAluminium});
+    materialAluminium.metalness = 0.5;
+    materialAluminium.roughness = 0;
 
     const handles = new THREE.Group();
 
@@ -584,13 +592,14 @@ export async function createHandlesMesh2() {
 
     const loader = new THREE.TextureLoader();
 
-    
-
     const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
     textureAluminium.wrapS = THREE.RepeatWrapping;
     textureAluminium.wrapT = THREE.RepeatWrapping;
 
-    let materialAluminium = new THREE.MeshMatcapMaterial({map: textureAluminium});
+
+    let materialAluminium = new THREE.MeshStandardMaterial({map: textureAluminium});
+    materialAluminium.metalness = 0.5;
+    materialAluminium.roughness = 0;
 
     const handles = new THREE.Group();
 
@@ -690,8 +699,8 @@ export async function createBoxMesh() {
 
     const loader = new THREE.TextureLoader();
     const textureObject = await loader.loadAsync('../../../assets/textures/box.jpeg');
-    let material = new THREE.MeshPhongMaterial({ map: textureObject });
-    let materialRed = new THREE.MeshPhongMaterial({ color: 'rgb(205, 27, 27)' });
+    let material = new THREE.MeshBasicMaterial({ map: textureObject });
+    let materialRed = new THREE.MeshBasicMaterial({ color: 'rgb(205, 27, 27)' });
 
     const box = new THREE.Group();
 
@@ -787,7 +796,10 @@ export async function createArmsMesh() {
     textureAluminium.wrapS = THREE.RepeatWrapping;
     textureAluminium.wrapT = THREE.RepeatWrapping;
 
-    let materialAluminium = new THREE.MeshMatcapMaterial({map: textureAluminium});
+
+    let materialAluminium = new THREE.MeshStandardMaterial({map: textureAluminium});
+    materialAluminium.metalness = 0.5;
+    materialAluminium.roughness = 0;
 
     const arms = new THREE.Group();
     arms.castShadow = true;
@@ -853,7 +865,10 @@ export async function createArmsMesh2() {
     textureAluminium.wrapS = THREE.RepeatWrapping;
     textureAluminium.wrapT = THREE.RepeatWrapping;
 
-    let materialAluminium = new THREE.MeshMatcapMaterial({map: textureAluminium});
+
+    let materialAluminium = new THREE.MeshStandardMaterial({map: textureAluminium});
+    materialAluminium.metalness = 0.5;
+    materialAluminium.roughness = 0;
 
     const arms = new THREE.Group();
     arms.castShadow = true;
@@ -918,7 +933,10 @@ export  async  function creatRollerMesh1(){
     const textureAluminium = await loader.loadAsync('../../assets/textures/aluminium.jpg');
     textureAluminium.wrapS = THREE.RepeatWrapping;
     textureAluminium.wrapT = THREE.RepeatWrapping;
-    let materialAluminium = new THREE.MeshMatcapMaterial({map: textureAluminium});
+
+    let materialAluminium = new THREE.MeshStandardMaterial({map: textureAluminium});
+    materialAluminium.metalness = 0.5;
+    materialAluminium.roughness = 0;
 
     let joiner = new THREE.CylinderGeometry(2, 2, 11, 24, 1, false);
     let meshJoiner = new THREE.Mesh(joiner, materialAluminium);
@@ -944,7 +962,10 @@ export async function createRollersMesh() {
     textureAluminium.wrapS = THREE.RepeatWrapping;
     textureAluminium.wrapT = THREE.RepeatWrapping;
 
-    let materialAluminium = new THREE.MeshMatcapMaterial({map: textureAluminium});
+
+    let materialAluminium = new THREE.MeshStandardMaterial({map: textureAluminium});
+    materialAluminium.metalness = 0.5;
+    materialAluminium.roughness = 0;
 
     const rollers = new THREE.Group();
 
