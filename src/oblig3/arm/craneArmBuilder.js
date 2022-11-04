@@ -10,6 +10,7 @@ import {createCraneHookBackWires} from "./craneAssets.js";
 
 export async function craneArmBuilder(){
 	const craneArm = new THREE.Group;
+	craneArm.name = 'craneArm'
 	craneArm.castShadow = true;
 	craneArm.receiveShadow = true;
 
